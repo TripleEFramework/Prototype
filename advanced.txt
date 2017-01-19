@@ -1,0 +1,13 @@
+Part 1: Button Color
+index.html
+<button type="button" class="btn btn-danger btn-lg " ng-click="print()">Press to Print</button>
+
+Part 2: Button Text
+index.html
+<button type="button" class="btn btn-primary btn-lg " ng-click="print()">Go!</button>
+
+Part 3: Slider
+index.html
+<p ng-class="{'bg-primary': toggle == 1, 'bg-danger': toggle == 2}"> Select a color </p>
+<input type="radio" name="background" value="1" ng-model="toggle" ng-init="toggle=1">Normal</input>
+<input type="radio" name="background" value="2" ng-model="toggle">Error</input>
