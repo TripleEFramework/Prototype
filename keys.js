@@ -10,10 +10,10 @@ angular.module('keys', [])
 .factory('KeySvc', function() {
     return {
         //App Key
-        key1:"****************************************",
+        key1:"3VjN8dHXZRpaSZ6TTkxPwx6RxkPX7lpctctsFMTw",
         //JavaScript Key
-        key2:"****************************************",
+        key2:"cG3XVQBcdvC2ENO7UTVCqfTBdJA1wtpbD1iK6cdr",
         //REST API Key
-        key3:"****************************************"
+        key3:"wk8c5pKnQMR3AY2qHw4kyqfl5uGp4gRJkmCqMetX"
     };
 });
