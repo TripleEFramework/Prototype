@@ -27,6 +27,7 @@
   <ul class="nav nav-tabs">
     <li role="presentation"><a data-toggle="tab" href="#userlist">User List</a></li> 
     <li role="presentation"><a data-toggle="tab" href="#print">Print Text</a></li> 
+    <li role="presentation"><a data-toggle="tab" href="#triplee">Triple E</a></li> 
     <li role="presentation" class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
         Account <span class="caret"></span>
@@ -131,6 +132,220 @@
           </div>
         </div>
         <button type="submit" class="btn btn-default btn-primary" ng-click="signUp()">Register</button>
+      </form>
+   </div>
+
+    <div id="triplee" class="tab-pane fade" ng-controller="reviewForm">
+      <form role="form">
+        <h2 class="form-reviewform-heading">Triple E Review</h2>
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+              <th>Triple E Evaluation Rubric</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Engagement in the learning</td>
+              <td>0=No</td>
+              <td>1=Somewhat</td>
+              <td>2=Yes</td>
+            </tr>
+            <tr>
+              <td>
+                The technology allows students to focus on the assignment or activity withless distraction.
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='engage11' name="engage1" value=0></label>
+                 </div>
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='engage12' name="engage1" value=1></label>
+                 </div>
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='engage13' name="engage1" value2></label>
+                 </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                The technology motivates students to start the learning process.
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='engage21' name="engage2"></label>
+                 </div>
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='engage22' name="engage2"></label>
+                 </div>
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='engage23' name="engage2"></label>
+                 </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                The technology causes a shift in the behavior of the students, where they move from passive to active social learners (co-use)
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='engage31' name="engage3"></label>
+                 </div>
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='engage32' name="engage3"></label>
+                 </div>
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='engage33' name="engage3"></label>
+                 </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Enhancement of the learning goals</td>
+              <td>0=No</td>
+              <td>1=Somewhat</td>
+              <td>2=Yes</td>
+            </tr>
+            <tr>
+              <td>
+                The technology tool allows students are able to develop or demonstrate a more sophisticated understanding of the learning goals or content
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='enhance11' name="enhance1"></label>
+                 </div>
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='enhance12' name="enhance1"></label>
+                 </div>
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='enhance13' name="enhance1"></label>
+                 </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                The technology creates supports (scaffolds) to make it easier to understandconcepts or ideas
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='enhance21' name="enhance2"></label>
+                 </div>
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='enhance22' name="enhance2"></label>
+                 </div>
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='enhance23' name="enhance2"></label>
+                 </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                The technology creates paths for students to demonstrate their understanding of the learning goals in a way that they could not do withtraditional tools
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='enhance31' name="enhance3"></label>
+                 </div>
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='enhance32' name="enhance3"></label>
+                 </div>
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='enhance33' name="enhance3"></label>
+                 </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Extending the learning goals</td>
+              <td>0=No</td>
+              <td>1=Somewhat</td>
+              <td>2=Yes</td>
+            </tr>
+            <tr>
+              <td>
+                The technology creates opportunities for students to learn outside of theirtypical school day
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='extend11' name="extend1"></label>
+                 </div>
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='extend12' name="extend1"></label>
+                 </div>
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='extend13' name="extend1"></label>
+                 </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                The technology creates a bridge between students school learning and theireveryday life experiences
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='extend21' name="extend2"></label>
+                 </div>
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='extend22' name="extend2"></label>
+                 </div>
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='extend23' name="extend2"></label>
+                 </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                The technology allows students to build authentic life skills, which they can use in their everyday lives
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='extend31' name="extend3"></label>
+                 </div>
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='extend32' name="extend3"></label>
+                 </div>
+              </td>
+              <td>
+                 <div class="radio">
+                     <label><input type="radio" id='extend33' name="extend3"></label>
+                 </div>
+              </td>
+            </tr>
+         </tbody>
+        </table>
+<!--         <button type="submit" class="btn btn-default btn-primary" ng-click="reviewForm()">Submit</button> -->
       </form>
    </div>
 

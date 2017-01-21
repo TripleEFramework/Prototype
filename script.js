@@ -99,6 +99,7 @@ app
   }
 
 }])
+
 .controller('reset', ['$scope','ParseSvc', function($scope, ParseSvc){
   $scope.email = null;
   $scope.resetPassword = function () {
@@ -115,6 +116,7 @@ app
   }
 
 }])
+
 .factory('ParseSvc', ['$http', 'KeySvc', function($http, KeySvc) {
 
   key1 = KeySvc.key1;
