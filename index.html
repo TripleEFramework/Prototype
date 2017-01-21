@@ -32,8 +32,8 @@
         Account <span class="caret"></span>
       </a>
       <ul class="dropdown-menu">
-        <li><a data-toggle="tab" href="#login">Login</a></li>
-        <li><a data-toggle="tab" href="#logout">Logout</a></li>
+        <li ng-hide="isUser()"><a data-toggle="tab" href="#login">Login</a></li>
+        <li ng-show="isUser()"><a data-toggle="tab" href="#logout">Logout</a></li>
         <li role="separator" class="divider"></li>
         <li ng-show="isUser()"><a>Welcome {{username}}!</a></li>
         <li ng-hide="isUser()"><a>Not Logged In</a></li>
