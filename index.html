@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app">
 <head>
- <title>Example Web App</title>
+ <title>Triple E Network</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Bootstrap requirements -->
@@ -23,7 +23,7 @@
 
 
 <div class="container" ng-controller="main">
-  <h2>Example App</h2>
+  <h2>Triple E Network</h2>
   <ul class="nav nav-tabs">
     <li role="presentation"><a data-toggle="tab" href="#userlist">User List</a></li> 
     <li role="presentation"><a data-toggle="tab" href="#print">Print Text</a></li> 
@@ -60,7 +60,15 @@
     </div>
 
     <div id="print" class="tab-pane fade" ng-controller="print">
-      <!--code goes here-->
+      <div class="row">
+        <div class="col-md-4">
+          <p ng-show="show_content">
+           {{printedText}}
+          </p>
+          <input ng-model="printedText" id="textInput" type="text"></input>
+          <button type="button" class="btn btn-primary btn-lg " ng-click="print()">Press to Print</button>
+        </div>
+      </div>
     </div>
     
     <div id="login" class="tab-pane fade in active" ng-controller="login">

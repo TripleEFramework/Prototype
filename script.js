@@ -45,6 +45,13 @@ app
 
 //code to print text
 .controller('print', ['$scope','ParseSvc', function($scope, ParseSvc){
+  $scope.show_content = false; //this variable is true or false and tells us whether it should be displaying text
+  $scope.printedText = ""; //by default the printedText is empty so nothing will be shown
+
+  $scope.print = function() {
+    $scope.show_content = !$scope.show_content; //invert the value of show_content
+    ParseSvc.printClicked($scope.printedText);
+  }
 }])
 
 
