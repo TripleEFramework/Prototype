@@ -99,7 +99,44 @@ app
   }
 
 }])
+//////////////////////////////////////////////////
+.controller('reviewForm', ['$scope','$rootScope','ParseSvc', function($scope, $rootScope, ParseSvc){
+  $scope.EvalForm = {
+    Author: ParseSvc.getUsername(),
+	Title: null,
+    TotalScore: 0,
+	engage1: null,
+	engage2: null,
+	engage3: null,
+	enhance1: null,
+	enhance2: null,
+	enhance3: null,
+	extend1: null,
+	extend2: null,
+	extend3: null
+  };
+  $scope.reviewForm = function () {
+	//var engage1 = parseInt($("[name=engage1]:checked").val,10)
+	$scope.EvalForm.engage1= $scope.engage1;
+	$scope.EvalForm.engage2= $scope.engage2;
+	$scope.EvalForm.engage3= $scope.engage3;
+	$scope.EvalForm.enhance1= $scope.enhance1;
+	$scope.EvalForm.enhance2= $scope.enhance2;
+	$scope.EvalForm.enhance3= $scope.enhance3;
+	$scope.EvalForm.extend1= $scope.extend1;
+	$scope.EvalForm.extend2= $scope.extend2;
+	$scope.EvalForm.extend3= $scope.extend3;
+	var score = 0;
+	$(".radio:checked").each(function(){
+		score+=parseInt($(this).val(),10);
+	  });
+	$scope.EvalForm.TotalScore = score;
+	
+	ParseSvc.reviewForm($scope.EvalForm);
+  }
 
+}])
+//////////////////////////////////////////////
 .controller('reset', ['$scope','ParseSvc', function($scope, ParseSvc){
   $scope.email = null;
   $scope.resetPassword = function () {
@@ -175,6 +212,12 @@ app
         }
       });
     },
+	reviewForm: function(_EvalForm) {
+		EvalForm = new Parse.Object("EvalForm");
+		EvalForm.set("Title", _EvalForm.title);
+		
+		
+	},
     resetPassword: function(email) {
       Parse.User.requestPasswordReset(email, {
         success: function() {
