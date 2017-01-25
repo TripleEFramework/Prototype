@@ -243,7 +243,18 @@ app
 		newEvalForm.set("Author", user);
 		newEvalForm.set("IndividualScores", _EvalForm.IndividualScores);
 		newEvalForm.set("Title", _EvalForm.Title);
-		newEvalForm.save();
+		newEvalForm.save(null, {
+			success: function(newEvalForm) {
+				// Execute any logic that should take place after the object is saved.
+				var scorestring = String(newEvalForm.get("TotalScore"));
+				alert('Evaluation Saved, Score: ' + scorestring);
+			},
+			error: function(newEvalForm, error) {
+				// Execute any logic that should take place if the save fails.
+				// error is a Parse.Error with an error code and message.
+				alert('Failed to create new object, with error code: ' + error.message);
+			}
+		});
 		
 	},
     resetPassword: function(email) {
