@@ -11,6 +11,10 @@ app
     ParseSvc.appOpened();
   };
   init();
+  //Keep user logged in if they still have a session
+  if(ParseSvc.getUsername() !== null){
+	  $rootScope.username=ParseSvc.getUsername();
+  }
   $scope.username = $rootScope.username;
   $rootScope.$on('new username', function(event, data){
     $scope.username= data;
@@ -18,6 +22,7 @@ app
       $scope.$apply();
     }
   });
+ 
   $scope.isUser =function() {
     if ($scope.username === "" || $scope.username === undefined) {
       return false;
@@ -64,6 +69,7 @@ app
   var loginCallback = function () {
     $rootScope.$broadcast('new username', ParseSvc.getUsername());
   }
+  
   $scope.user = {
     username: null,
     password: null,
