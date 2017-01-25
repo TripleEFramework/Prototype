@@ -102,30 +102,34 @@ app
 //////////////////////////////////////////////////
 .controller('reviewForm', ['$scope','$rootScope','ParseSvc', function($scope, $rootScope, ParseSvc){
   $scope.EvalForm = {
-    Author: ParseSvc.getUsername(),
+    Author: null,
 	Title: null,
     TotalScore: 0,
-	engage1: null,
-	engage2: null,
-	engage3: null,
-	enhance1: null,
-	enhance2: null,
-	enhance3: null,
-	extend1: null,
-	extend2: null,
-	extend3: null
+	IndividualScores: {
+		engage1: null,
+		engage2: null,
+		engage3: null,
+		enhance1: null,
+		enhance2: null,
+		enhance3: null,
+		extend1: null,
+		extend2: null,
+		extend3: null
+	}
   };
   $scope.reviewForm = function () {
-	//var engage1 = parseInt($("[name=engage1]:checked").val,10)
-	$scope.EvalForm.engage1= $scope.engage1;
-	$scope.EvalForm.engage2= $scope.engage2;
-	$scope.EvalForm.engage3= $scope.engage3;
-	$scope.EvalForm.enhance1= $scope.enhance1;
-	$scope.EvalForm.enhance2= $scope.enhance2;
-	$scope.EvalForm.enhance3= $scope.enhance3;
-	$scope.EvalForm.extend1= $scope.extend1;
-	$scope.EvalForm.extend2= $scope.extend2;
-	$scope.EvalForm.extend3= $scope.extend3;
+	$scope.EvalForm.Title = $scope.title;
+	
+	$scope.EvalForm.IndividualScores.engage1= $scope.engage1;
+	$scope.EvalForm.IndividualScores.engage2= $scope.engage2;
+	$scope.EvalForm.IndividualScores.engage3= $scope.engage3;
+	$scope.EvalForm.IndividualScores.enhance1= $scope.enhance1;
+	$scope.EvalForm.IndividualScores.enhance2= $scope.enhance2;
+	$scope.EvalForm.IndividualScores.enhance3= $scope.enhance3;
+	$scope.EvalForm.IndividualScores.extend1= $scope.extend1;
+	$scope.EvalForm.IndividualScores.extend2= $scope.extend2;
+	$scope.EvalForm.IndividualScores.extend3= $scope.extend3;
+	
 	var score = 0;
 	$(".radio:checked").each(function(){
 		score+=parseInt($(this).val(),10);
@@ -213,9 +217,14 @@ app
       });
     },
 	reviewForm: function(_EvalForm) {
-		EvalForm = new Parse.Object("EvalForm");
-		EvalForm.set("Title", _EvalForm.title);
-		
+		var EvalFormClass = new Parse.Object.extend("EvalForm");
+		var newEvalForm = new EvalFormClass();
+		newEvalForm.set("Title", _EvalForm.Title);
+		newEvalForm.set("TotalScore", _EvalForm.TotalScore);
+		newEvalForm.set("Author", user);
+		newEvalForm.set("IndividualScores", _EvalForm.IndividualScores);
+		newEvalForm.set("Title", _EvalForm.Title);
+		newEvalForm.save();
 		
 	},
     resetPassword: function(email) {
