@@ -63,11 +63,26 @@
     <div id="search" class="tab-pane fade" ng-controller="search">
       <div class="row">
         <div class="col-md-4">
-          <p ng-show="show_content">
-           {{printedText}}
-          </p>
-          <input ng-model="printedText" id="textInput" type="text"></input>
-          <button type="button" class="btn btn-primary btn-lg " ng-click="print()">Press to Search</button>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Score</th>
+                <th>Answers</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="result in results">
+                <td>{{result.username}}</td>
+                <td>{{result.title}}</td>
+                <td>{{result.score}}</td>
+                <td>{{result.individual_scores}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <input ng-model="queryString" id="textInput" type="text"></input>
+          <button type="button" class="btn btn-primary btn-lg " ng-click="searchEvals()">Press to Search</button>
         </div>
       </div>
     </div>

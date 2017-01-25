@@ -50,16 +50,24 @@ app
 
 //code to print text
 .controller('search', ['$scope','ParseSvc', function($scope, ParseSvc){
-  $scope.show_content = false; //this variable is true or false and tells us whether it should be displaying text
-  $scope.printedText = ""; //by default the printedText is empty so nothing will be shown
-
-  $scope.print = function() {
-    $scope.show_content = !$scope.show_content; //invert the value of show_content
-    ParseSvc.printClicked($scope.printedText);
-  }
+  $scope.results = [];
+  $scope.successCallback = function(results) {
+    for (i = 0; i < results.length; ++i) {
+      $scope.results.push({
+        title: String(results[i].get("Title")),
+        username: results[i].get("Author").get("username"),
+        score: results[i].get("TotalScore"),
+        individual_scores: results[i].get("IndividualScores")
+      });
+    } 
+    $scope.$apply();
+    console.log($scope.results);
+  };
+  $scope.queryString = "";
+  $scope.searchEvals = function() {
+    ParseSvc.getEvals($scope.successCallback);
+  };
 }])
-
-
 
 
 .controller('login', ['$scope', '$rootScope','ParseSvc', function($scope, $rootScope, ParseSvc){
@@ -259,6 +267,14 @@ app
       var user_query = new Parse.Query(Parse.User);
       user_query.select("username", "email");
       user_query.find().then(function(results) {
+        sucessCallback(results);
+      });
+    },
+    getEvals: function(sucessCallback) {
+      var eval = Parse.Object.extend("EvalForm");
+      var eval_query = new Parse.Query(eval);
+      eval_query.select("Author", "Title", "TotalScore", "IndividualScores");
+      eval_query.find().then(function(results) {
         sucessCallback(results);
       });
     },
