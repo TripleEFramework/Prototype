@@ -82,11 +82,16 @@ app
     username: null,
     password: null,
   };
+  
   if(ParseSvc.isRegistered) {
     $rootScope.username = ParseSvc.getUsername();
   }
   $scope.login = function () {
     ParseSvc.login($scope.user, loginCallback)
+  }
+  if(ParseSvc.getUsername() !== null){
+	  $scope.user.username = ParseSvc.getUsername();
+	  
   }
 
 }])
