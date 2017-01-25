@@ -26,7 +26,7 @@
   <h2>Triple E Network</h2>
   <ul class="nav nav-tabs">
     <li role="presentation"><a data-toggle="tab" href="#userlist">User List</a></li> 
-    <li role="presentation"><a data-toggle="tab" href="#print">Print Text</a></li> 
+    <li role="presentation"><a data-toggle="tab" href="#search">Search</a></li> 
     <li role="presentation"><a data-toggle="tab" href="#triplee">Triple E</a></li> 
     <li role="presentation" class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -60,14 +60,14 @@
       </table>
     </div>
 
-    <div id="print" class="tab-pane fade" ng-controller="print">
+    <div id="search" class="tab-pane fade" ng-controller="search">
       <div class="row">
         <div class="col-md-4">
           <p ng-show="show_content">
            {{printedText}}
           </p>
           <input ng-model="printedText" id="textInput" type="text"></input>
-          <button type="button" class="btn btn-primary btn-lg " ng-click="print()">Press to Print</button>
+          <button type="button" class="btn btn-primary btn-lg " ng-click="print()">Press to Search</button>
         </div>
       </div>
     </div>
