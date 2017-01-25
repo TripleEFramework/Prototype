@@ -51,13 +51,42 @@ app
 //code to print text
 .controller('search', ['$scope','ParseSvc', function($scope, ParseSvc){
   $scope.results = [];
+  $scope.printForm = function(result){
+	  $("#search-results").attr("hidden", true);
+	  $("#selected-search-result").attr("hidden",false);
+	  $("tr > td > label").attr("hidden",true);
+	  $("#chosen-lesson-title").text(result.get("Title"));
+	  $("#chosen-lesson-score").text(String(result.get("TotalScore")));
+	  $("#chosen-lesson-author").text(String(result.get("Author").get("username")));
+	  $("#engage1"+result.get("IndividualScores").engage1).attr("hidden",false);
+	  $("#engage2"+result.get("IndividualScores").engage2).attr("hidden",false);
+	  $("#engage3"+result.get("IndividualScores").engage3).attr("hidden",false);
+	  $("#enhance1"+result.get("IndividualScores").enhance1).attr("hidden",false);
+	  $("#enhance2"+result.get("IndividualScores").enhance2).attr("hidden",false);
+	  $("#enhance3"+result.get("IndividualScores").enhance3).attr("hidden",false);
+	  $("#extend1"+result.get("IndividualScores").extend1).attr("hidden",false);
+	  $("#extend2"+result.get("IndividualScores").extend2).attr("hidden",false);
+	  $("#extend3"+result.get("IndividualScores").extend3).attr("hidden",false);
+	  
+  };
+  $scope.displayEval = function(objectId){
+	console.log(objectId);
+//	$("#search-tab").removeClass("active");  // this deactivates the home tab
+//	$("#search").removeClass("tab-pane fade ng-scope active in");
+//	$("#search").addClass("tab-pane fade ng-scope");
+//	$("#form-tab").addClass("active");  // this activates the profile tab
+//	$("#triplee").removeClass("tab-pane fade ng-scope");
+//	$("#triplee").addClass("tab-pane fade ng-scope active in");
+	ParseSvc.getEval(objectId, $scope.printForm);
+  };
   $scope.successCallback = function(results) {
     for (i = 0; i < results.length; ++i) {
       $scope.results.push({
         title: String(results[i].get("Title")),
         username: results[i].get("Author").get("username"),
         score: results[i].get("TotalScore"),
-        individual_scores: results[i].get("IndividualScores")
+        individual_scores: results[i].get("IndividualScores"),
+		objectId: results[i].id
       });
     } 
     $scope.$apply();
@@ -65,6 +94,8 @@ app
   };
   $scope.queryString = "";
   $scope.searchEvals = function() {
+	$("#search-results").attr("hidden", false);
+	$("#selected-search-result").attr("hidden",true);
     ParseSvc.getEvals($scope.successCallback);
   };
 }])
@@ -292,6 +323,15 @@ app
       eval_query.select("Author", "Title", "TotalScore", "IndividualScores");
       eval_query.find().then(function(results) {
         sucessCallback(results);
+      });
+    },
+	getEval: function(objectId, sucessCallback) {
+      var eval = Parse.Object.extend("EvalForm");
+      var eval_query = new Parse.Query(eval);
+	  eval_query.equalTo("objectId", objectId);
+      eval_query.select("Author", "Title", "TotalScore", "IndividualScores");
+      eval_query.find().then(function(result) {
+        sucessCallback(result[0]);
       });
     },
     appOpened: function() {

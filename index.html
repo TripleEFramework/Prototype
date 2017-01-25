@@ -24,10 +24,10 @@
 
 <div class="container" ng-controller="main">
   <h2>Triple E Network</h2>
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs" id="tabs">
     <li role="presentation"><a data-toggle="tab" href="#userlist">User List</a></li> 
-    <li role="presentation"><a data-toggle="tab" href="#search">Search</a></li> 
-    <li role="presentation"><a data-toggle="tab" href="#triplee">Triple E</a></li> 
+    <li role="presentation" id="search-tab"><a data-toggle="tab" href="#search">Search</a></li> 
+    <li role="presentation" id="form-tab"><a data-toggle="tab" href="#triplee">Triple E</a></li> 
     <li role="presentation" class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
         Account <span class="caret"></span>
@@ -63,7 +63,7 @@
     <div id="search" class="tab-pane fade" ng-controller="search">
       <div class="row">
         <div class="col-md-4">
-          <table class="table">
+          <table class="table" id="search-results">
             <thead>
               <tr>
                 <th>Author</th>
@@ -74,8 +74,9 @@
             </thead>
             <tbody>
               <tr ng-repeat="result in results">
+				
                 <td>{{result.username}}</td>
-                <td>{{result.title}}</td>
+                <td ng-click= "displayEval(result.objectId)"><font color = "blue" style="cursor: pointer;"> {{result.title}} </font></td>
                 <td>{{result.score}}</td>
                 <td>{{result.individual_scores}}</td>
               </tr>
@@ -84,6 +85,175 @@
           <input ng-model="queryString" id="textInput" type="text"></input>
           <button type="button" class="btn btn-primary btn-lg " ng-click="searchEvals()">Press to Search</button>
         </div>
+      </div>
+	  <div id="selected-search-result" hidden="true">
+        <h2 class="form-reviewform-heading">Triple E Review</h2>
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+              <th>Triple E Evaluation Rubric</th>
+			  
+            </tr>
+			<div>
+			  Lesson Title: 
+			  <label name="title" id="chosen-lesson-title">
+			</div>
+			<div>
+			  Author: 
+			  <label id="chosen-lesson-author">
+			</div>
+			<div>
+			  Score: 
+			  <label id="chosen-lesson-score">
+			</div>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Engagement in the learning</td>
+              <td>0=No</td>
+              <td>1=Somewhat</td>
+              <td>2=Yes</td>
+            </tr>
+            <tr>
+              <td>
+                The technology allows students to focus on the assignment or activity withless distraction.
+              </td>
+              <td>
+                     <label id='engage10' name="engage1" ng-model="engage1" value="0">O</label>
+              </td>
+              <td>
+                     <label id='engage11' name="engage1" ng-model="engage1" value="1">O</label>
+              </td>
+              <td>
+                     <label id='engage12' name="engage1" ng-model="engage1" value="2">O</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                The technology motivates students to start the learning process.
+              </td>
+              <td>
+                     <label id='engage20' name="engage2" ng-model="engage2" value="0">O</label>
+              </td>
+              <td>
+                     <label id='engage21' name="engage2" ng-model="engage2" value="1">O</label>
+              </td>
+              <td>
+                     <label id='engage22' name="engage2" ng-model="engage2" value="2">O</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                The technology causes a shift in the behavior of the students, where they move from passive to active social learners (co-use)
+              </td>
+              <td>
+                     <label id='engage30' name="engage3" ng-model="engage3" value="0">O</label>
+              </td>
+              <td>
+                     <label id='engage31' name="engage3" ng-model="engage3" value="1">O</label>
+              </td>
+              <td>
+                     <label id='engage32' name="engage3" ng-model="engage3" value="2">O</label>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Enhancement of the learning goals</td>
+              <td>0=No</td>
+              <td>1=Somewhat</td>
+              <td>2=Yes</td>
+            </tr>
+            <tr>
+              <td>
+                The technology tool allows students are able to develop or demonstrate a more sophisticated understanding of the learning goals or content
+              </td>
+              <td>
+                     <label id='enhance10' name="enhance1" ng-model="enhance1" value="0">O</label>
+              </td>
+              <td>
+                     <label id='enhance11' name="enhance1" ng-model="enhance1" value="1">O</label>
+              </td>
+              <td>
+                     <label id='enhance12' name="enhance1" ng-model="enhance1" value="2">O</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                The technology creates supports (scaffolds) to make it easier to understandconcepts or ideas
+              </td>
+              <td>
+                     <label id='enhance20' name="enhance2" ng-model="enhance2" value="0">O</label>
+              </td>
+              <td>
+                     <label id='enhance21' name="enhance2" ng-model="enhance2" value="1">O</label>
+              </td>
+              <td>
+                     <label id='enhance22' name="enhance2" ng-model="enhance2" value="2">O</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                The technology creates paths for students to demonstrate their understanding of the learning goals in a way that they could not do withtraditional tools
+              </td>
+              <td>
+                     <label id='enhance30' name="enhance3" ng-model="enhance3" value="0">O</label>
+              </td>
+              <td>
+                     <label id='enhance31' name="enhance3" ng-model="enhance3" value="1">O</label>
+              </td>
+              <td>
+                     <label id='enhance32' name="enhance3" ng-model="enhance3" value="2">O</label>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Extending the learning goals</td>
+              <td>0=No</td>
+              <td>1=Somewhat</td>
+              <td>2=Yes</td>
+            </tr>
+            <tr>
+              <td>
+                The technology creates opportunities for students to learn outside of theirtypical school day
+              </td>
+              <td>
+                     <label id='extend10' name="extend1" ng-model="extend1" value="0">O</label>
+              </td>
+              <td>
+                     <label id='extend11' name="extend1" ng-model="extend1" value="1">O</label>
+              </td>
+              <td>
+                     <label id='extend12' name="extend1" ng-model="extend1" value="2">O</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                The technology creates a bridge between students school learning and theireveryday life experiences
+              </td>
+              <td>
+                     <label id='extend20' name="extend2" ng-model="extend2" value="0">O</label>
+              </td>
+              <td>
+                     <label id='extend21' name="extend2" ng-model="extend2" value="1">O</label>
+              </td>
+              <td>
+                     <label id='extend22' name="extend2" ng-model="extend2" value="2">O</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                The technology allows students to build authentic life skills, which they can use in their everyday lives
+              </td>
+              <td>
+                     <label id='extend30' name="extend3" ng-model="extend3" value="0">O</label>
+              </td>
+              <td>
+                     <label id='extend31' name="extend3" ng-model="extend3" value="1">O</label>
+              </td>
+              <td>
+                     <label id='extend32' name="extend3" ng-model="extend3" value="2">O</label>
+              </td>
+            </tr>
+         </tbody>
+        </table>
       </div>
     </div>
     
@@ -162,7 +332,7 @@
             </tr>
 			<label>
 			  Lesson Title: 
-			  <input type="textInput" name="title" ng-model="title">
+			  <input type="textInput" name="title" id="lesson-title" ng-model="title">
 			</label>
           </thead>
           <tbody>
