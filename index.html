@@ -91,9 +91,9 @@
 								<input ng-model="queryString" id="textInput" type="text"></input>
 							</div>
                             <div>
-                                <select>
-									<option>Subject</option>
-									<option ng-repeat="subject in subjects" value="{{subject}}">{{subject.subjectName}}</option>
+                                <select ng-model="subject">
+									<option value="">Subject</option>
+									<option ng-repeat="subjectObject in subjects" value="{{subjectObject}}"> {{subjectObject.get("subjectName")}} </option>
 								</select>
 							</div>
                             <button type="button" class="btn btn-primary btn-lg " ng-click="searchEvals()">Press to Search</button>

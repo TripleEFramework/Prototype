@@ -51,6 +51,7 @@ app
 //code to print text
 .controller('search', ['$scope','ParseSvc', function($scope, ParseSvc){
   $scope.results = [];
+  $scope.subjects = [];
   $scope.printForm = function(result){
 	  $("#search-results").attr("hidden", true);
 	  $("#selected-search-result").attr("hidden",false);
@@ -79,6 +80,23 @@ app
 //	$("#triplee").addClass("tab-pane fade ng-scope active in");
 	ParseSvc.getEval(objectId, $scope.printForm);
   };
+ // Initial scope values
+	$scope.setSubjects = function(parseSubjects){
+		
+	//	for (i = 0; i < parseSubjects.length; ++i) {
+	//		$scope.subjects.push({
+	//		subjectName: parseSubjects[i].get("subjectName")
+	//		});
+	//	} 
+		$scope.subjects = parseSubjects;
+		$scope.$apply();
+	};
+  ParseSvc.getSubjects($scope.setSubjects);
+ 
+ //After initialized
+  
+  
+  
   $scope.successCallback = function(results) {
     for (i = 0; i < results.length; ++i) {
       $scope.results.push({
@@ -100,6 +118,7 @@ app
   $scope.score1=0;
   $scope.score2=0;
   $scope.score3=0;
+
   $scope.searchEvals = function() {
 	$("#search-results").attr("hidden", false);
 	$("#selected-search-result").attr("hidden",true);
