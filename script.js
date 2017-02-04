@@ -341,6 +341,13 @@ app
         sucessCallback(result[0]);
       });
     },
+    getSubjects: function(sucessCallback) {
+      var subject = Parse.Object.extend("Subject");
+      var subject_query = new Parse.Query(subject);
+      subject_query.find().then(function(results) {
+        sucessCallback(results);
+      });
+    },
     appOpened: function() {
       $http({
         method: 'POST',
