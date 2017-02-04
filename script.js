@@ -93,10 +93,17 @@ app
     console.log($scope.results);
   };
   $scope.queryString = "";
+  $scope.authorString = "";
+  $scope.gradeLevel = "";
+  $scope.subject="";
+  $scope.totalScore=0;
+  $scope.score1=0;
+  $scope.score2=0;
+  $scope.score3=0;
   $scope.searchEvals = function() {
 	$("#search-results").attr("hidden", false);
 	$("#selected-search-result").attr("hidden",true);
-    ParseSvc.getEvals($scope.successCallback);
+    ParseSvc.getEvals($scope.author, $scope.gradeLevel, $scope.subject, $scope.totalScore, $scope.score1, $scope.score2, $scope.score3,$scope.successCallback);
   };
 }])
 
@@ -317,7 +324,7 @@ app
         sucessCallback(results);
       });
     },
-    getEvals: function(sucessCallback) {
+    getEvals: function(author, gradeLevel, Subject, totalScore, score1, score2, score3, sucessCallback) {
       var eval = Parse.Object.extend("EvalForm");
       var eval_query = new Parse.Query(eval);
       eval_query.select("Author", "Title", "TotalScore", "IndividualScores");
