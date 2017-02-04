@@ -113,21 +113,30 @@ app
   $scope.queryString = "";
   $scope.authorString = "";
   $scope.gradeLevel = "";
-  $scope.subject="";
-  $scope.totalScore=0;
-  $scope.score1=0;
-  $scope.score2=0;
-  $scope.score3=0;
-
+  $scope.subject= "";
+  $scope.totalScore= 0;
+  $scope.score1= 0;
+  $scope.score2= 0;
+  $scope.score3= 0;
   $scope.searchEvals = function() {
+    $scope.results  = [];
 	$("#search-results").attr("hidden", false);
 	$("#selected-search-result").attr("hidden",true);
-    ParseSvc.getEvals($scope.author, $scope.gradeLevel, $scope.subject, $scope.totalScore, $scope.score1, $scope.score2, $scope.score3,$scope.successCallback);
+    ParseSvc.getEvals($scope.queryString,
+                               $scope.authorString, 
+                               $scope.gradeLevel, 
+                               $scope.subject, 
+                               $scope.totalScore, 
+                               $scope.score1, 
+                               $scope.score2, 
+                               $scope.score3,
+                               $scope.successCallback);
   };
 }])
 
 
-.controller('login', ['$scope', '$rootScope','ParseSvc', function($scope, $rootScope, ParseSvc){
+.controller('login', 
+  ['$scope', '$rootScope','ParseSvc', function($scope, $rootScope, ParseSvc){
   //callback function to set global username on login sucess
   //This is neccessary because JavaScript runs sychronously
   //callback functions are one way to preserve asynchronicity
@@ -343,11 +352,43 @@ app
         sucessCallback(results);
       });
     },
-    getEvals: function(author, gradeLevel, Subject, totalScore, score1, score2, score3, sucessCallback) {
+    getEvals: function(title, author, gradeLevel, subject, totalScore, score1, score2, score3, sucessCallback) {
       var eval = Parse.Object.extend("EvalForm");
-      var eval_query = new Parse.Query(eval);
-      eval_query.select("Author", "Title", "TotalScore", "IndividualScores");
-      eval_query.find().then(function(results) {
+      var main_query = new Parse.Query(eval);
+
+      // Title search
+      if (title) {
+        main_query.contains("Title", title);
+      }
+
+      // Author search
+      if (author) {
+        var authors = Parse.Object.extend("User");
+        var author_query = new Parse.Query(authors);
+        author_query.contains("username", author);
+        main_query.matchesQuery("Author", author_query);
+      }
+
+      // Subject search
+      if (subject) {
+        var subjects = Parse.Object.extend("Subject");
+        var subject_query = new Parse.Query(subjects);
+        subject_query.contains("subjectName", subject);
+        main_query.matchesQuery("Subject", subject_query);
+      }
+
+      // Grade Level search
+      if (gradeLevel) {
+        main_query.contains("GradeLevel", gradeLevel);
+      }
+
+      // Total Score search
+      if (totalScore) {
+        main_query.equalTo("TotalScore", totalScore);
+      }
+
+      main_query.select("Author", "Title", "TotalScore", "IndividualScores");
+      main_query.find().then(function(results) {
         sucessCallback(results);
       });
     },
