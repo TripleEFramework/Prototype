@@ -84,9 +84,14 @@
             </tbody>
           </table>
 		  <form>
-            <input ng-model="authorString" id="textInput" type="text"></input>
-			<input ng-model="queryString" id="textInput" type="text"></input>
-			<input ng-model="queryString" id="textInput" type="text"></input>
+			<p>
+				Author
+				<input ng-model="authorString" id="textInput" type="text"></input>
+			</p>
+			<p>
+				Keywords
+				<input ng-model="queryString" id="textInput" type="text"></input>
+			</p>
             <button type="button" class="btn btn-primary btn-lg " ng-click="searchEvals()">Press to Search</button>
 		  </form>
 		</div>
