@@ -52,6 +52,7 @@ app
 .controller('search', ['$scope','ParseSvc', function($scope, ParseSvc){
   $scope.results = [];
   $scope.subjects = [];
+  $scope.gradeLevels = ['Elementary','Middle School','High School','College'];
   $scope.printForm = function(result){
 	  $("#search-results").attr("hidden", true);
 	  $("#selected-search-result").attr("hidden",false);

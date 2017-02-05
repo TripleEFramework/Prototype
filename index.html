@@ -98,8 +98,8 @@
 							</div>
 							<div>
                                 <select ng-model="gradeLevel">
-									<option value="">Subject</option>
-									<option ng-repeat="subjectObject in subjects" value="{{subjectObject.get('subjectName')}}"> {{subjectObject.get("subjectName")}} </option>
+									<option value="">Grade Level</option>
+									<option ng-repeat="gradelevel in gradeLevels" value="{{gradelevel}}"> {{gradelevel}} </option>
 								</select>
 							</div>
                             <button type="button" class="btn btn-primary btn-lg " ng-click="searchEvals()">Press to Search</button>
