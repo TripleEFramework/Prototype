@@ -127,6 +127,14 @@
 			  <label id="chosen-lesson-author">
                             </div>
                             <div>
+                                Subject: 
+                                <label id="chosen-lesson-subject">
+                            </div>
+                            <div>
+                                Grade Level: 
+                                 <label id="chosen-lesson-grade">
+                            </div>
+                            <div>
                                 Score: 
 			  <label id="chosen-lesson-score">
                             </div>
@@ -357,10 +365,31 @@
                                 <th>Triple E Evaluation Rubric</th>
 
                             </tr>
-                            <label>
-                                Lesson Title: 
-			  <input type="textInput" name="title" id="lesson-title" ng-model="title">
-                            </label>
+                            <tr>
+                                <td>
+                                    <label>
+                                        Lesson Title: 
+			             <input type="textInput" name="title" id="lesson-title" ng-model="title">
+                                    </label>
+                                <td>
+                                <td>
+                                    <div>
+                                        <select ng-model="subject">
+                                            <option value="">Subject</option>
+                                            <option ng-repeat="subjectObject in subjects" value="{{subjects.indexOf(subjectObject)}}"> {{subjectObject.get("subjectName")}} </option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <select ng-model="gradeLevel">
+                                            <option value="">Grade Level</option>
+                                            <option ng-repeat="gradelevel in gradeLevels" value="{{gradelevel}}"> {{gradelevel}} </option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+
                         </thead>
                         <tbody>
                             <tr>

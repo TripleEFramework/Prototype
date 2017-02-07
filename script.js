@@ -60,6 +60,8 @@ app
 	  $("#chosen-lesson-title").text(result.get("Title"));
 	  $("#chosen-lesson-score").text(String(result.get("TotalScore")));
 	  $("#chosen-lesson-author").text(String(result.get("Author").get("username")));
+      $("#chosen-lesson-subject").text(String(result.get("Subject").get("subjectName")));
+      $("#chosen-lesson-grade").text(String(result.get("GradeLevel")));
 	  $("#engage1"+result.get("IndividualScores").engage1).attr("hidden",false);
 	  $("#engage2"+result.get("IndividualScores").engage2).attr("hidden",false);
 	  $("#engage3"+result.get("IndividualScores").engage3).attr("hidden",false);
@@ -190,6 +192,8 @@ app
   $scope.EvalForm = {
     Author: null,
 	Title: null,
+    Subject: null,
+    GradeLevel: null,
     TotalScore: 0,
 	IndividualScores: {
 		engage1: null,
@@ -203,9 +207,18 @@ app
 		extend3: null
 	}
   };
+  $scope.gradeLevels = ['Elementary','Middle School','High School','College'];
+
+  $scope.setSubjects = function(parseSubjects){
+    $scope.subjects = parseSubjects;
+    $scope.$apply();
+  };
+  ParseSvc.getSubjects($scope.setSubjects);
+
   $scope.reviewForm = function () {
 	$scope.EvalForm.Title = $scope.title;
-	
+	$scope.EvalForm.Subject = $scope.subjects[$scope.subject];
+    $scope.EvalForm.GradeLevel = $scope.gradeLevel;
 	$scope.EvalForm.IndividualScores.engage1= $scope.engage1;
 	$scope.EvalForm.IndividualScores.engage2= $scope.engage2;
 	$scope.EvalForm.IndividualScores.engage3= $scope.engage3;
@@ -306,6 +319,8 @@ app
 		var EvalFormClass = new Parse.Object.extend("EvalForm");
 		var newEvalForm = new EvalFormClass();
 		newEvalForm.set("Title", _EvalForm.Title);
+         newEvalForm.set("Subject", _EvalForm.Subject);
+         newEvalForm.set("GradeLevel", _EvalForm.GradeLevel);
 		newEvalForm.set("TotalScore", _EvalForm.TotalScore);
 		newEvalForm.set("Author", user);
 		newEvalForm.set("IndividualScores", _EvalForm.IndividualScores);
@@ -397,7 +412,7 @@ app
       var eval = Parse.Object.extend("EvalForm");
       var eval_query = new Parse.Query(eval);
 	  eval_query.equalTo("objectId", objectId);
-      eval_query.select("Author", "Title", "TotalScore", "IndividualScores");
+      eval_query.select("Author", "Title", "TotalScore", "IndividualScores", "GradeLevel", "Subject");
       eval_query.find().then(function(result) {
         sucessCallback(result[0]);
       });
