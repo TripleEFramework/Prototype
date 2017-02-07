@@ -195,6 +195,9 @@ app
     Subject: null,
     GradeLevel: null,
     TotalScore: 0,
+	Engage:0,
+	Enhance: 0,
+	Extend: 0,
 	IndividualScores: {
 		engage1: null,
 		engage2: null,
@@ -228,7 +231,10 @@ app
 	$scope.EvalForm.IndividualScores.extend1= $scope.extend1;
 	$scope.EvalForm.IndividualScores.extend2= $scope.extend2;
 	$scope.EvalForm.IndividualScores.extend3= $scope.extend3;
-	
+	$scope.Engage = $scope.engage1 + $scope.engage2 + $scope.engage3;
+	$scope.Enhance = $scope.enhance1 + $scope.enhance2 + $scope.enhance3;
+	$scope.Extend = $scope.extend1 + $scope.extend2 + $scope.extend3;
+	//We need to rewrite this so it just adds scores normally
 	var score = 0;
 	$(".radio:checked").each(function(){
 		score+=parseInt($(this).val(),10);
@@ -325,6 +331,9 @@ app
 		newEvalForm.set("Author", user);
 		newEvalForm.set("IndividualScores", _EvalForm.IndividualScores);
 		newEvalForm.set("Title", _EvalForm.Title);
+		newEvalForm.set("Engage", _EvalForm.Engage);
+		newEvalForm.set("Enhance", _EvalForm.Enhance);
+		newEvalForm.set("Extend", _EvalForm.Extend);
 		newEvalForm.save(null, {
 			success: function(newEvalForm) {
 				// Execute any logic that should take place after the object is saved.
