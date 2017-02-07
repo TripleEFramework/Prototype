@@ -70,6 +70,7 @@
                                     <th>Title</th>
                                     <th>Score</th>
                                     <th>Answers</th>
+                                    <th>Engage Total</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -78,6 +79,9 @@
                                     <td ng-click="displayEval(result.objectId)"><font color="blue" style="cursor: pointer;"> {{result.title}} </font></td>
                                     <td>{{result.score}}</td>
                                     <td>{{result.individual_scores}}</td>
+                                    <td>{{result.EngageTotal}}</td>
+                                    <td>{{result.EnhanceTotal}}</td>
+                                    <td>{{result.ExtendTotal}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -126,6 +130,18 @@
                                 Score: 
 			  <label id="chosen-lesson-score">
                             </div>
+                            <div>
+                            	Engage Total:
+                            	<label id="EngageTotal">
+                            </div>	
+                            <div>
+                            	Enhance Total:
+                            	<label id="EnhanceTotal">
+                            </div>	
+                            <div>
+                            	Extend Total:
+                            	<label id="ExtendTotal">
+                            </div>	
                         </thead>
                         <tbody>
                             <tr>
