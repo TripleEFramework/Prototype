@@ -56,12 +56,15 @@ app
   $scope.printForm = function(result){
 	  $("#search-results").attr("hidden", true);
 	  $("#selected-search-result").attr("hidden",false);
-	  $("tr > td > label").attr("hidden",true);
+	  $("#chosen-individual-scores > tr > td > label").attr("hidden",true);
 	  $("#chosen-lesson-title").text(result.get("Title"));
 	  $("#chosen-lesson-score").text(String(result.get("TotalScore")));
 	  $("#chosen-lesson-author").text(String(result.get("Author").get("username")));
       $("#chosen-lesson-subject").text(String(result.get("Subject").get("subjectName")));
       $("#chosen-lesson-grade").text(String(result.get("GradeLevel")));
+	  $("#chosen-engage-total").text(String(result.get("Engage")));
+ 	  $("#chosen-enhance-total").text(String(result.get("Enhance")));
+  	  $("#chosen-extend-total").text(String(result.get("Extend")));
 	  $("#engage1"+result.get("IndividualScores").engage1).attr("hidden",false);
 	  $("#engage2"+result.get("IndividualScores").engage2).attr("hidden",false);
 	  $("#engage3"+result.get("IndividualScores").engage3).attr("hidden",false);
@@ -107,6 +110,11 @@ app
         username: results[i].get("Author").get("username"),
         score: results[i].get("TotalScore"),
         individual_scores: results[i].get("IndividualScores"),
+		subject: results[i].get("Subject"),
+		gradelevel: results[i].get("GradeLevel"),
+		engagetotal: results[i].get("Engage"),
+		enhancetotal: results[i].get("Enhance"),
+		extendtotal: results[i].get("Extend"),
 		objectId: results[i].id
       });
     } 
@@ -231,9 +239,9 @@ app
 	$scope.EvalForm.IndividualScores.extend1= $scope.extend1;
 	$scope.EvalForm.IndividualScores.extend2= $scope.extend2;
 	$scope.EvalForm.IndividualScores.extend3= $scope.extend3;
-	$scope.Engage = $scope.engage1 + $scope.engage2 + $scope.engage3;
-	$scope.Enhance = $scope.enhance1 + $scope.enhance2 + $scope.enhance3;
-	$scope.Extend = $scope.extend1 + $scope.extend2 + $scope.extend3;
+	$scope.EvalForm.Engage = parseInt($scope.engage1,10) + parseInt($scope.engage2,10) + parseInt($scope.engage3,10);
+	$scope.EvalForm.Enhance =  parseInt($scope.enhance1,10) + parseInt($scope.enhance2,10) + parseInt($scope.enhance3,10);
+	$scope.EvalForm.Extend =  parseInt($scope.extend1,10) + parseInt($scope.extend2,10) + parseInt($scope.extend3,10);
 	//We need to rewrite this so it just adds scores normally
 	var score = 0;
 	$(".radio:checked").each(function(){
@@ -412,7 +420,7 @@ app
         main_query.equalTo("TotalScore", totalScore);
       }
 
-      main_query.select("Author", "Title", "TotalScore", "IndividualScores");
+      main_query.select("Author", "Title", "TotalScore", "IndividualScores", "Engage", "Enhance", "Extend", "Subject", "GradeLevel");
       main_query.find().then(function(results) {
         sucessCallback(results);
       });
@@ -421,7 +429,7 @@ app
       var eval = Parse.Object.extend("EvalForm");
       var eval_query = new Parse.Query(eval);
 	  eval_query.equalTo("objectId", objectId);
-      eval_query.select("Author", "Title", "TotalScore", "IndividualScores", "GradeLevel", "Subject");
+      eval_query.select("Author", "Title", "TotalScore", "IndividualScores", "GradeLevel", "Subject", "Engage", "Enhance", "Extend");
       eval_query.find().then(function(result) {
         sucessCallback(result[0]);
       });
