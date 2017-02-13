@@ -153,6 +153,7 @@ app
   //callback functions are one way to preserve asynchronicity
   var loginCallback = function () {
     $rootScope.$broadcast('new username', ParseSvc.getUsername());
+	window.location.reload();
   }
   
   $scope.user = {
@@ -175,6 +176,7 @@ app
 .controller('signUp', ['$scope','$rootScope','ParseSvc', function($scope, $rootScope, ParseSvc){
   var signupCallback = function () {
     $rootScope.$broadcast('new username', ParseSvc.getUsername());
+	window.location.reload();
   }
   $scope.user = {
     username: null,
@@ -299,7 +301,7 @@ app
           user = _user;
           console.log(user.get('username'));
           // Do stuff after successful login.
-          alert('Logged in as ' + user.get('username'));
+         // alert('Logged in as ' + user.get('username'));
           successCallback();
         },
         error: function(user, error) {

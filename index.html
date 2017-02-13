@@ -26,9 +26,9 @@
     <div class="container" ng-controller="main">
         <h2>Triple E Network</h2>
         <ul class="nav nav-tabs" id="tabs">
-            <li role="presentation"><a data-toggle="tab" href="#userlist">User List</a></li>
+         <!--   <li role="presentation"><a data-toggle="tab" href="#userlist">User List</a></li> -->
             <li role="presentation" id="search-tab"><a data-toggle="tab" href="#search">Search</a></li>
-            <li role="presentation" id="form-tab"><a data-toggle="tab" href="#triplee">Triple E</a></li>
+            <li role="presentation" id="form-tab"><a data-toggle="tab" href="#evaluate-lesson">Evaluate Your Lesson</a></li>
             <li role="presentation" class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span>
                 </a>
@@ -42,7 +42,8 @@
             </li>
         </ul>
         <div class="tab-content">
-            <div id="userlist" class="tab-pane fade" ng-controller="userlist">
+            <!--    need to make sure that uncommenting this in browser does not show users
+			<div id="userlist" class="tab-pane fade" ng-controller="userlist">
                 <h1>User List </h1>
                 <table class="table">
                     <thead>
@@ -59,7 +60,7 @@
                     </tbody>
                 </table>
             </div>
-
+			-->
             <div id="search" class="tab-pane fade" ng-controller="search">
                 <div class="row">
                     <div class="col-md-4">
@@ -360,7 +361,7 @@
                 </form>
             </div>
 
-            <div id="triplee" class="tab-pane fade" ng-controller="reviewForm">
+            <div id="evaluate-lesson" class="tab-pane fade" ng-controller="reviewForm">
                 <form role="form">
                     <h2 class="form-reviewform-heading">Triple E Review</h2>
                     <table class="table table-responsive">
