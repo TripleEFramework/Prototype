@@ -78,22 +78,10 @@ app
   };
   $scope.displayEval = function(objectId){
 	console.log(objectId);
-//	$("#search-tab").removeClass("active");  // this deactivates the home tab
-//	$("#search").removeClass("tab-pane fade ng-scope active in");
-//	$("#search").addClass("tab-pane fade ng-scope");
-//	$("#form-tab").addClass("active");  // this activates the profile tab
-//	$("#triplee").removeClass("tab-pane fade ng-scope");
-//	$("#triplee").addClass("tab-pane fade ng-scope active in");
 	ParseSvc.getEval(objectId, $scope.printForm);
   };
  // Initial scope values
 	$scope.setSubjects = function(parseSubjects){
-		
-	//	for (i = 0; i < parseSubjects.length; ++i) {
-	//		$scope.subjects.push({
-	//		subjectName: parseSubjects[i].get("subjectName")
-	//		});
-	//	} 
 		$scope.subjects = parseSubjects;
 		$scope.$apply();
 	};
@@ -423,7 +411,9 @@ app
       }
 
       main_query.select("Author", "Title", "TotalScore", "IndividualScores", "Engage", "Enhance", "Extend", "Subject", "GradeLevel");
+	  
       main_query.find().then(function(results) {
+		  console.log(results);
         sucessCallback(results);
       });
     },
