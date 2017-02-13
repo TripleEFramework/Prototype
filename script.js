@@ -393,14 +393,14 @@ app
 
       // Title search
       if (title) {
-        main_query.contains("Title", title);
+        main_query.matches("Title",  (new RegExp(title, 'i')));
       }
 
       // Author search
       if (author) {
         var authors = Parse.Object.extend("User");
         var author_query = new Parse.Query(authors);
-        author_query.contains("username", author);
+        author_query.contains("username", (new RegExp(author, 'i')));
         main_query.matchesQuery("Author", author_query);
       }
 
@@ -408,18 +408,18 @@ app
       if (subject) {
         var subjects = Parse.Object.extend("Subject");
         var subject_query = new Parse.Query(subjects);
-        subject_query.contains("subjectName", subject);
+        subject_query.contains("subjectName", (new RegExp(subject, 'i')));
         main_query.matchesQuery("Subject", subject_query);
       }
 
       // Grade Level search
       if (gradeLevel) {
-        main_query.contains("GradeLevel", gradeLevel);
+        main_query.contains("GradeLevel", (new RegExp(gradeLevel, 'i')));
       }
 
       // Total Score search
       if (totalScore) {
-        main_query.equalTo("TotalScore", totalScore);
+        main_query.equalTo("TotalScore", (new RegExp(totalScore, 'i')));
       }
 
       main_query.select("Author", "Title", "TotalScore", "IndividualScores", "Engage", "Enhance", "Extend", "Subject", "GradeLevel");
