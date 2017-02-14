@@ -26,7 +26,7 @@
     <div class="container" ng-controller="main">
         <h2>Triple E Network</h2>
         <ul class="nav nav-tabs" id="tabs">
-           <li role="presentation"><a data-toggle="tab" href="#login">Main</a></li>
+            <li role="presentation"><a data-toggle="tab" href="#login">Main</a></li>
             <li role="presentation" id="search-tab"><a data-toggle="tab" href="#search">Search</a></li>
             <li role="presentation" id="form-tab"><a data-toggle="tab" href="#evaluate-lesson">Evaluate Your Lesson</a></li>
             <li role="presentation" class="dropdown">
@@ -43,7 +43,7 @@
         </ul>
         <div class="tab-content">
             <!--    need to make sure that uncommenting this in browser does not show users -->
-			<div id="userlist" class="tab-pane fade" ng-controller="userlist">
+            <div id="userlist" class="tab-pane fade" ng-controller="userlist">
                 <h1>User List </h1>
                 <table class="table">
                     <thead>
@@ -60,7 +60,7 @@
                     </tbody>
                 </table>
             </div>
-			<!-- -->
+            <!-- -->
             <div id="search" class="tab-pane fade" ng-controller="search">
                 <div class="row">
                     <div class="col-md-4">
@@ -69,12 +69,12 @@
                                 <tr>
                                     <th>Author</th>
                                     <th>Title</th>
-									<th>Subject</th>
-									<th>Grade Level</th>
+                                    <th>Subject</th>
+                                    <th>Grade Level</th>
                                     <th>Score</th>
                                     <th>Engage Total</th>
-									<th>Enhance Total</th>
-									<th>Extend Total</th>
+                                    <th>Enhance Total</th>
+                                    <th>Extend Total</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -82,8 +82,8 @@
                                     <td>{{result.username}}</td>
                                     <td ng-click="displayEval(result.objectId)"><font color="blue" style="cursor: pointer;"> {{result.title}} </font></td>
                                     <td>{{result.subject.get("subjectName")}}</td>
-									<td>{{result.gradelevel}}</td>
-									<td>{{result.score}}</td>
+                                    <td>{{result.gradelevel}}</td>
+                                    <td>{{result.score}}</td>
                                     <td>{{result.engagetotal}}</td>
                                     <td>{{result.enhancetotal}}</td>
                                     <td>{{result.extendtotal}}</td>
@@ -91,26 +91,26 @@
                             </tbody>
                         </table>
                         <form>
-							<div>
-								<label>Author</label>
-								<input ng-model="authorString" id="textInput" type="text"></input>
-							</div>
-							<div>
-								<label>Title</label>
-								<input ng-model="queryString" id="textInput" type="text"></input>
-							</div>
+                            <div>
+                                <label>Author</label>
+                                <input ng-model="authorString" id="textInput" type="text"></input>
+                            </div>
+                            <div>
+                                <label>Title</label>
+                                <input ng-model="queryString" id="textInput" type="text"></input>
+                            </div>
                             <div>
                                 <select ng-model="subject">
-									<option value="">Subject</option>
-									<option ng-repeat="subjectObject in subjects" value="{{subjectObject.get('subjectName')}}"> {{subjectObject.get("subjectName")}} </option>
-								</select>
-							</div>
-							<div>
+                                    <option value="">Subject</option>
+                                    <option ng-repeat="subjectObject in subjects" value="{{subjectObject.get('subjectName')}}">{{subjectObject.get("subjectName")}} </option>
+                                </select>
+                            </div>
+                            <div>
                                 <select ng-model="gradeLevel">
-									<option value="">Grade Level</option>
-									<option ng-repeat="gradelevel in gradeLevels" value="{{gradelevel}}"> {{gradelevel}} </option>
-								</select>
-							</div>
+                                    <option value="">Grade Level</option>
+                                    <option ng-repeat="gradelevel in gradeLevels" value="{{gradelevel}}">{{gradelevel}} </option>
+                                </select>
+                            </div>
                             <button type="button" class="btn btn-primary btn-lg " ng-click="searchEvals()">Press to Search</button>
                         </form>
                     </div>
@@ -144,21 +144,21 @@
 			  <label id="chosen-lesson-score">
                             </div>
                             <div>
-                            	Engage Total:
+                                Engage Total:
                             	<label id="chosen-engage-total">
-                            </div>	
+                            </div>
                             <div>
-                            	Enhance Total:
+                                Enhance Total:
                             	<label id="chosen-enhance-total">
-                            </div>	
+                            </div>
                             <div>
-                            	Extend Total:
+                                Extend Total:
                             	<label id="chosen-extend-total">
-                            </div>	
+                            </div>
                         </thead>
-                        <tbody id ="chosen-individual-scores">
+                        <tbody id="chosen-individual-scores">
                             <tr>
-                                <td><strong>Engagement in the learning</td>
+                                <td><strong>Engagement in the learning</strong></td>
                                 <td>0=No</td>
                                 <td>1=Somewhat</td>
                                 <td>2=Yes</td>
@@ -203,7 +203,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><strong>Enhancement of the learning goals</td>
+                                <td><strong>Enhancement of the learning goals</strong></td>
                                 <td>0=No</td>
                                 <td>1=Somewhat</td>
                                 <td>2=Yes</td>
@@ -248,7 +248,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><strong>Extending the learning goals</td>
+                                <td><strong>Extending the learning goals</strong></td>
                                 <td>0=No</td>
                                 <td>1=Somewhat</td>
                                 <td>2=Yes</td>
@@ -376,12 +376,12 @@
                                         Lesson Title: 
 			             <input type="textInput" name="title" id="lesson-title" ng-model="title">
                                     </label>
-                                <td>
+                                    <td>
                                 <td>
                                     <div>
                                         <select ng-model="subject">
                                             <option value="">Subject</option>
-                                            <option ng-repeat="subjectObject in subjects" value="{{subjects.indexOf(subjectObject)}}"> {{subjectObject.get("subjectName")}} </option>
+                                            <option ng-repeat="subjectObject in subjects" value="{{subjects.indexOf(subjectObject)}}">{{subjectObject.get("subjectName")}} </option>
                                         </select>
                                     </div>
                                 </td>
@@ -389,7 +389,7 @@
                                     <div>
                                         <select ng-model="gradeLevel">
                                             <option value="">Grade Level</option>
-                                            <option ng-repeat="gradelevel in gradeLevels" value="{{gradelevel}}"> {{gradelevel}} </option>
+                                            <option ng-repeat="gradelevel in gradeLevels" value="{{gradelevel}}">{{gradelevel}} </option>
                                         </select>
                                     </div>
                                 </td>
