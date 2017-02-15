@@ -52,7 +52,7 @@ app
 .controller('search', ['$scope', 'ParseSvc', function ($scope, ParseSvc) {
     $scope.results = [];
     $scope.subjects = [];
-    $scope.gradeLevels = ['Elementary', 'Middle School', 'High School', 'College'];
+    $scope.gradeLevels = ['K-2', '3-5', 'K-5', '6-8', '9-12', '6-12', 'All Grades'];
     $scope.printForm = function (result) {
         $("#search-results").attr("hidden", true);
         $("#selected-search-result").attr("hidden", false);
@@ -234,7 +234,7 @@ app
             extend3: null
         }
     };
-    $scope.gradeLevels = ['Elementary', 'Middle School', 'High School', 'College'];
+    $scope.gradeLevels = ['K-2', '3-5', 'K-5', '6-8', '9-12', '6-12', 'All Grades'];
 
     $scope.setSubjects = function (parseSubjects) {
         $scope.subjects = parseSubjects;
