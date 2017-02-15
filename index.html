@@ -18,7 +18,6 @@
     <script src="https://npmcdn.com/parse@1.9.2/dist/parse.js"></script>
     <link rel="stylesheet" href="styles.css">
 
-
 </head>
 <body>
 
@@ -72,7 +71,7 @@
                                     <th>Title</th>
                                     <th>Subject</th>
                                     <th>Grade Level</th>
-                                    <th>Learning Goals</th>
+                                    <!--     <th>Learning Goals</th> -->
                                     <th>Score</th>
                                     <th>Engage Total</th>
                                     <th>Enhance Total</th>
@@ -85,7 +84,7 @@
                                     <td ng-click="displayEval(result.objectId)"><font color="blue" style="cursor: pointer;"> {{result.title}} </font></td>
                                     <td>{{result.subject.get("subjectName")}}</td>
                                     <td>{{result.gradelevel}}</td>
-                                    <td>{{result.learning_goals}}</td>
+                                    <!--       <td>{{result.learning_goals}}</td>-->
                                     <td>{{result.score}}</td>
                                     <td>{{result.engagetotal}}</td>
                                     <td>{{result.enhancetotal}}</td>
@@ -109,6 +108,12 @@
                                 </div>
                             </div>
                             <div>
+                                <label>Minimum Score</label>
+                                <div>
+                                    <input ng-model="minScore" id="textInput" type="text"></input>
+                                </div>
+                            </div>
+                            <div>
                                 <select ng-model="subject">
                                     <option value="">Subject</option>
                                     <option ng-repeat="subjectObject in subjects" value="{{subjectObject.get('subjectName')}}">{{subjectObject.get("subjectName")}} </option>
@@ -120,10 +125,10 @@
                                     <option ng-repeat="gradelevel in gradeLevels" value="{{gradelevel}}">{{gradelevel}} </option>
                                 </select>
                             </div>
-                            <div>
-                                <label>Learning Goals</label>
-                                <input ng-model="queryString" id="textInput" type="text"></input>
-                            </div>
+                            <!--  <div>
+                                  <label>Learning Goals</label>
+                                  <input ng-model="queryString" id="textInput" type="text"></input>
+                              </div> -->
                             <button type="button" class="btn btn-primary btn-lg " ng-click="searchEvals()">Press to Search</button>
                         </form>
                     </div>
@@ -154,7 +159,7 @@
                             </div>
                             <div>
                                 Learning Goals:
-                                <label name="learning_goals" id="learning_goals">
+                                <label id="chosen-learning-goals">
                             </div>
                             <div>
                                 Score:
@@ -340,7 +345,21 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-                <div ng-show="isUser()">Welcome {{user.username}}</div>
+                <div ng-show="isUser()">
+                    Welcome {{user.username}}
+                    <p>
+                        Reading Results:
+                        </p>
+                    <p>
+                        13-18 Points=Green Light:  Exceptional or very strong connection between technology, instructional moves and learning goals.   When a lesson has at least 13 points, it is always meeting all three components of the Framework.  Therefore, these lessons tend to show a remarkable connection between the technology tools, instructional choices around the tool, and students’ focus and take up of the learning goals.  Students should be engaged as active time-on task social learners through the technology. Students understanding of the learning goals should be enhanced through the technology in ways that traditional tools could not easily do, and finally students understanding of the learning goals should transcend the classroom so that they are connecting what they are learning to their everyday life.
+                    </p>
+                    <p>
+                        7-12 Points=  Yellow Light:  When a lesson is meeting between 10 and 12 points, The lesson is meeting at least two of the three levels of the Framework.  By meeting at least two levels (most often engagement and enhancement or engagement and extension) there is a strong connection between technology tools and student’s take up of the learning goals.  When a lesson has between 7 and 9 points, The lesson is usually meeting two of the levels of the Framework.  However, it is not usually meeting both components at all the highest options.  Thus, while there is a connection between technology and learning goals, educators should take time to re-evaluate the lesson and technology choices and instructional moves to make certain that technology enhances and/or extends the learning goals in some significant way.  This may be an opportunity to add more instructional moves into the lesson to better leverage the technology for student learning.
+                    </p>
+                    <p>
+                        6 Points or below= Red Light: When a lesson has 6 points or below, the lesson is often meeting only one of the levels of the Framework.  This level is almost always engagement. Consequently, the connection between technology, instructional moves and learning goals tends to be low and if engagement is the only connection, the educators should reconsider if this particular technology should be used in the lesson, if more instructional moves should be added to better leverage the technology for enhancing or extending learning or if a more traditional method (not using technology) may be more appropriate.  In particular, since technology tends to extol much time and energy to set up and implement, it should be used carefully and purposefully.
+                    </p>
+                </div>
                 <br>
                 <div class="row" ng-hide="isUser()">
                     <div class="col-md-6">
@@ -469,7 +488,19 @@
                                     </label>
                                     <label>
                                         Learning Goals:
-                                        <input style="margin-left:0.5em" type="textInput" name="learning_goals" id="learning_goals" ng-model="learning_goals">
+                                        <input style="margin-left:0.5em" type="textInput" name="learning_goals" id="learning-goals" ng-model="LearningGoals">
+                                    </label>
+                                    <label>
+                                        Lesson URL:
+                                        <input style="margin-left:0.5em" type="textInput" name="lesson_url" id="lesson-url" ng-model="LessonURL">
+                                    </label>
+                                    <label>
+                                        Upload Lesson Document:
+                                        <input style="margin-left:0.5em" type="file" name="lesson_document" id="lesson-doc" ng-model="lessonDocument">
+                                    </label>
+                                    <label>
+                                        Keywords:
+                                        <input style="margin-left:0.5em" type="textInput" name="tags" id="tags" ng-model="tagString">
                                     </label>
                                 </td>
                                 <td style="vertical-align: middle">
