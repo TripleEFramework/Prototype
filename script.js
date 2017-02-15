@@ -117,11 +117,14 @@ app
   $scope.score1= 0;
   $scope.score2= 0;
   $scope.score3= 0;
+  $scope.tagString = "";
   $scope.searchTags = [];
   $scope.searchEvals = function() {
     $scope.results  = [];
 	$("#search-results").attr("hidden", false);
-	$("#selected-search-result").attr("hidden",true);
+	$("#selected-search-result").attr("hidden", true);
+	$scope.searchTags = $scope.tagString.split(" ");
+	$scope.searchTags = $scope.searchTags.filter(function (entry) { return entry.trim() != ''; });
     ParseSvc.getEvals($scope.queryString,
                                $scope.authorString, 
                                $scope.gradeLevel, 

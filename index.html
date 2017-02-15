@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" ng-app="app">
 <head>
     <title>Triple E Network</title>
@@ -16,7 +16,7 @@
     <!--Parse-->
     <!--<script src="http://www.parsecdn.com/js/parse-latest.js"></script> -->
     <script src="https://npmcdn.com/parse@1.9.2/dist/parse.js"></script>
-	<link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 
 
 </head>
@@ -30,7 +30,8 @@
             <li role="presentation" id="search-tab"><a data-toggle="tab" href="#search">Search</a></li>
             <li role="presentation" id="form-tab"><a data-toggle="tab" href="#evaluate-lesson">Evaluate Your Lesson</a></li>
             <li role="presentation" class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span>
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    Account <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
                     <li ng-hide="isUser()"><a data-toggle="tab" href="#login">Login</a></li>
@@ -100,6 +101,12 @@
                                 <input ng-model="queryString" id="textInput" type="text"></input>
                             </div>
                             <div>
+                                <label>Search Terms</label>
+                                <div>
+                                    <input ng-model="tagString" id="textInput" type="searchtext"></input>
+                                </div>
+                            </div>
+                            <div>
                                 <select ng-model="subject">
                                     <option value="">Subject</option>
                                     <option ng-repeat="subjectObject in subjects" value="{{subjectObject.get('subjectName')}}">{{subjectObject.get("subjectName")}} </option>
@@ -124,36 +131,36 @@
 
                             </tr>
                             <div>
-                                Lesson Title: 
-			  <label name="title" id="chosen-lesson-title">
+                                Lesson Title:
+                                <label name="title" id="chosen-lesson-title">
                             </div>
                             <div>
-                                Author: 
-			  <label id="chosen-lesson-author">
+                                Author:
+                                <label id="chosen-lesson-author">
                             </div>
                             <div>
-                                Subject: 
+                                Subject:
                                 <label id="chosen-lesson-subject">
                             </div>
                             <div>
-                                Grade Level: 
-                                 <label id="chosen-lesson-grade">
+                                Grade Level:
+                                <label id="chosen-lesson-grade">
                             </div>
                             <div>
-                                Score: 
-			  <label id="chosen-lesson-score">
+                                Score:
+                                <label id="chosen-lesson-score">
                             </div>
                             <div>
                                 Engage Total:
-                            	<label id="chosen-engage-total">
+                                <label id="chosen-engage-total">
                             </div>
                             <div>
                                 Enhance Total:
-                            	<label id="chosen-enhance-total">
+                                <label id="chosen-enhance-total">
                             </div>
                             <div>
                                 Extend Total:
-                            	<label id="chosen-extend-total">
+                                <label id="chosen-extend-total">
                             </div>
                         </thead>
                         <tbody id="chosen-individual-scores">
@@ -164,7 +171,8 @@
                                 <td>2=Yes</td>
                             </tr>
                             <tr>
-                                <td>The technology allows students to focus on the assignment or activity with less distraction.
+                                <td>
+                                    The technology allows students to focus on the assignment or activity with less distraction.
                                 </td>
                                 <td>
                                     <label id='engage10' name="engage1" ng-model="engage1" value="0">O</label>
@@ -177,7 +185,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>The technology motivates students to start the learning process.
+                                <td>
+                                    The technology motivates students to start the learning process.
                                 </td>
                                 <td>
                                     <label id='engage20' name="engage2" ng-model="engage2" value="0">O</label>
@@ -190,7 +199,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>The technology causes a shift in the behavior of the students, where they move from passive to active social learners (co-use)
+                                <td>
+                                    The technology causes a shift in the behavior of the students, where they move from passive to active social learners (co-use)
                                 </td>
                                 <td>
                                     <label id='engage30' name="engage3" ng-model="engage3" value="0">O</label>
@@ -209,7 +219,8 @@
                                 <td>2=Yes</td>
                             </tr>
                             <tr>
-                                <td>The technology tool allows students are able to develop or demonstrate a more sophisticated understanding of the learning goals or content
+                                <td>
+                                    The technology tool allows students are able to develop or demonstrate a more sophisticated understanding of the learning goals or content
                                 </td>
                                 <td>
                                     <label id='enhance10' name="enhance1" ng-model="enhance1" value="0">O</label>
@@ -222,7 +233,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>The technology creates supports (scaffolds) to make it easier to understand concepts or ideas
+                                <td>
+                                    The technology creates supports (scaffolds) to make it easier to understand concepts or ideas
                                 </td>
                                 <td>
                                     <label id='enhance20' name="enhance2" ng-model="enhance2" value="0">O</label>
@@ -235,7 +247,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>The technology creates paths for students to demonstrate their understanding of the learning goals in a way that they could not do with traditional tools
+                                <td>
+                                    The technology creates paths for students to demonstrate their understanding of the learning goals in a way that they could not do with traditional tools
                                 </td>
                                 <td>
                                     <label id='enhance30' name="enhance3" ng-model="enhance3" value="0">O</label>
@@ -254,7 +267,8 @@
                                 <td>2=Yes</td>
                             </tr>
                             <tr>
-                                <td>The technology creates opportunities for students to learn outside of their typical school day
+                                <td>
+                                    The technology creates opportunities for students to learn outside of their typical school day
                                 </td>
                                 <td>
                                     <label id='extend10' name="extend1" ng-model="extend1" value="0">O</label>
@@ -267,7 +281,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>The technology creates a bridge between students school learning and their everyday life experiences
+                                <td>
+                                    The technology creates a bridge between students school learning and their everyday life experiences
                                 </td>
                                 <td>
                                     <label id='extend20' name="extend2" ng-model="extend2" value="0">O</label>
@@ -280,7 +295,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>The technology allows students to build authentic life skills, which they can use in their everyday lives
+                                <td>
+                                    The technology allows students to build authentic life skills, which they can use in their everyday lives
                                 </td>
                                 <td>
                                     <label id='extend30' name="extend3" ng-model="extend3" value="0">O</label>
@@ -329,77 +345,97 @@
                     <h2 class="form-signup-heading">Signup</h2>
                     <div class="row">
                         <div class="col-md-6 form-group">
-                        	<table>
-								<tr>
-									<td><div1 class="form_labels">
-										<span>Username:</span>
-									</div></td>
-									<td class="form_text_field"><div2>
-										<label class="sr-only" for="username">Username:</label>
-                           	 			<input type="text" class="form-control" id="username" placeholder="Username" ng-model="user.username">
-                            		</div></td>
-								</tr>
-							</table>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div1 class="form_labels">
+                                            <span>Username:</span>
+                                        </div1>
+                                    </td>
+                                    <td class="form_text_field">
+                                        <div2>
+                                            <label class="sr-only" for="username">Username:</label>
+                                            <input type="text" class="form-control" id="username" placeholder="Username" ng-model="user.username">
+                                        </div2>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-md-6">
-                        	<table>
-                        		<tr>
-                        			<td><div1 class="form_labels">
-			                        	<span>Name:</span>
-			                        </div></td>
-			                    	<td class="form_text_field"><div2>
-			                            <label class="sr-only" for="name">Name:</label>
-            			                <input type="text" class="form-control" id="name" placeholder="Name" ng-model="user.name">
-									</div><td>
-								</tr>
-							</table>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div1 class="form_labels">
+                                            <span>Name:</span>
+                                        </div1>
+                                    </td>
+                                    <td class="form_text_field">
+                                        <div2>
+                                            <label class="sr-only" for="name">Name:</label>
+                                            <input type="text" class="form-control" id="name" placeholder="Name" ng-model="user.name">
+                                        </div2>
+                                    <td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 form-group">
-                        	<table>
-								<tr>
-									<td><div1 class="form_labels">
-										<span>Email:</span>
-									</div></td>
-									<td class="form_text_field"><div2>
-										<label class="sr-only" for="email">Email address:</label>
-										<input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="user.email">	
-                            		</div></td>
-								</tr>
-							</table>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div1 class="form_labels">
+                                            <span>Email:</span>
+                                        </div1>
+                                    </td>
+                                    <td class="form_text_field">
+                                        <div2>
+                                            <label class="sr-only" for="email">Email address:</label>
+                                            <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="user.email">
+                                        </div2>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 form-group">
-                        	<table>
-								<tr>
-									<td><div1 class="form_labels">
-                        				<span>Password:</span>
-									</div></td>
-									<td class="form_text_field"><div2>
-										<label class="sr-only" for="pwd">Desired Password:</label>
-										<input type="password" class="form-control" id="pwd" placeholder="Enter password" ng-model="user.password">	
-                            		</div></td>
-								</tr>
-							</table>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div1 class="form_labels">
+                                            <span>Password:</span>
+                                        </div1>
+                                    </td>
+                                    <td class="form_text_field">
+                                        <div2>
+                                            <label class="sr-only" for="pwd">Desired Password:</label>
+                                            <input type="password" class="form-control" id="pwd" placeholder="Enter password" ng-model="user.password">
+                                        </div2>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 form-group">
-                        	<table>
-								<tr>
-									<td><div1 class="form_labels">
-                        				<span>Reenter Password:</span>
-									</div></td>
-									<td class="form_text_field"><div2>
-										<label class="sr-only" for="pwd">Reenter Password</label>
-										<input type="password" class="form-control" id="pwd2" placeholder="Reenter password" ng-model="user.password2">	
-                            		</div></td>
-								</tr>
-							</table>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div1 class="form_labels">
+                                            <span>Reenter Password:</span>
+                                        </div1>
+                                    </td>
+                                    <td class="form_text_field">
+                                        <div2>
+                                            <label class="sr-only" for="pwd">Reenter Password</label>
+                                            <input type="password" class="form-control" id="pwd2" placeholder="Reenter password" ng-model="user.password2">
+                                        </div2>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-default btn-primary" ng-click="signUp()">Register</button>
@@ -418,14 +454,14 @@
                             <tr>
                                 <td>
                                     <label>
-                                        Lesson Title: 
-			             				<input style="margin-left:1.95em" type="textInput" name="title" id="lesson-title" ng-model="title">
+                                        Lesson Title:
+                                        <input style="margin-left:1.95em" type="textInput" name="title" id="lesson-title" ng-model="title">
                                     </label>
-                            		<label>
-                            			Learning Goals: 
-                            			<input style="margin-left:0.5em" type="textInput" name="title" id="lesson-title" ng-model="title">
-									</label>
-								</td>
+                                    <label>
+                                        Learning Goals:
+                                        <input style="margin-left:0.5em" type="textInput" name="title" id="lesson-title" ng-model="title">
+                                    </label>
+                                </td>
                                 <td style="vertical-align: middle">
                                     <div>
                                         <select ng-model="subject">
@@ -453,68 +489,80 @@
                                 <td>2=Yes</td>
                             </tr>
                             <tr>
-                                <td>The technology allows students to focus on the assignment or activity with less distraction.
+                                <td>
+                                    The technology allows students to focus on the assignment or activity with less distraction.
                                 </td>
                                 <td>
                                     <div>
                                         <label>
-                                            <input class="radio" type="radio" id='engage11' name="engage1" ng-model="engage1" value="0"></label>
+                                            <input class="radio" type="radio" id='engage11' name="engage1" ng-model="engage1" value="0">
+                                        </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div>
                                         <label>
-                                            <input class="radio" type="radio" id='engage12' name="engage1" ng-model="engage1" value="1"></label>
+                                            <input class="radio" type="radio" id='engage12' name="engage1" ng-model="engage1" value="1">
+                                        </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div>
                                         <label>
-                                            <input class="radio" type="radio" id='engage13' name="engage1" ng-model="engage1" value="2"></label>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>The technology motivates students to start the learning process.
-                                </td>
-                                <td>
-                                    <div>
-                                        <label>
-                                            <input class="radio" type="radio" id='engage21' name="engage2" ng-model="engage2" value="0"></label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        <label>
-                                            <input class="radio" type="radio" id='engage22' name="engage2" ng-model="engage2" value="1"></label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        <label>
-                                            <input class="radio" type="radio" id='engage23' name="engage2" ng-model="engage2" value="2"></label>
+                                            <input class="radio" type="radio" id='engage13' name="engage1" ng-model="engage1" value="2">
+                                        </label>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>The technology causes a shift in the behavior of the students, where they move from passive to active social learners (co-use)
+                                <td>
+                                    The technology motivates students to start the learning process.
                                 </td>
                                 <td>
                                     <div>
                                         <label>
-                                            <input class="radio" type="radio" id='engage31' name="engage3" ng-model="engage3" value="0"></label>
+                                            <input class="radio" type="radio" id='engage21' name="engage2" ng-model="engage2" value="0">
+                                        </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div>
                                         <label>
-                                            <input class="radio" type="radio" id='engage32' name="engage3" ng-model="engage3" value="1"></label>
+                                            <input class="radio" type="radio" id='engage22' name="engage2" ng-model="engage2" value="1">
+                                        </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div>
                                         <label>
-                                            <input class="radio" type="radio" id='engage33' name="engage3" ng-model="engage3" value="2"></label>
+                                            <input class="radio" type="radio" id='engage23' name="engage2" ng-model="engage2" value="2">
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    The technology causes a shift in the behavior of the students, where they move from passive to active social learners (co-use)
+                                </td>
+                                <td>
+                                    <div>
+                                        <label>
+                                            <input class="radio" type="radio" id='engage31' name="engage3" ng-model="engage3" value="0">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <label>
+                                            <input class="radio" type="radio" id='engage32' name="engage3" ng-model="engage3" value="1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <label>
+                                            <input class="radio" type="radio" id='engage33' name="engage3" ng-model="engage3" value="2">
+                                        </label>
                                     </div>
                                 </td>
                             </tr>
@@ -525,68 +573,80 @@
                                 <td>2=Yes</td>
                             </tr>
                             <tr>
-                                <td>The technology tool allows students are able to develop or demonstrate a more sophisticated understanding of the learning goals or content
+                                <td>
+                                    The technology tool allows students are able to develop or demonstrate a more sophisticated understanding of the learning goals or content
                                 </td>
                                 <td>
                                     <div>
                                         <label>
-                                            <input class="radio" type="radio" id='enhance11' name="enhance1" ng-model="enhance1" value="0"></label>
+                                            <input class="radio" type="radio" id='enhance11' name="enhance1" ng-model="enhance1" value="0">
+                                        </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div>
                                         <label>
-                                            <input class="radio" type="radio" id='enhance12' name="enhance1" ng-model="enhance1" value="1"></label>
+                                            <input class="radio" type="radio" id='enhance12' name="enhance1" ng-model="enhance1" value="1">
+                                        </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div>
                                         <label>
-                                            <input class="radio" type="radio" id='enhance13' name="enhance1" ng-model="enhance1" value="2"></label>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>The technology creates supports (scaffolds) to make it easier to understand concepts or ideas
-                                </td>
-                                <td>
-                                    <div>
-                                        <label>
-                                            <input class="radio" type="radio" id='enhance21' name="enhance2" ng-model="enhance2" value="0"></label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        <label>
-                                            <input class="radio" type="radio" id='enhance22' name="enhance2" ng-model="enhance2" value="1"></label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        <label>
-                                            <input class="radio" type="radio" id='enhance23' name="enhance2" ng-model="enhance2" value="2"></label>
+                                            <input class="radio" type="radio" id='enhance13' name="enhance1" ng-model="enhance1" value="2">
+                                        </label>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>The technology creates paths for students to demonstrate their understanding of the learning goals in a way that they could not do with traditional tools
+                                <td>
+                                    The technology creates supports (scaffolds) to make it easier to understand concepts or ideas
                                 </td>
                                 <td>
                                     <div>
                                         <label>
-                                            <input class="radio" type="radio" id='enhance31' name="enhance3" ng-model="enhance3" value="0"></label>
+                                            <input class="radio" type="radio" id='enhance21' name="enhance2" ng-model="enhance2" value="0">
+                                        </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div>
                                         <label>
-                                            <input class="radio" type="radio" id='enhance32' name="enhance3" ng-model="enhance3" value="1"></label>
+                                            <input class="radio" type="radio" id='enhance22' name="enhance2" ng-model="enhance2" value="1">
+                                        </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div>
                                         <label>
-                                            <input class="radio" type="radio" id='enhance33' name="enhance3" ng-model="enhance3" value="2"></label>
+                                            <input class="radio" type="radio" id='enhance23' name="enhance2" ng-model="enhance2" value="2">
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    The technology creates paths for students to demonstrate their understanding of the learning goals in a way that they could not do with traditional tools
+                                </td>
+                                <td>
+                                    <div>
+                                        <label>
+                                            <input class="radio" type="radio" id='enhance31' name="enhance3" ng-model="enhance3" value="0">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <label>
+                                            <input class="radio" type="radio" id='enhance32' name="enhance3" ng-model="enhance3" value="1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <label>
+                                            <input class="radio" type="radio" id='enhance33' name="enhance3" ng-model="enhance3" value="2">
+                                        </label>
                                     </div>
                                 </td>
                             </tr>
@@ -597,68 +657,80 @@
                                 <td>2=Yes</td>
                             </tr>
                             <tr>
-                                <td>The technology creates opportunities for students to learn outside of their typical school day
+                                <td>
+                                    The technology creates opportunities for students to learn outside of their typical school day
                                 </td>
                                 <td>
                                     <div>
                                         <label>
-                                            <input class="radio" type="radio" id='extend11' name="extend1" ng-model="extend1" value="0"></label>
+                                            <input class="radio" type="radio" id='extend11' name="extend1" ng-model="extend1" value="0">
+                                        </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div>
                                         <label>
-                                            <input class="radio" type="radio" id='extend12' name="extend1" ng-model="extend1" value="1"></label>
+                                            <input class="radio" type="radio" id='extend12' name="extend1" ng-model="extend1" value="1">
+                                        </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div>
                                         <label>
-                                            <input class="radio" type="radio" id='extend13' name="extend1" ng-model="extend1" value="2"></label>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>The technology creates a bridge between students school learning and their everyday life experiences
-                                </td>
-                                <td>
-                                    <div>
-                                        <label>
-                                            <input class="radio" type="radio" id='extend21' name="extend2" ng-model="extend2" value="0"></label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        <label>
-                                            <input class="radio" type="radio" id='extend22' name="extend2" ng-model="extend2" value="1"></label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        <label>
-                                            <input class="radio" type="radio" id='extend23' name="extend2" ng-model="extend2" value="2"></label>
+                                            <input class="radio" type="radio" id='extend13' name="extend1" ng-model="extend1" value="2">
+                                        </label>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>The technology allows students to build authentic life skills, which they can use in their everyday lives
+                                <td>
+                                    The technology creates a bridge between students school learning and their everyday life experiences
                                 </td>
                                 <td>
                                     <div>
                                         <label>
-                                            <input class="radio" type="radio" id='extend31' name="extend3" ng-model="extend3" value="0"></label>
+                                            <input class="radio" type="radio" id='extend21' name="extend2" ng-model="extend2" value="0">
+                                        </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div>
                                         <label>
-                                            <input class="radio" type="radio" id='extend32' name="extend3" ng-model="extend3" value="1"></label>
+                                            <input class="radio" type="radio" id='extend22' name="extend2" ng-model="extend2" value="1">
+                                        </label>
                                     </div>
                                 </td>
                                 <td>
                                     <div>
                                         <label>
-                                            <input class="radio" type="radio" id='extend33' name="extend3" ng-model="extend3" value="2"></label>
+                                            <input class="radio" type="radio" id='extend23' name="extend2" ng-model="extend2" value="2">
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    The technology allows students to build authentic life skills, which they can use in their everyday lives
+                                </td>
+                                <td>
+                                    <div>
+                                        <label>
+                                            <input class="radio" type="radio" id='extend31' name="extend3" ng-model="extend3" value="0">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <label>
+                                            <input class="radio" type="radio" id='extend32' name="extend3" ng-model="extend3" value="1">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <label>
+                                            <input class="radio" type="radio" id='extend33' name="extend3" ng-model="extend3" value="2">
+                                        </label>
                                     </div>
                                 </td>
                             </tr>

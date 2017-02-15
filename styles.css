@@ -7,7 +7,7 @@
 	min-width: 167px;
 	width: 16%;
 	line-height: 16px;
-	vertical-align: middle;"
+	vertical-align: middle;
 }
 
 .form_text_field
@@ -18,4 +18,19 @@
     min-height: 41px;
     vertical-align: middle;
     width: 200%;
+}
+
+input[type=searchtext] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    /*padding: 12px 20px 12px 40px;*/
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=searchtext]:focus {
+    width: 100%;
 }
