@@ -105,7 +105,7 @@
                                 <label class="search_labels">Keywords</label>
 <!--                                 <div> -->
                                     <input style="min-width:75%;" ng-model="tagString" id="textInput" type="searchtext"></input>
-<!--                                 </div> -->
+<!--                                 </div> 
                             </div>
                             <div style="min-height: 31px">
                                 <label class="search_labels">Minimum Score</label>
@@ -188,7 +188,6 @@
                                 <td>0=No</td>
                                 <td>1=Somewhat</td>
                                 <td>2=Yes</td>
-                                <td>Comments</td>
                             </tr>
                             <tr>
                                 <td>
@@ -203,9 +202,6 @@
                                 <td>
                                     <label id='engage12' name="engage1" ng-model="engage1" value="2">O</label>
                                 </td>
-                                <td rowspan="3" class="search_comments_field">
-                                	<label id='chosen-engage-comment'></label>
-								</td>
                             </tr>
                             <tr>
                                 <td>
@@ -254,9 +250,6 @@
                                 <td>
                                     <label id='enhance12' name="enhance1" ng-model="enhance1" value="2">O</label>
                                 </td>
-                                <td rowspan="3" class="search_comments_field">
-                                	<label id='chosen-enhance-comment'></label>
-								</td>
                             </tr>
                             <tr>
                                 <td>
@@ -305,9 +298,6 @@
                                 <td>
                                     <label id='extend12' name="extend1" ng-model="extend1" value="2">O</label>
                                 </td>
-                                <td rowspan="3" class="search_comments_field">
-                                	<label id='chosen-extend-comment'></label>
-								</td>
                             </tr>
                             <tr>
                                 <td>
@@ -569,7 +559,7 @@
                                         </label>
                                     </div>
                                 </td>
-                                <td rowspan="3" class="comments_field" ng-model="EngageComment">
+                                <td rowspan="3" id="comments_field">
                                 	<label>
                                         <input  style="height:130px" type="textInput" name="tags" id="tags" ng-model="tagString">
                                     </label>
@@ -659,7 +649,7 @@
                                         </label>
                                     </div>
                                 </td>
-                                <td rowspan="3" class="comments_field" ng-model="EnhanceComment">
+                                <td rowspan="3" id="comments_field">
                                 	<label>
                                         <input  style="height:130px" type="textInput" name="tags" id="tags" ng-model="tagString">
                                     </label>
@@ -749,7 +739,7 @@
                                         </label>
                                     </div>
                                 </td>
-                                <td rowspan="3" class="comments_field" ng-model="ExtendComment">
+                                <td rowspan="3" id="comments_field">
                                 	<label>
                                         <input  style="height:130px" type="textInput" name="tags" id="tags" ng-model="tagString">
                                     </label>
