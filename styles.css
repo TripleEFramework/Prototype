@@ -34,3 +34,13 @@ input[type=searchtext] {
 input[type=searchtext]:focus {
     width: 100%;
 }
+
+.search_labels
+{
+	float: left;
+	display: inline-block;
+	min-width: 110px;
+	width: 16%;
+	line-height: 16px;
+	vertical-align: middle;
+}

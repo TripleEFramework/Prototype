@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" ng-app="app">
 <head>
     <title>Triple E Network</title>
@@ -93,25 +93,25 @@
                             </tbody>
                         </table>
                         <form>
-                            <div>
-                                <label>Author</label>
-                                <input ng-model="authorString" id="textInput" type="text"></input>
+                            <div style="min-height: 31px;">
+                                <label class="search_labels">Author</label>
+                                <input style="min-width:75%" ng-model="authorString" id="textInput" type="text"></input>
                             </div>
-                            <div>
-                                <label>Title</label>
-                                <input ng-model="queryString" id="textInput" type="text"></input>
+                            <div style="min-height: 31px">
+                                <label class="search_labels">Title</label>
+                                <input style="min-width:75%" ng-model="queryString" id="textInput" type="text"></input>
                             </div>
-                            <div>
-                                <label>Search Terms</label>
-                                <div>
-                                    <input ng-model="tagString" id="textInput" type="searchtext"></input>
-                                </div>
+                            <div style="min-height: 31px">
+                                <label class="search_labels">Search Terms</label>
+<!--                                 <div> -->
+                                    <input style="min-width:75%;" ng-model="tagString" id="textInput" type="searchtext"></input>
+<!--                                 </div> -->
                             </div>
-                            <div>
-                                <label>Minimum Score</label>
-                                <div>
-                                    <input ng-model="minScore" id="textInput" type="text"></input>
-                                </div>
+                            <div style="min-height: 31px">
+                                <label class="search_labels">Minimum Score</label>
+<!--                                 <div> -->
+                                    <input style="min-width:75%" ng-model="minScore" id="textInput" type="text"></input>
+<!--                                 </div> -->
                             </div>
                             <div>
                                 <select ng-model="subject">
@@ -528,6 +528,7 @@
                                 <td>0=No</td>
                                 <td>1=Somewhat</td>
                                 <td>2=Yes</td>
+                                <td>Comments</td>
                             </tr>
                             <tr>
                                 <td>
@@ -554,6 +555,11 @@
                                         </label>
                                     </div>
                                 </td>
+                                <td rowspan="3" id="comments_field">
+                                	<label>
+                                        <input  style="height:130px" type="textInput" name="tags" id="tags" ng-model="tagString">
+                                    </label>
+								</td>
                             </tr>
                             <tr>
                                 <td>
@@ -612,6 +618,7 @@
                                 <td>0=No</td>
                                 <td>1=Somewhat</td>
                                 <td>2=Yes</td>
+                                <td>Comments</td>
                             </tr>
                             <tr>
                                 <td>
@@ -638,6 +645,11 @@
                                         </label>
                                     </div>
                                 </td>
+                                <td rowspan="3" id="comments_field">
+                                	<label>
+                                        <input  style="height:130px" type="textInput" name="tags" id="tags" ng-model="tagString">
+                                    </label>
+								</td>
                             </tr>
                             <tr>
                                 <td>
@@ -696,6 +708,7 @@
                                 <td>0=No</td>
                                 <td>1=Somewhat</td>
                                 <td>2=Yes</td>
+                                <td>Comments</td>
                             </tr>
                             <tr>
                                 <td>
@@ -722,6 +735,11 @@
                                         </label>
                                     </div>
                                 </td>
+                                <td rowspan="3" id="comments_field">
+                                	<label>
+                                        <input  style="height:130px" type="textInput" name="tags" id="tags" ng-model="tagString">
+                                    </label>
+								</td>
                             </tr>
                             <tr>
                                 <td>
