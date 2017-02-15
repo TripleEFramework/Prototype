@@ -1,0 +1,63 @@
+{
+  "results": [
+    {
+      "IndividualScores": {
+        "engage1": "1",
+        "engage2": "1",
+        "engage3": "1",
+        "enhance1": "1",
+        "enhance2": "1",
+        "enhance3": "1",
+        "extend1": "1",
+        "extend2": "1",
+        "extend3": "1"
+      },
+      "Title": "The Magic School Bus",
+      "Subject": {
+        "__type": "Pointer",
+        "className": "Subject",
+        "objectId": "Jqq4waDeC8"
+      },
+      "GradeLevel": "High School",
+      "TotalScore": 9,
+      "Author": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "URICdLQid0"
+      },
+      "Engage": 3,
+      "Enhance": 3,
+      "Extend": 3
+    },
+    {
+      "objectId": "aVUJqpJe23",
+      "IndividualScores": {
+        "engage1": "1",
+        "engage2": "2",
+        "engage3": "2",
+        "enhance1": "2",
+        "enhance2": "2",
+        "enhance3": "1",
+        "extend1": "2",
+        "extend2": "2",
+        "extend3": "2"
+      },
+      "Title": "Entymology 101",
+      "Subject": {
+        "__type": "Pointer",
+        "className": "Subject",
+        "objectId": "Q6FBufEiKW"
+      },
+      "GradeLevel": "High School",
+      "TotalScore": 16,
+      "Author": {
+        "__type": "Pointer",
+        "className": "_User",
+        "objectId": "URICdLQid0"
+      },
+      "Engage": 5,
+      "Enhance": 5,
+      "Extend": 6
+    }
+  ]
+}

@@ -117,6 +117,7 @@ app
   $scope.score1= 0;
   $scope.score2= 0;
   $scope.score3= 0;
+  $scope.searchTags = [];
   $scope.searchEvals = function() {
     $scope.results  = [];
 	$("#search-results").attr("hidden", false);
@@ -129,6 +130,7 @@ app
                                $scope.score1, 
                                $scope.score2, 
                                $scope.score3,
+                               $scope.searchTags,
                                $scope.successCallback);
   };
 }])
@@ -375,7 +377,7 @@ app
         sucessCallback(results);
       });
     },
-    getEvals: function(title, author, gradeLevel, subject, totalScore, score1, score2, score3, sucessCallback) {
+    getEvals: function(title, author, gradeLevel, subject, totalScore, score1, score2, score3, searchTags, sucessCallback) {
       var eval = Parse.Object.extend("EvalForm");
       var main_query = new Parse.Query(eval);
 
@@ -388,7 +390,7 @@ app
       if (author) {
         var authors = Parse.Object.extend("User");
         var author_query = new Parse.Query(authors);
-        author_query.contains("username", (new RegExp(author, 'i')));
+        author_query.matches("username", (new RegExp(author, 'i')));
         main_query.matchesQuery("Author", author_query);
       }
 
@@ -396,18 +398,30 @@ app
       if (subject) {
         var subjects = Parse.Object.extend("Subject");
         var subject_query = new Parse.Query(subjects);
-        subject_query.contains("subjectName", (new RegExp(subject, 'i')));
+        subject_query.matches("subjectName", (new RegExp(subject, 'i')));
         main_query.matchesQuery("Subject", subject_query);
       }
 
       // Grade Level search
       if (gradeLevel) {
-        main_query.contains("GradeLevel", (new RegExp(gradeLevel, 'i')));
+        main_query.matches("GradeLevel", (new RegExp(gradeLevel, 'i')));
       }
 
       // Total Score search
       if (totalScore) {
-        main_query.equalTo("TotalScore", (new RegExp(totalScore, 'i')));
+        main_query.equalTo("TotalScore", totalScore);
+      }
+
+      // Tag search
+      if (searchTags.length > 0) {
+        var tags_query = new Parse.Query(eval);
+        tags_query.matches("Tags", (new RegExp(searchTags[0], 'i')));
+        for (var i = 1; i < searchTags.length; i++) {
+          var single_tag_query = new Parse.Query(eval);
+          single_tag_query.matches("Tags", (new RegExp(searchTags[i], 'i')));
+          tags_query = Parse.Query.or(tags_query, single_tag_query);
+        }
+        main_query = Parse.Query.or(main_query, tags_query);
       }
 
       main_query.select("Author", "Title", "TotalScore", "IndividualScores", "Engage", "Enhance", "Extend", "Subject", "GradeLevel");
