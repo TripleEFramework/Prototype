@@ -58,6 +58,7 @@ app
         $("#selected-search-result").attr("hidden", false);
         $("#chosen-individual-scores > tr > td > label").attr("hidden", true);
         $("#chosen-lesson-title").text(result.get("Title"));
+		$("#chosen-lesson-URL").text(result.get("URL"));
         $("#chosen-learning-goals").text(result.get("LearningGoals"));
         $("#chosen-lesson-score").text(String(result.get("TotalScore")));
         $("#chosen-lesson-author").text(String(result.get("Author").get("username")));
@@ -66,6 +67,9 @@ app
         $("#chosen-engage-total").text(String(result.get("Engage")));
         $("#chosen-enhance-total").text(String(result.get("Enhance")));
         $("#chosen-extend-total").text(String(result.get("Extend")));
+		$("#chosen-engage-comment").text(String(result.get("EngageComment")));
+		$("#chosen-enhance-comment").text(String(result.get("EnhanceComment")));
+		$("#chosen-extend-comment").text(String(result.get("ExtendComment")));
         $("#engage1" + result.get("IndividualScores").engage1).attr("hidden", false);
         $("#engage2" + result.get("IndividualScores").engage2).attr("hidden", false);
         $("#engage3" + result.get("IndividualScores").engage3).attr("hidden", false);
@@ -212,6 +216,9 @@ app
         Engage: 0,
         Enhance: 0,
         Extend: 0,
+		EngageComment: null,
+		EnhanceComment: null,
+		ExtendComment: null,
         IndividualScores: {
             engage1: null,
             engage2: null,
@@ -239,6 +246,9 @@ app
         $scope.EvalForm.Document = $scope.lessonDocument;
         $scope.EvalForm.URL = $scope.LessonURL;
         $scope.EvalForm.GradeLevel = $scope.gradeLevel;
+		$scope.EvalForm.EngageComment = $scope.EngageComment;
+		$scope.EvalForm.EnhanceComment = $scope.EnhanceComment;
+		$scope.EvalForm.ExtendComment = $scope.ExtendComment;
         if ($scope.tagString)
         {
             $scope.EvalForm.Tags = $scope.tagString.split(" ");
@@ -358,6 +368,9 @@ app
             newEvalForm.set("Engage", _EvalForm.Engage);
             newEvalForm.set("Enhance", _EvalForm.Enhance);
             newEvalForm.set("Extend", _EvalForm.Extend);
+			newEvalForm.set("EngageComment", _EvalForm.EngageComment);
+            newEvalForm.set("EnhanceComment", _EvalForm.EnhanceComment);
+            newEvalForm.set("ExtendComment", _EvalForm.ExtendComment);
             newEvalForm.save(null, {
                 success: function (newEvalForm) {
                     // Execute any logic that should take place after the object is saved.
@@ -471,7 +484,7 @@ app
             var eval = Parse.Object.extend("EvalForm");
             var eval_query = new Parse.Query(eval);
             eval_query.equalTo("objectId", objectId);
-            eval_query.select("Author", "Title", "LearningGoals", "TotalScore", "IndividualScores", "GradeLevel", "Subject", "Engage", "Enhance", "Extend");
+            eval_query.select("Author", "Title", "LearningGoals", "TotalScore", "IndividualScores", "GradeLevel", "Subject", "Engage", "Enhance", "Extend","EngageComment", "EnhanceComment", "ExtendComment", "URL");
             eval_query.find().then(function (result) {
                 sucessCallback(result[0]);
             });
