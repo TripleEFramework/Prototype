@@ -58,6 +58,7 @@ app
 	  $("#selected-search-result").attr("hidden",false);
 	  $("#chosen-individual-scores > tr > td > label").attr("hidden",true);
 	  $("#chosen-lesson-title").text(result.get("Title"));
+	  $("#learning_goals").text(result.get("Learning_goals"));
 	  $("#chosen-lesson-score").text(String(result.get("TotalScore")));
 	  $("#chosen-lesson-author").text(String(result.get("Author").get("username")));
       $("#chosen-lesson-subject").text(String(result.get("Subject").get("subjectName")));
@@ -95,6 +96,7 @@ app
     for (i = 0; i < results.length; ++i) {
       $scope.results.push({
         title: String(results[i].get("Title")),
+        learning_goals: String(results[i].get("Learning_goals")),
         username: results[i].get("Author").get("username"),
         score: results[i].get("TotalScore"),
         individual_scores: results[i].get("IndividualScores"),
@@ -195,6 +197,7 @@ app
   $scope.EvalForm = {
     Author: null,
 	Title: null,
+	Learning_goals: null,
     Subject: null,
     GradeLevel: null,
     TotalScore: 0,
@@ -223,6 +226,7 @@ app
 
   $scope.reviewForm = function () {
 	$scope.EvalForm.Title = $scope.title;
+	$scope.EvalForm.Learning_goals = $scope.learning_goals;
 	$scope.EvalForm.Subject = $scope.subjects[$scope.subject];
     $scope.EvalForm.GradeLevel = $scope.gradeLevel;
 	$scope.EvalForm.IndividualScores.engage1= $scope.engage1;
@@ -328,8 +332,9 @@ app
 		var EvalFormClass = new Parse.Object.extend("EvalForm");
 		var newEvalForm = new EvalFormClass();
 		newEvalForm.set("Title", _EvalForm.Title);
-         newEvalForm.set("Subject", _EvalForm.Subject);
-         newEvalForm.set("GradeLevel", _EvalForm.GradeLevel);
+        newEvalForm.set("Subject", _EvalForm.Subject);
+        newEvalForm.set("GradeLevel", _EvalForm.GradeLevel);
+        newEvalForm.set("Learning_goals", _EvalForm.LearningGoals);
 		newEvalForm.set("TotalScore", _EvalForm.TotalScore);
 		newEvalForm.set("Author", user);
 		newEvalForm.set("IndividualScores", _EvalForm.IndividualScores);
@@ -380,7 +385,7 @@ app
         sucessCallback(results);
       });
     },
-    getEvals: function(title, author, gradeLevel, subject, totalScore, score1, score2, score3, searchTags, sucessCallback) {
+    getEvals: function(title, learning_goals, author, gradeLevel, subject, totalScore, score1, score2, score3, searchTags, sucessCallback) {
       var eval = Parse.Object.extend("EvalForm");
       var main_query = new Parse.Query(eval);
 
@@ -389,6 +394,11 @@ app
         main_query.matches("Title",  (new RegExp(title, 'i')));
       }
 
+	  // learning goals search
+      if (learning_goals) {
+        main_query.matches("Learning_goals",  (new RegExp(learning_goals, 'i')));
+      }
+      
       // Author search
       if (author) {
         var authors = Parse.Object.extend("User");
@@ -427,7 +437,7 @@ app
         main_query = Parse.Query.or(main_query, tags_query);
       }
 
-      main_query.select("Author", "Title", "TotalScore", "IndividualScores", "Engage", "Enhance", "Extend", "Subject", "GradeLevel");
+      main_query.select("Author", "Title", "Learning_goals", "TotalScore", "IndividualScores", "Engage", "Enhance", "Extend", "Subject", "GradeLevel");
 	  
       main_query.find().then(function(results) {
 		  console.log(results);
@@ -438,7 +448,7 @@ app
       var eval = Parse.Object.extend("EvalForm");
       var eval_query = new Parse.Query(eval);
 	  eval_query.equalTo("objectId", objectId);
-      eval_query.select("Author", "Title", "TotalScore", "IndividualScores", "GradeLevel", "Subject", "Engage", "Enhance", "Extend");
+      eval_query.select("Author", "Title", "Learning_goals", "TotalScore", "IndividualScores", "GradeLevel", "Subject", "Engage", "Enhance", "Extend");
       eval_query.find().then(function(result) {
         sucessCallback(result[0]);
       });

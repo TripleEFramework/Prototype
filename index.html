@@ -72,6 +72,7 @@
                                     <th>Title</th>
                                     <th>Subject</th>
                                     <th>Grade Level</th>
+                                    <th>Learning Goals</th>
                                     <th>Score</th>
                                     <th>Engage Total</th>
                                     <th>Enhance Total</th>
@@ -84,6 +85,7 @@
                                     <td ng-click="displayEval(result.objectId)"><font color="blue" style="cursor: pointer;"> {{result.title}} </font></td>
                                     <td>{{result.subject.get("subjectName")}}</td>
                                     <td>{{result.gradelevel}}</td>
+                                    <td>{{result.learning_goals}}</td>
                                     <td>{{result.score}}</td>
                                     <td>{{result.engagetotal}}</td>
                                     <td>{{result.enhancetotal}}</td>
@@ -118,6 +120,10 @@
                                     <option ng-repeat="gradelevel in gradeLevels" value="{{gradelevel}}">{{gradelevel}} </option>
                                 </select>
                             </div>
+                            <div>
+                                <label>Learning Goals</label>
+                                <input ng-model="queryString" id="textInput" type="text"></input>
+                            </div>
                             <button type="button" class="btn btn-primary btn-lg " ng-click="searchEvals()">Press to Search</button>
                         </form>
                     </div>
@@ -145,6 +151,10 @@
                             <div>
                                 Grade Level:
                                 <label id="chosen-lesson-grade">
+                            </div>
+                            <div>
+                                Learning Goals:
+                                <label name="learning_goals" id="learning_goals">
                             </div>
                             <div>
                                 Score:
@@ -459,7 +469,7 @@
                                     </label>
                                     <label>
                                         Learning Goals:
-                                        <input style="margin-left:0.5em" type="textInput" name="title" id="lesson-title" ng-model="title">
+                                        <input style="margin-left:0.5em" type="textInput" name="learning_goals" id="learning_goals" ng-model="learning_goals">
                                     </label>
                                 </td>
                                 <td style="vertical-align: middle">
