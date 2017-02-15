@@ -1,0 +1,21 @@
+
+
+.form_labels
+{
+	float: left;
+	display: inline-block;
+	min-width: 167px;
+	width: 16%;
+	line-height: 16px;
+	vertical-align: middle;"
+}
+
+.form_text_field
+{
+    float: left;
+    display: inline-block;
+    min-width: 167px;
+    min-height: 41px;
+    vertical-align: middle;
+    width: 200%;
+}

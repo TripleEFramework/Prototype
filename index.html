@@ -16,7 +16,7 @@
     <!--Parse-->
     <!--<script src="http://www.parsecdn.com/js/parse-latest.js"></script> -->
     <script src="https://npmcdn.com/parse@1.9.2/dist/parse.js"></script>
-
+	<link rel="stylesheet" href="styles.css">
 
 
 </head>
@@ -329,32 +329,77 @@
                     <h2 class="form-signup-heading">Signup</h2>
                     <div class="row">
                         <div class="col-md-6 form-group">
-                            <label class="sr-only" for="username">Username:</label>
-                            <input type="text" class="form-control" id="username" placeholder="Username" ng-model="user.username">
+                        	<table>
+								<tr>
+									<td><div1 class="form_labels">
+										<span>Username:</span>
+									</div></td>
+									<td class="form_text_field"><div2>
+										<label class="sr-only" for="username">Username:</label>
+                           	 			<input type="text" class="form-control" id="username" placeholder="Username" ng-model="user.username">
+                            		</div></td>
+								</tr>
+							</table>
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-md-6">
-                            <label class="sr-only" for="name">Name:</label>
-                            <input type="text" class="form-control" id="name" placeholder="Name" ng-model="user.name">
+                        	<table>
+                        		<tr>
+                        			<td><div1 class="form_labels">
+			                        	<span>Name:</span>
+			                        </div></td>
+			                    	<td class="form_text_field"><div2>
+			                            <label class="sr-only" for="name">Name:</label>
+            			                <input type="text" class="form-control" id="name" placeholder="Name" ng-model="user.name">
+									</div><td>
+								</tr>
+							</table>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 form-group">
-                            <label class="sr-only" for="email">Email address:</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="user.email">
+                        	<table>
+								<tr>
+									<td><div1 class="form_labels">
+										<span>Email:</span>
+									</div></td>
+									<td class="form_text_field"><div2>
+										<label class="sr-only" for="email">Email address:</label>
+										<input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="user.email">	
+                            		</div></td>
+								</tr>
+							</table>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 form-group">
-                            <label class="sr-only" for="pwd">Desired Password:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="Enter password" ng-model="user.password">
+                        	<table>
+								<tr>
+									<td><div1 class="form_labels">
+                        				<span>Password:</span>
+									</div></td>
+									<td class="form_text_field"><div2>
+										<label class="sr-only" for="pwd">Desired Password:</label>
+										<input type="password" class="form-control" id="pwd" placeholder="Enter password" ng-model="user.password">	
+                            		</div></td>
+								</tr>
+							</table>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 form-group">
-                            <label class="sr-only" for="pwd">Reenter Password</label>
-                            <input type="password" class="form-control" id="pwd2" placeholder="Reenter password" ng-model="user.password2">
+                        	<table>
+								<tr>
+									<td><div1 class="form_labels">
+                        				<span>Reenter Password:</span>
+									</div></td>
+									<td class="form_text_field"><div2>
+										<label class="sr-only" for="pwd">Reenter Password</label>
+										<input type="password" class="form-control" id="pwd2" placeholder="Reenter password" ng-model="user.password2">	
+                            		</div></td>
+								</tr>
+							</table>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-default btn-primary" ng-click="signUp()">Register</button>
