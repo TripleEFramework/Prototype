@@ -7,6 +7,7 @@ var app = angular.module('App',
     'Search',
     'Signup',
     'SubmitEval',
+	'EditEval',
     'ResetPassword',
     'Logout'
 ]);

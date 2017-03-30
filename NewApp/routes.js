@@ -17,6 +17,10 @@ angular.module('App').config(function($routeProvider) {
 			templateUrl: 'components/submit_eval/submit_eval.html',
 			controller: 'SubmitEvalController'
 		})
+		.when('/edit-eval', {
+			templateUrl: 'components/edit_eval/edit_eval.html',
+			controller: 'EditEvalController'
+		})
 		.when('/search', {
 			templateUrl: 'components/search/search.html',
 			controller: 'SearchController'
