@@ -190,7 +190,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             var eval = Parse.Object.extend("EvalForm");
             var eval_query = new Parse.Query(eval);
             eval_query.equalTo("objectId", objectId);
-            eval_query.select("Author", "Title", "LearningGoals", "TotalScore", "IndividualScores", "GradeLevel", "Subject", "Engage", "Enhance", "Extend","EngageComment", "EnhanceComment", "ExtendComment", "URL");
+            eval_query.select("Author", "Title", "LearningGoals", "TotalScore", "IndividualScores", "GradeLevel", "Subject", "Engage", "Enhance", "Extend","EngageComment", "EnhanceComment", "ExtendComment", "URL","Tags");
             eval_query.find().then(function (result) {
                 sucessCallback(result[0]);
             });

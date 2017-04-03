@@ -10,23 +10,33 @@
                     <td>
                         <label>
                             Lesson Title:
-                            <input style="margin-left: 1.95em" type="textInput" name="title" id="lesson-title" ng-model="title">
+							<label id="lesson-title">
+							</label>
+                            <input style="margin-left: 1.95em" type="textInput" name="title" ng-model="title"></input>
                         </label>
                         <label>
                             Learning Goals:
-                            <input style="margin-left: 0.5em" type="textInput" name="learning_goals" id="learning-goals" ng-model="LearningGoals">
+							<label id="learning-goals">
+							</label>
+                            <input style="margin-left: 0.5em" type="textInput" name="learning_goals" ng-model="LearningGoals"></input>
                         </label>
                         <label>
                             Lesson URL:
-                            <input style="margin-left: 0.5em" type="textInput" name="lesson_url" id="lesson-url" ng-model="LessonURL">
+							<label id="lesson-url">
+							</label>
+                            <input style="margin-left: 0.5em" type="textInput" name="lesson_url" ng-model="LessonURL"></input>
                         </label>
                         <label>
                             Upload Lesson Document:
-                            <input style="margin-left: 0.5em" type="file" name="lesson_document" id="lesson-doc" ng-model="lessonDocument">
+							<label id="lesson-doc">
+							</label>
+                            <input style="margin-left: 0.5em" type="file" name="lesson_document" ng-model="lessonDocument"></input>
                         </label>
                         <label>
                             Keywords:
-                            <input style="margin-left: 0.5em" type="textInput" name="tags" id="tags" ng-model="tagString">
+							<label id="lesson-tags">
+							</label>
+                            <input style="margin-left: 0.5em" type="textInput" name="tags" ng-model="tagString"></input>
                         </label>
                     </td>
                     <td style="vertical-align: middle">
@@ -50,7 +60,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>Engagement in the learning</td>
+                    <td><strong>Engagement in the learning </strong></td>
                     <td>0=No</td>
                     <td>1=Somewhat</td>
                     <td>2=Yes</td>
@@ -61,12 +71,12 @@
                     </td>
                     <td ng-repeat="n in [0,1,2]">
                         <label>
-                            <input class="radio" type="radio" name="engage1" ng-model="engage1" value="{{n}}">
+                            <input class="radio" type="radio" name="engage1" ng-model="engage1" ng-checked="EvalForm.IndividualScores.engage1=={{n}}" id ="engage1{{n}}" value="{{n}}"></input>
                         </label>
                     </td>
                     <td rowspan="3" class="comments_field">
                         <label>
-                            <input style="height: 130px" type="textInput" ng-model="EngageComment">
+                            <input style="height: 130px" type="textInput" ng-model="EngageComment" id="engage-comment"></input>
                         </label>
                     </td>
                 </tr>
@@ -75,7 +85,7 @@
                     </td>
                     <td ng-repeat="n in [0,1,2]">
                         <label>
-                            <input class="radio" type="radio" name="engage2" ng-model="engage2" value="{{n}}">
+                            <input class="radio" type="radio" name="engage2" ng-model="engage2" ng-checked="EvalForm.IndividualScores.engage2=={{n}}" id ="engage2{{n}}" value="{{n}}"></input>
                         </label>
                     </td>
                 </tr>
@@ -84,12 +94,12 @@
                     </td>
                     <td ng-repeat="n in [0,1,2]">
                         <label>
-                            <input class="radio" type="radio" name="engage3" ng-model="engage3" value="{{n}}">
+                            <input class="radio" type="radio" name="engage3" ng-model="engage3" ng-checked="EvalForm.IndividualScores.engage3=={{n}}" id ="engage3{{n}}" value="{{n}}"></input>
                         </label>
                     </td>
                 </tr>
                 <tr>
-                    <td><strong>Enhancement of the learning goals</td>
+                    <td><strong>Enhancement of the learning goals</strong></td>
                     <td>0=No</td>
                     <td>1=Somewhat</td>
                     <td>2=Yes</td>
@@ -100,12 +110,12 @@
                     </td>
                     <td ng-repeat="n in [0,1,2]">
                         <label>
-                            <input class="radio" type="radio" name="enhance1" ng-model="enhance1" value="{{n}}">
+                            <input class="radio" type="radio" name="enhance1" ng-model="enhance1" ng-checked="EvalForm.IndividualScores.enhance1=={{n}}" id ="enhance1{{n}}" value="{{n}}"></input>
                         </label>
                     </td>
                     <td rowspan="3" class="comments_field">
                         <label>
-                            <input style="height: 130px" type="textInput" ng-model="EnhanceComment">
+                            <input style="height: 130px" type="textInput" ng-model="EnhanceComment" id="enhance-comment"></input>
                         </label>
                     </td>
                 </tr>
@@ -114,7 +124,7 @@
                     </td>
                     <td ng-repeat="n in [0,1,2]">
                         <label>
-                            <input class="radio" type="radio" name="enhance2" ng-model="enhance2" value="{{n}}">
+                            <input class="radio" type="radio" name="enhance2" ng-model="enhance2" ng-checked="EvalForm.IndividualScores.enhance2=={{n}}" id ="enhance2{{n}}" value="{{n}}"></input>
                         </label>
                     </td>
                 </tr>
@@ -123,12 +133,12 @@
                     </td>
                     <td ng-repeat="n in [0,1,2]">
                         <label>
-                            <input class="radio" type="radio" name="enhance3" ng-model="enhance3" value="{{n}}">
+                            <input class="radio" type="radio" name="enhance3" ng-model="enhance3" ng-checked="EvalForm.IndividualScores.enhance3=={{n}}" id ="enhance3{{n}}" value="{{n}}"></input>
                         </label>
                     </td>
                 </tr>
                 <tr>
-                    <td><strong>Extending the learning goals</td>
+                    <td><strong>Extending the learning goals</strong></td>
                     <td>0=No</td>
                     <td>1=Somewhat</td>
                     <td>2=Yes</td>
@@ -139,12 +149,12 @@
                     </td>
                     <td ng-repeat="n in [0,1,2]">
                         <label>
-                            <input class="radio" type="radio" name="extend1" ng-model="extend1" value="{{n}}">
+                            <input class="radio" type="radio" name="extend1" ng-model="extend1" ng-checked="EvalForm.IndividualScores.extend1=={{n}}" id ="extend1{{n}}" value="{{n}}"></input>
                         </label>
                     </td>
                     <td rowspan="3" class="comments_field">
                         <label>
-                            <input style="height: 130px" type="textInput" ng-model="ExtendComment">
+                            <input style="height: 130px" type="textInput" ng-model="ExtendComment" id="extend-comment"></input>
                         </label>
                     </td>
                 </tr>
@@ -153,7 +163,7 @@
                     </td>
                     <td ng-repeat="n in [0,1,2]">
                         <label>
-                            <input class="radio" type="radio" name="extend2" ng-model="extend2" value="{{n}}">
+                            <input class="radio" type="radio" name="extend2" ng-model="extend2" ng-checked="EvalForm.IndividualScores.extend2=={{n}}" id ="extend2{{n}}" value="{{n}}"></input>
                         </label>
                     </td>
                 </tr>
@@ -162,7 +172,7 @@
                     </td>
                     <td ng-repeat="n in [0,1,2]">
                         <label>
-                            <input class="radio" type="radio" name="extend3" ng-model="extend3" value="{{n}}">
+                            <input class="radio" type="radio" name="extend3" ng-model="extend3" ng-checked="EvalForm.IndividualScores.extend3=={{n}}" id ="extend3{{n}}" value="{{n}}"></input>
                         </label>
                     </td>
                 </tr>
@@ -170,4 +180,8 @@
         </table>
         <button type="submit" class="btn btn-default btn-primary" ng-click="reviewForm()">Submit</button>
     </form>
+	<!-- <p ng-init="displayEval(EvalId)"> -->
+	<!-- </p> -->
+	<p ng-init="ensureApply()">
+	</p>
 </div>

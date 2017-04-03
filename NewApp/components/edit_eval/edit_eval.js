@@ -1,7 +1,9 @@
 var submit = angular.module('EditEval', []);
 
 submit.controller('EditEvalController', ['$scope', '$rootScope', 'ParseSvc', function ($scope, $rootScope, ParseSvc) {
-    $scope.EvalForm = {
+    $scope.EvalId="4lCfME29Wf" //"Mt2XM4cRtI";
+	
+	$scope.EvalForm = {
         Author: null,
         Title: null,
         LearningGoals: null,
@@ -30,37 +32,71 @@ submit.controller('EditEvalController', ['$scope', '$rootScope', 'ParseSvc', fun
         }
     };
     $scope.gradeLevels = ['K-2', '3-5', 'K-5', '6-8', '9-12', '6-12', 'All Grades'];
+	$scope.ensureApply= function(){
+		$scope.$apply();
+	};
+	$scope.subjects=[];
+	ParseSvc.getEval($scope.EvalId, $scope.printForm);
 	$scope.printForm = function (result) {
+		$scope.EvalForm.Author = result.get("Author");
+		$scope.EvalForm.Title = result.get("Title");
+		$scope.EvalForm.LearningGoals = result.get("LearningGoals");
+		$scope.EvalForm.URL = result.get("URL");
+		$scope.EvalForm.TotalScore = result.get("TotalScore");
+		$scope.EvalForm.Tags = result.get("Tags");
+		$scope.EvalForm.GradeLevel = result.get("GradeLevel");
+		$scope.EvalForm.Engage = result.get("Engage");
+		$scope.EvalForm.Enhance = result.get("Enhance");
+		$scope.EvalForm.Extend = result.get("Extend");
+		$scope.EvalForm.EngageComment = result.get("EngageComment");
+		$scope.EvalForm.EnhanceComment = result.get("EnhanceComment");
+		$scope.EvalForm.ExtendComment = result.get("ExtendComment");
+		$scope.EvalForm.IndividualScores = result.get("IndividualScores");
+		$scope.EvalForm.Subject = result.get("Subject");
         $("#lesson-title").text(result.get("Title"));
 	    $("#lesson-url").text(result.get("URL"));
         $("#learning-goals").text(result.get("LearningGoals"));
         $("#lesson-score").text(String(result.get("TotalScore")));
-        $("#lesson-author").text(String(result.get("Author").get("username")));
-        $("#lesson-subject").text(String(result.get("Subject").get("subjectName")));
+        //$("#lesson-author").text(String(result.get("Author").get("username")));
+		$("#lesson-tags").text(result.get("Tags"));
+      //  $("#lesson-subject").prop("value",String(subjects.indexOf(result.get("Subject"))) );
+		$scope.subject="-1";
+		for(var i = 0; i<$scope.subjects.length; i+=1){
+			if($scope.subjects[i].id == $scope.EvalForm.Subject.id){
+				$scope.subject = String(i);
+				break;
+			}
+		}
+		//$scope.subject = String($scope.subjects.indexOf($scope.EvalForm.Subject));
         $("#lesson-grade").text(String(result.get("GradeLevel")));
         $("#engage-total").text(String(result.get("Engage")));
         $("#enhance-total").text(String(result.get("Enhance")));
         $("#extend-total").text(String(result.get("Extend")));
-		$("#engage-comment").text(String(result.get("EngageComment")));
-		$("#enhance-comment").text(String(result.get("EnhanceComment")));
-		$("#extend-comment").text(String(result.get("ExtendComment")));
-        $("#engage1" + result.get("IndividualScores").engage1).attr("hidden", false);
-        $("#engage2" + result.get("IndividualScores").engage2).attr("hidden", false);
-        $("#engage3" + result.get("IndividualScores").engage3).attr("hidden", false);
-        $("#enhance1" + result.get("IndividualScores").enhance1).attr("hidden", false);
-        $("#enhance2" + result.get("IndividualScores").enhance2).attr("hidden", false);
-        $("#enhance3" + result.get("IndividualScores").enhance3).attr("hidden", false);
-        $("#extend1" + result.get("IndividualScores").extend1).attr("hidden", false);
-        $("#extend2" + result.get("IndividualScores").extend2).attr("hidden", false);
-        $("#extend3" + result.get("IndividualScores").extend3).attr("hidden", false);
-
+		$("#engage-comment").prop("value",String(result.get("EngageComment")));
+		$("#enhance-comment").prop("value",String(result.get("EnhanceComment")));
+		$("#extend-comment").prop("value",String(result.get("ExtendComment")));
+        $("#engage1" + result.get("IndividualScores").engage1).attr("class", "radio ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched");
+        $("#engage2" + result.get("IndividualScores").engage2).attr("class", "radio ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched");
+        $("#engage3" + result.get("IndividualScores").engage3).attr("class", "radio ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched");
+        $("#enhance1" + result.get("IndividualScores").enhance1).attr("class", "radio ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched");
+        $("#enhance2" + result.get("IndividualScores").enhance2).attr("class", "radio ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched");
+        $("#enhance3" + result.get("IndividualScores").enhance3).attr("class", "radio ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched");
+        $("#extend1" + result.get("IndividualScores").extend1).attr("class", "radio ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched");
+        $("#extend2" + result.get("IndividualScores").extend2).attr("class", "radio ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched");
+        $("#extend3" + result.get("IndividualScores").extend3).attr("class", "radio ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched");
+		
+		$scope.ensureApply();
     };
-    $scope.setSubjects = function (parseSubjects) {
+	//ParseSvc.getEval($scope.EvalId, $scope.printForm);
+	$scope.setSubjects = function (parseSubjects) {
         $scope.subjects = parseSubjects;
         $scope.$apply();
+		ParseSvc.getEval($scope.EvalId, $scope.printForm);
     };
     ParseSvc.getSubjects($scope.setSubjects);
-	ParseSvc.getEval(objectId, $scope.printForm);
+	//$scope.displayEval = function (objectId) {
+	//	ParseSvc.getEval(objectId, $scope.printForm);
+	//};
     $scope.reviewForm = function () {
         $scope.EvalForm.Title = $scope.title;
         $scope.EvalForm.LearningGoals = $scope.LearningGoals;
@@ -95,6 +131,7 @@ submit.controller('EditEvalController', ['$scope', '$rootScope', 'ParseSvc', fun
         $scope.EvalForm.TotalScore = score;
 
         ParseSvc.reviewForm($scope.EvalForm);
+	
     }
 
 }])
