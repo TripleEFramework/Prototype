@@ -9,6 +9,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
     Parse.serverURL = 'https://parseapi.back4app.com';
     var isRegistered;
     var user = Parse.User.current();
+    var currentEval;
     if (user) {
         isRegistered = true;
         // do stuff with the user

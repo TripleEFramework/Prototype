@@ -1,6 +1,6 @@
 var search = angular.module('Search', []);
 
-search.controller('SearchController', ['$scope', 'ParseSvc', function ($scope, ParseSvc) {
+search.controller('SearchController', ['$location', '$scope', 'ParseSvc', function ($location, $scope, ParseSvc) {
     $scope.results = [];
     $scope.subjects = [];
     $scope.gradeLevels = ['K-2', '3-5', 'K-5', '6-8', '9-12', '6-12', 'All Grades'];
@@ -35,9 +35,11 @@ search.controller('SearchController', ['$scope', 'ParseSvc', function ($scope, P
         $("#extend3" + result.get("IndividualScores").extend3).attr("hidden", false);
 
     };
-    $scope.displayEval = function (objectId) {
+    $scope.setEval = function (objectId) {
         console.log(objectId);
-        ParseSvc.getEval(objectId, $scope.printForm);
+        //ParseSvc.getEval(objectId, $scope.printForm);
+        ParseSvc.currentEval = objectId;
+        $location.path('/show-eval');
     };
     // Initial scope values
     $scope.setSubjects = function (parseSubjects) {
