@@ -95,6 +95,5 @@ submit.controller('EditEvalController', ['$scope', '$rootScope', 'ParseSvc', fun
         $scope.EvalForm.TotalScore = score;
 
         ParseSvc.reviewForm($scope.EvalForm);
-    }
-
-}])
+    };
+}]);

@@ -8,4 +8,4 @@ logout.controller('LogoutController', ['$scope', '$rootScope', 'ParseSvc', funct
         ParseSvc.logout(logoutCallback);
     }
 
-}])
+}]);

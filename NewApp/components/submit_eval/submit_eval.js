@@ -73,4 +73,4 @@ submit.controller('SubmitEvalController', ['$scope', '$rootScope', 'ParseSvc', f
         ParseSvc.reviewForm($scope.EvalForm);
     }
 
-}])
+}]);
