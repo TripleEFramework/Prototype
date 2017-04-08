@@ -37,24 +37,26 @@
 
 <body ng-controller="Base">
     <div class="container">
-        <h2>Triple E Network</h2>
-        <ul class="nav nav-tabs" id="tabs">
-            <li><a href="#login">Home</a></li>
-            <li><a href="#search">Search</a></li>
-            <li><a href="#submit-eval">Evaluate Your Lesson</a></li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    Account <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li ng-hide="isUser()"><a href="#login">Login</a></li>
-                    <li ng-show="isUser()"><a href="#logout">Logout</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li ng-show="isUser()"><a>Welcome {{username}}!</a></li>
-                    <li ng-hide="isUser()"><a>Not Logged In</a></li>
-                </ul>
-            </li>
-        </ul>
+        <div class="head_bar">
+            <h2>Triple E Network</h2>
+            <ul class="nav nav-tabs" id="tabs">
+                <li><a href="#login">Home</a></li>
+                <li><a href="#search">Search</a></li>
+                <li><a href="#submit-eval">Evaluate Your Lesson</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Account <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li ng-hide="isUser()"><a href="#login">Login</a></li>
+                        <li ng-show="isUser()"><a href="#logout">Logout</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li ng-show="isUser()"><a>Welcome {{username}}!</a></li>
+                        <li ng-hide="isUser()"><a>Not Logged In</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
         <div class="tab-content">
             <div ng-view></div>
         </div>

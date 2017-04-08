@@ -1,5 +1,4 @@
 
-
 .form_labels
 {
 	float: left;
@@ -20,7 +19,7 @@
     width: 200%;
 }
 
-input[type=searchtext] {
+input[type=text] {
     width: 130px;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -31,7 +30,7 @@ input[type=searchtext] {
     transition: width 0.4s ease-in-out;
 }
 
-input[type=searchtext]:focus {
+input[type=text]:focus {
     width: 100%;
 }
 
@@ -43,4 +42,12 @@ input[type=searchtext]:focus {
 	width: 16%;
 	line-height: 16px;
 	vertical-align: middle;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2}
+tr:hover {background-color: #AFEEEE}
+
+thead {
+    background-color: #00BFFF;
+    color: white;
 }
