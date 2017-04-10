@@ -9,6 +9,10 @@
                 <tr>
                     <td>
                         <label>
+                            Keywords:
+                            <input style="margin-left: 0.5em" type="textInput" name="tags" id="tags" ng-model="tagString">
+                        </label>
+                        <label>
                             Lesson Title:
                             <input style="margin-left: 1.95em" type="textInput" name="title" id="lesson-title" ng-model="title">
                         </label>
@@ -23,10 +27,6 @@
                         <label>
                             Upload Lesson Document:
                             <input style="margin-left: 0.5em" type="file" name="lesson_document" id="lesson-doc" ng-model="lessonDocument">
-                        </label>
-                        <label>
-                            Keywords:
-                            <input style="margin-left: 0.5em" type="textInput" name="tags" id="tags" ng-model="tagString">
                         </label>
                     </td>
                     <td style="vertical-align: middle">
