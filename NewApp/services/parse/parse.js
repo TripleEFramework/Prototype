@@ -28,8 +28,6 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
                 success: function (_user) {
                     user = _user;
                     console.log(user.get('username'));
-                    // Do stuff after successful login.
-                    // alert('Logged in as ' + user.get('username'));
                     successCallback();
                 },
                 error: function (user, error) {
@@ -106,8 +104,6 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
         },
         logout: function (sucessCallback) {
             Parse.User.logOut();
-            console.log('logged out');
-            alert('logged out');
 
             var currentUser = Parse.User.current();
             user = Parse.User.current();
