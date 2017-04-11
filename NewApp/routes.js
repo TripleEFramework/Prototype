@@ -1,6 +1,10 @@
 // scripts/routes.js
 angular.module('App').config(function($routeProvider) {
 	$routeProvider
+		.when('/', {
+		templateUrl: 'components/login/login.html',
+		controller: 'LoginController'
+		})
 		.when('/login', {
 			templateUrl: 'components/login/login.html',
 			controller: 'LoginController'
