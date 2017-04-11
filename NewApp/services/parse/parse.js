@@ -229,6 +229,11 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
                 date: today.toString(),
                 platform: 'web'
             });
+        },
+		profile: function (sucessCallback) {
+            var currentUser = Parse.User.current();
+            user = Parse.User.current();
+            sucessCallback();
         }
     };
 }]);

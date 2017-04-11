@@ -37,4 +37,8 @@ angular.module('App').config(function($routeProvider) {
 			templateUrl: 'components/reset_password/reset_password.html',
 			controller: 'ResetPasswordController'
 		})
+		.when('/profile', {
+			templateUrl: 'components/profile/profile.html',
+			controller: 'ProfileController'
+		})
 });
