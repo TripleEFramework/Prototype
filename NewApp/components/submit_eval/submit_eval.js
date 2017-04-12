@@ -1,6 +1,19 @@
 var submit = angular.module('SubmitEval', []);
 
-submit.controller('SubmitEvalController', ['$scope', '$rootScope', 'ParseSvc', function ($scope, $rootScope, ParseSvc) {
+submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 'ParseSvc', function ($location, $scope, $rootScope, ParseSvc) {
+    $scope.error = false;
+    $scope.error_msg;
+
+    $scope.submitCallback = function (success, response) {
+        if(success) {
+            ParseSvc.currentEval = response;
+            $location.path('/show-eval');
+        } else {
+            $scope.error = true;
+            $scope.error_msg = "Failed to submit: " + response;
+        }
+    };
+
     $scope.EvalForm = {
         Author: null,
         Title: null,
@@ -69,8 +82,7 @@ submit.controller('SubmitEvalController', ['$scope', '$rootScope', 'ParseSvc', f
             score += parseInt($(this).val(), 10);
         });
         $scope.EvalForm.TotalScore = score;
-
-        ParseSvc.reviewForm($scope.EvalForm);
+        ParseSvc.reviewForm($scope.EvalForm, $scope.submitCallback);
     }
 
 }]);

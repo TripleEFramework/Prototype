@@ -32,8 +32,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
                 },
                 error: function (user, error) {
                     // The login failed. Check error to see why
-                    console.log("Error: " + error.code + " " + error.message);
-                    successCallback(false);
+                    successCallback(false, error.message);
                 }
             });
         },
@@ -47,7 +46,6 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             user.signUp(null, {
                 success: function (user) {
                     // Hooray! Let them use the app now.
-                    alert('Signed up successfully')
                     successCallback();
                 },
                 error: function (user, error) {
@@ -57,7 +55,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
                 }
             });
         },
-        reviewForm: function (_EvalForm) {
+        reviewForm: function (_EvalForm, successCallback) {
             var EvalFormClass = new Parse.Object.extend("EvalForm");
             var newEvalForm = new EvalFormClass();
             newEvalForm.set("Title", _EvalForm.Title);
@@ -79,26 +77,25 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             newEvalForm.save(null, {
                 success: function (newEvalForm) {
                     // Execute any logic that should take place after the object is saved.
-                    var scorestring = String(newEvalForm.get("TotalScore"));
-                    alert('Evaluation Saved, Score: ' + scorestring);
+                    successCallback(true, newEvalForm.id);
                 },
                 error: function (newEvalForm, error) {
                     // Execute any logic that should take place if the save fails.
                     // error is a Parse.Error with an error code and message.
-                    alert('Failed to create new object, with error code: ' + error.message);
+                    successCallback(false, error.message);
                 }
             });
 
         },
-        resetPassword: function (email) {
+        resetPassword: function (email, successCallback) {
             Parse.User.requestPasswordReset(email, {
                 success: function () {
                     // Password reset request was sent successfully
-                    alert("password reset link sent")
+                    successCallback(true, "");
                 },
                 error: function (error) {
                     // Show the error message somewhere
-                    alert("Error: " + error.code + " " + error.message);
+                    successCallback(false, error.message);
                 }
             });
         },

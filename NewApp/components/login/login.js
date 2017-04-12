@@ -8,14 +8,16 @@ login.controller('LoginController',
       $scope.error = false;
       $scope.error_msg;
 
-      var loginCallback = function (success) {
+      var loginCallback = function (success, message) {
           if(success) {
               $rootScope.$broadcast('new username', ParseSvc.getUsername());
               window.location.reload();
           } else {
               $scope.error = true;
-              $scope.error_msg = 'Username or password incorrect';
+              $scope.error_msg = 'ERROR: ' + message;
+              $scope.$apply();
           }
+
       }
 
       $scope.user = {

@@ -3,6 +3,11 @@
 	color: #FF0000;
 }
 
+.success-message
+{
+    color: #66FF33;
+}
+
 .form_labels
 {
 	float: left;
