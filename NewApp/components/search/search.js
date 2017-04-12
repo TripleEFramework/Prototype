@@ -38,7 +38,7 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
             });
         }
         $scope.$apply();
-        console.log($scope.results);
+        //console.log($scope.results);
     };
     $scope.queryString = "";
     $scope.LearningGoals = "";
@@ -55,7 +55,6 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
     $scope.searchEvals = function () {
         $scope.results = [];
         $("#search-results").attr("hidden", false);
-        $("#selected-search-result").attr("hidden", true);
         $scope.searchTags = $scope.tagString.split(" ");
         $scope.searchTags = $scope.searchTags.filter(function (entry) { return entry.trim() != ''; });
         var minScore = parseInt($scope.minScore, 10);

@@ -1,7 +1,7 @@
 <div class="tab-pane fade in active">
     <div>
 		<div style="min-width: 40%; display:inline;">
-			<img src="https://c1.staticflickr.com/9/8321/8072000589_7f32c5a32c_b.jpg" style="max-width: 30%; max-height: 30%; display:inline">
+			<img src="https://c1.staticflickr.com/9/8321/8072000589_7f32c5a32c_b.jpg" style="max-width: 30%; max-height: 30%; display:inline" >
 		</div>
 	
 <!-- 		<br><br> -->
@@ -16,8 +16,22 @@
 	Here are you evaluations!
 	<br>
 	<br>
-    
-<!-- 
+    <div id="search-results">
+      <table class="table">
+        <thead>
+            <tr>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Subject</th>
+                <th>Grade Level</th>
+                <!--     <th>Learning Goals</th> -->
+                <th>Score</th>
+                <th>Engage Total</th>
+                <th>Enhance Total</th>
+                <th>Extend Total</th>
+            </tr>
+        </thead>
+        <tbody>
             <tr ng-repeat="result in results">
                 <td>{{result.username}}</td>
                 <td ng-click="setEval(result.objectId)">
@@ -25,12 +39,15 @@
                 </td>
                 <td>{{result.subject.get("subjectName")}}</td>
                 <td>{{result.gradelevel}}</td>
-                <!~~       <td>{{result.learning_goals}}</td>~~>
+                <!--       <td>{{result.learning_goals}}</td>-->
                 <td>{{result.score}}</td>
                 <td>{{result.engagetotal}}</td>
                 <td>{{result.enhancetotal}}</td>
                 <td>{{result.extendtotal}}</td>
             </tr>
- -->
-            
+        </tbody>
+    </table>
+  </div> 
+
+	
 </div>

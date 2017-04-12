@@ -25,6 +25,10 @@ angular.module('App').config(function($routeProvider) {
 			templateUrl: 'components/edit_eval/edit_eval.html',
 			controller: 'EditEvalController'
 		})
+		.when('/copy-eval', {
+			templateUrl: 'components/copy_eval/copy_eval.html',
+			controller: 'CopyEvalController'
+		})
 		.when('/show-eval', {
 			templateUrl: 'components/show_eval/show_eval.html',
 			controller: 'ShowEvalController'

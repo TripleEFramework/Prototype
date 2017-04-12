@@ -3,7 +3,7 @@ var show = angular.module('ShowEval', []);
 submit.controller('ShowEvalController', ['$scope', 'ParseSvc', function ($scope, ParseSvc) {
 
 	$scope.printForm = function (result) {
-        $("#search-results").attr("hidden", true);
+//        $("#search-results").attr("hidden", true);
         $("#chosen-individual-scores > tr > td > label").attr("hidden", true);
         $("#chosen-lesson-title").text(result.get("Title"));
 	    $("#chosen-lesson-URL").text(result.get("URL"));
@@ -18,6 +18,9 @@ submit.controller('ShowEvalController', ['$scope', 'ParseSvc', function ($scope,
 		$("#chosen-engage-comment").text(String(result.get("EngageComment")));
 		$("#chosen-enhance-comment").text(String(result.get("EnhanceComment")));
 		$("#chosen-extend-comment").text(String(result.get("ExtendComment")));
+		$("#chosen-engage-comment").attr("hidden", false);
+		$("#chosen-enhance-comment").attr("hidden", false);
+		$("#chosen-extend-comment").attr("hidden", false);
         $("#engage1" + result.get("IndividualScores").engage1).attr("hidden", false);
         $("#engage2" + result.get("IndividualScores").engage2).attr("hidden", false);
         $("#engage3" + result.get("IndividualScores").engage3).attr("hidden", false);

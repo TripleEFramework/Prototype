@@ -1,6 +1,6 @@
-var submit = angular.module('EditEval', []);
+var submit = angular.module('CopyEval', []);
 
-submit.controller('EditEvalController', ['$scope', '$rootScope', 'ParseSvc', function ($scope, $rootScope, ParseSvc) {
+submit.controller('CopyEvalController', ['$scope', '$rootScope', 'ParseSvc', function ($scope, $rootScope, ParseSvc) {
     $scope.EvalId=ParseSvc.currentEval; //"4lCfME29Wf" //"Mt2XM4cRtI";
 	
 	$scope.EvalForm = {

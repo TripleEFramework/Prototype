@@ -1,0 +1,178 @@
+<div class="tab-pane fade in active">
+    <form role="form">
+        <h2 class="form-reviewform-heading">Triple E Review Copy Form</h2>
+        <table class="table table-responsive">
+                <tr>
+                    <th>Triple E Evaluation Rubric</th>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            You will be made the author of this new copy. You may alter values or save copy as is.
+                        </label>
+                        <label>
+                            Lesson Title:
+                            <input style="margin-left: 1.95em" type="textInput" name="title" ng-model="title" id="lesson-title"></input>
+                        </label>
+                        <label>
+                            Learning Goals:
+                            <input style="margin-left: 0.5em" type="textInput" name="learning_goals" ng-model="LearningGoals" id="learning-goals"></input>
+                        </label>
+                        <label>
+                            Lesson URL:
+                            <input style="margin-left: 0.5em" type="textInput" name="lesson_url" ng-model="LessonURL" id="lesson-url"></input>
+                        </label>
+                        <label>
+                            Upload Lesson Document:
+                            <input style="margin-left: 0.5em" type="file" name="lesson_document" ng-model="lessonDocument" id="lesson-doc"></input>
+                        </label>
+                        <label>
+                            Keywords:
+                            <input style="margin-left: 0.5em" type="textInput" name="tags" ng-model="tagString" id="lesson-tags"></input>
+                        </label>
+                    </td>
+                    <td style="vertical-align: middle">
+                        <div>
+                            <select ng-model="subject">
+                                <option value="">Subject</option>
+                                <option ng-repeat="subjectObject in subjects" value="{{subjects.indexOf(subjectObject)}}">{{subjectObject.get("subjectName")}} </option>
+                            </select>
+                        </div>
+                    </td>
+                    <td style="vertical-align: middle">
+                        <div>
+                            <select ng-model="gradeLevel">
+                                <option value="">Grade Level</option>
+                                <option ng-repeat="gradelevel in gradeLevels" value="{{gradelevel}}">{{gradelevel}} </option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+
+            <tbody>
+                <tr>
+                    <td><strong>Engagement in the learning </strong></td>
+                    <td>0=No</td>
+                    <td>1=Somewhat</td>
+                    <td>2=Yes</td>
+                    <td>Comments</td>
+                </tr>
+                <tr>
+                    <td>The technology allows students to focus on the assignment or activity with less distraction.
+                    </td>
+                    <td ng-repeat="n in [0,1,2]">
+                        <label>
+                            <input class="radio" type="radio" name="engage1" ng-model="engage1" ng-checked="EvalForm.IndividualScores.engage1=={{n}}" id ="engage1{{n}}" value="{{n}}"></input>
+                        </label>
+                    </td>
+                    <td rowspan="3" class="comments_field">
+                        <label>
+                            <input style="height: 130px" type="textInput" ng-model="EngageComment" id="engage-comment"></input>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>The technology motivates students to start the learning process.
+                    </td>
+                    <td ng-repeat="n in [0,1,2]">
+                        <label>
+                            <input class="radio" type="radio" name="engage2" ng-model="engage2" ng-checked="EvalForm.IndividualScores.engage2=={{n}}" id ="engage2{{n}}" value="{{n}}"></input>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>The technology causes a shift in the behavior of the students, where they move from passive to active social learners (co-use)
+                    </td>
+                    <td ng-repeat="n in [0,1,2]">
+                        <label>
+                            <input class="radio" type="radio" name="engage3" ng-model="engage3" ng-checked="EvalForm.IndividualScores.engage3=={{n}}" id ="engage3{{n}}" value="{{n}}"></input>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Enhancement of the learning goals</strong></td>
+                    <td>0=No</td>
+                    <td>1=Somewhat</td>
+                    <td>2=Yes</td>
+                    <td>Comments</td>
+                </tr>
+                <tr>
+                    <td>The technology tool allows students are able to develop or demonstrate a more sophisticated understanding of the learning goals or content
+                    </td>
+                    <td ng-repeat="n in [0,1,2]">
+                        <label>
+                            <input class="radio" type="radio" name="enhance1" ng-model="enhance1" ng-checked="EvalForm.IndividualScores.enhance1=={{n}}" id ="enhance1{{n}}" value="{{n}}"></input>
+                        </label>
+                    </td>
+                    <td rowspan="3" class="comments_field">
+                        <label>
+                            <input style="height: 130px" type="textInput" ng-model="EnhanceComment" id="enhance-comment"></input>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>The technology creates supports (scaffolds) to make it easier to understand concepts or ideas
+                    </td>
+                    <td ng-repeat="n in [0,1,2]">
+                        <label>
+                            <input class="radio" type="radio" name="enhance2" ng-model="enhance2" ng-checked="EvalForm.IndividualScores.enhance2=={{n}}" id ="enhance2{{n}}" value="{{n}}"></input>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>The technology creates paths for students to demonstrate their understanding of the learning goals in a way that they could not do with traditional tools
+                    </td>
+                    <td ng-repeat="n in [0,1,2]">
+                        <label>
+                            <input class="radio" type="radio" name="enhance3" ng-model="enhance3" ng-checked="EvalForm.IndividualScores.enhance3=={{n}}" id ="enhance3{{n}}" value="{{n}}"></input>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Extending the learning goals</strong></td>
+                    <td>0=No</td>
+                    <td>1=Somewhat</td>
+                    <td>2=Yes</td>
+                    <td>Comments</td>
+                </tr>
+                <tr>
+                    <td>The technology creates opportunities for students to learn outside of their typical school day
+                    </td>
+                    <td ng-repeat="n in [0,1,2]">
+                        <label>
+                            <input class="radio" type="radio" name="extend1" ng-model="extend1" ng-checked="EvalForm.IndividualScores.extend1=={{n}}" id ="extend1{{n}}" value="{{n}}"></input>
+                        </label>
+                    </td>
+                    <td rowspan="3" class="comments_field">
+                        <label>
+                            <input style="height: 130px" type="textInput" ng-model="ExtendComment" id="extend-comment"></input>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>The technology creates a bridge between students school learning and their everyday life experiences
+                    </td>
+                    <td ng-repeat="n in [0,1,2]">
+                        <label>
+                            <input class="radio" type="radio" name="extend2" ng-model="extend2" ng-checked="EvalForm.IndividualScores.extend2=={{n}}" id ="extend2{{n}}" value="{{n}}"></input>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>The technology allows students to build authentic life skills, which they can use in their everyday lives
+                    </td>
+                    <td ng-repeat="n in [0,1,2]">
+                        <label>
+                            <input class="radio" type="radio" name="extend3" ng-model="extend3" ng-checked="EvalForm.IndividualScores.extend3=={{n}}" id ="extend3{{n}}" value="{{n}}"></input>
+                        </label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-default btn-primary" ng-click="reviewForm()">Save Copy</button>
+    </form>
+	<!-- <p ng-init="displayEval(EvalId)"> -->
+	<!-- </p> -->
+	<p ng-init="ensureApply()">
+	</p>
+</div>
