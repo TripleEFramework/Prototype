@@ -1,13 +1,13 @@
 var signup = angular.module('Signup', []);
 
-signup.controller('SignupController', ['$scope', '$rootScope', 'ParseSvc', function ($scope, $rootScope, ParseSvc) {
+signup.controller('SignupController', ['$location', '$scope', '$rootScope', 'ParseSvc', function ($location, $scope, $rootScope, ParseSvc) {
     $scope.show_error = false;
     $scope.error_msg;
 
     var signupCallback = function (success, message) {
         if(success) {
             $rootScope.$broadcast('new username', ParseSvc.getUsername());
-            window.location.reload();
+            $location.path('/');
         } else {
             $scope.show_error = true;
             $scope.error_msg = 'ERROR: ' + message;
