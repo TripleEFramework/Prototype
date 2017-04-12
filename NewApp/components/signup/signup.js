@@ -5,6 +5,10 @@ signup.controller('SignupController', ['$scope', '$rootScope', 'ParseSvc', funct
         $rootScope.$broadcast('new username', ParseSvc.getUsername());
         window.location.reload();
     }
+
+    $scope.error = false;
+    $scope.error_msg;
+
     $scope.user = {
         username: null,
         password: null,
@@ -17,7 +21,8 @@ signup.controller('SignupController', ['$scope', '$rootScope', 'ParseSvc', funct
     }
     $scope.signUp = function () {
         if ($scope.user.password !== $scope.user.password2) {
-            alert('Passwords don\'t match');
+            $scope.error = true;
+            $scope.error_msg = 'Passwords do not match';
             return;
         }
         ParseSvc.signUp($scope.user, signupCallback);
