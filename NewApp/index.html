@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap requirements -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <!-- AngularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
@@ -25,35 +25,41 @@
     <script src="components/logout/logout.js"></script>
     <script src="components/reset_password/reset_password.js"></script>
     <script src="components/signup/signup.js"></script>
+    <script src="components/edit_eval/edit_eval.js"></script>
     <script src="components/submit_eval/submit_eval.js"></script>
 	<script src="components/edit_eval/edit_eval.js"></script>
     <script src="components/login/login.js"></script>
+    <script src="components/show_eval/show_eval.js"></script>
     <script src="app.js"></script>
     <script src="routes.js"></script>
+    <script src="components/profile/profile.js"></script>
 
     <link rel="stylesheet" href="assets/stylesheets/styles.css">
 </head>
 
 <body ng-controller="Base">
     <div class="container">
-        <h2>Triple E Network</h2>
-        <ul class="nav nav-tabs" id="tabs">
-            <li><a href="#login">Home</a></li>
-            <li><a href="#search">Search</a></li>
-            <li><a href="#submit-eval">Evaluate Your Lesson</a></li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    Account <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li ng-hide="isUser()"><a href="#login">Login</a></li>
-                    <li ng-show="isUser()"><a href="#logout">Logout</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li ng-show="isUser()"><a>Welcome {{username}}!</a></li>
-                    <li ng-hide="isUser()"><a>Not Logged In</a></li>
-                </ul>
-            </li>
-        </ul>
+        <div class="head_bar">
+            <h2>Triple E Network</h2>
+            <ul class="nav nav-tabs" id="tabs">
+                <li><a href="#login">Home</a></li>
+                <li><a href="#search">Search</a></li>
+                <li><a href="#submit-eval">Evaluate Your Lesson</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Account <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li ng-hide="isUser()"><a href="#login">Login</a></li>
+                        <li ng-show="isUser()"><a ng-click="logout()">Logout</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li ng-show="isUser()"><a>Welcome {{username}}!</a></li>
+                        <li ng-hide="isUser()"><a>Not Logged In</a></li>
+                    </ul>
+                </li>
+                <li ng-show="isUser()"><a href="#profile">Profile</a></li>
+            </ul>
+        </div>
         <div class="tab-content">
             <div ng-view></div>
         </div>

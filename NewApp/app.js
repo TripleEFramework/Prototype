@@ -8,11 +8,13 @@ var app = angular.module('App',
     'Signup',
     'SubmitEval',
 	'EditEval',
+    'ShowEval',
     'ResetPassword',
-    'Logout'
+    'Logout',
+    'Profile'
 ]);
 
-app.controller('Base', ['$scope', '$rootScope', 'ParseSvc', function ($scope, $rootScope, ParseSvc) {
+app.controller('Base', ['$location', '$scope', '$rootScope', 'ParseSvc', function ($location, $scope, $rootScope, ParseSvc) {
     //calls appOpened once on controller's instantiation
     var init = function () {
         ParseSvc.appOpened();
@@ -37,5 +39,14 @@ app.controller('Base', ['$scope', '$rootScope', 'ParseSvc', function ($scope, $r
         else {
             return true;
         }
+    }
+
+    var logoutCallback = function () {
+        $rootScope.$broadcast('new username', "");
+        $location.path('/');
+    }
+
+    $scope.logout = function () {
+        ParseSvc.logout(logoutCallback);
     }
 }]);

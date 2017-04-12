@@ -1,53 +1,45 @@
 <div class="tab-pane fade in active">
     <form role="form">
-        <h2 class="form-reviewform-heading">Triple E Review</h2>
+        <h2 class="form-reviewform-heading">Triple E Evaluation Rubric</h2>
         <table class="table table-responsive">
+            <label style="min-height: 30px">
+                Keywords:
+                <input style="margin-left: 0.5em" type="text" name="tags" id="tags" ng-model="tagString">
+            </label><br/>
+            <label style="min-height: 30px">
+                Lesson Title:
+                <input style="margin-left: 0.5em" type="text" name="title" id="lesson-title" ng-model="title">
+            </label><br/>
+            <label style="min-height: 30px">
+                Learning Goals:
+                <input style="margin-left: 0.5em" type="text" name="learning_goals" id="learning-goals" ng-model="LearningGoals">
+            </label><br/>
+            <label style="min-height: 30px">
+                Lesson URL:
+                <input style="margin-left: 0.5em" type="text" name="lesson_url" id="lesson-url" ng-model="LessonURL">
+            </label><br/>
+            <label>
+                Upload Lesson Document:
+                <input style="margin-left: 0.5em" type="file" name="lesson_document" id="lesson-doc" ng-model="lessonDocument">
+            </label>
+            <div>
+                <select ng-model="subject">
+                    <option value="">Subject</option>
+                    <option ng-repeat="subjectObject in subjects" value="{{subjects.indexOf(subjectObject)}}">{{subjectObject.get("subjectName")}} </option>
+                </select>
+            </div>
+            <div>
+                <select ng-model="gradeLevel">
+                    <option value="">Grade Level</option>
+                    <option ng-repeat="gradelevel in gradeLevels" value="{{gradelevel}}">{{gradelevel}} </option>
+                </select>
+            </div>
             <thead>
-                <tr>
-                    <th>Triple E Evaluation Rubric</th>
-                </tr>
-                <tr>
-                    <td>
-                        <label>
-                            Lesson Title:
-                            <input style="margin-left: 1.95em" type="textInput" name="title" id="lesson-title" ng-model="title">
-                        </label>
-                        <label>
-                            Learning Goals:
-                            <input style="margin-left: 0.5em" type="textInput" name="learning_goals" id="learning-goals" ng-model="LearningGoals">
-                        </label>
-                        <label>
-                            Lesson URL:
-                            <input style="margin-left: 0.5em" type="textInput" name="lesson_url" id="lesson-url" ng-model="LessonURL">
-                        </label>
-                        <label>
-                            Upload Lesson Document:
-                            <input style="margin-left: 0.5em" type="file" name="lesson_document" id="lesson-doc" ng-model="lessonDocument">
-                        </label>
-                        <label>
-                            Keywords:
-                            <input style="margin-left: 0.5em" type="textInput" name="tags" id="tags" ng-model="tagString">
-                        </label>
-                    </td>
-                    <td style="vertical-align: middle">
-                        <div>
-                            <select ng-model="subject">
-                                <option value="">Subject</option>
-                                <option ng-repeat="subjectObject in subjects" value="{{subjects.indexOf(subjectObject)}}">{{subjectObject.get("subjectName")}} </option>
-                            </select>
-                        </div>
-                    </td>
-                    <td style="vertical-align: middle">
-                        <div>
-                            <select ng-model="gradeLevel">
-                                <option value="">Grade Level</option>
-                                <option ng-repeat="gradelevel in gradeLevels" value="{{gradelevel}}">{{gradelevel}} </option>
-                            </select>
-                        </div>
-                    </td>
-                </tr>
-
+                <th>
+                    <strong>Evaluation Criteria</strong>
+                </th>
             </thead>
+            <br/><br/>
             <tbody>
                 <tr>
                     <td><strong>Engagement in the learning</td>

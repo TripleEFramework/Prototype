@@ -53,12 +53,12 @@ submit.controller('EditEvalController', ['$scope', '$rootScope', 'ParseSvc', fun
 		$scope.EvalForm.ExtendComment = result.get("ExtendComment");
 		$scope.EvalForm.IndividualScores = result.get("IndividualScores");
 		$scope.EvalForm.Subject = result.get("Subject");
-        $("#lesson-title").text(result.get("Title"));
-	    $("#lesson-url").text(result.get("URL"));
-        $("#learning-goals").text(result.get("LearningGoals"));
+        $("#lesson-title").prop("value",String(result.get("Title")));
+	    $("#lesson-url").prop("value",String(result.get("URL")));
+        $("#learning-goals").prop("value",String(result.get("LearningGoals")));
         $("#lesson-score").text(String(result.get("TotalScore")));
         //$("#lesson-author").text(String(result.get("Author").get("username")));
-		$("#lesson-tags").text(result.get("Tags"));
+		$("#lesson-tags").prop("value",String(result.get("Tags")));
       //  $("#lesson-subject").prop("value",String(subjects.indexOf(result.get("Subject"))) );
 		$scope.subject="-1";
 		for(var i = 0; i<$scope.subjects.length; i+=1){
@@ -131,7 +131,6 @@ submit.controller('EditEvalController', ['$scope', '$rootScope', 'ParseSvc', fun
         $scope.EvalForm.TotalScore = score;
 
         ParseSvc.reviewForm($scope.EvalForm);
-	
-    }
+    };
+}]);
 
-}])

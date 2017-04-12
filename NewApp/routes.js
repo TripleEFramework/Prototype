@@ -1,6 +1,10 @@
 // scripts/routes.js
 angular.module('App').config(function($routeProvider) {
 	$routeProvider
+		.when('/', {
+			templateUrl: 'components/login/login.html',
+			controller: 'LoginController'
+		})
 		.when('/login', {
 			templateUrl: 'components/login/login.html',
 			controller: 'LoginController'
@@ -21,6 +25,10 @@ angular.module('App').config(function($routeProvider) {
 			templateUrl: 'components/edit_eval/edit_eval.html',
 			controller: 'EditEvalController'
 		})
+		.when('/show-eval', {
+			templateUrl: 'components/show_eval/show_eval.html',
+			controller: 'ShowEvalController'
+		})
 		.when('/search', {
 			templateUrl: 'components/search/search.html',
 			controller: 'SearchController'
@@ -28,5 +36,9 @@ angular.module('App').config(function($routeProvider) {
 		.when('/reset-password', {
 			templateUrl: 'components/reset_password/reset_password.html',
 			controller: 'ResetPasswordController'
+		})
+		.when('/profile', {
+			templateUrl: 'components/profile/profile.html',
+			controller: 'ProfileController'
 		})
 });

@@ -1,63 +1,36 @@
 <div class="tab-pane fade in active">
   <div class="row">
       <div class="col-md-4">
-          <table class="table" id="search-results">
-              <thead>
-                  <tr>
-                      <th>Author</th>
-                      <th>Title</th>
-                      <th>Subject</th>
-                      <th>Grade Level</th>
-                      <!--     <th>Learning Goals</th> -->
-                      <th>Score</th>
-                      <th>Engage Total</th>
-                      <th>Enhance Total</th>
-                      <th>Extend Total</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr ng-repeat="result in results">
-                      <td>{{result.username}}</td>
-                      <td ng-click="displayEval(result.objectId)"><font color="blue" style="cursor: pointer;"> {{result.title}} </font></td>
-                      <td>{{result.subject.get("subjectName")}}</td>
-                      <td>{{result.gradelevel}}</td>
-                      <!--       <td>{{result.learning_goals}}</td>-->
-                      <td>{{result.score}}</td>
-                      <td>{{result.engagetotal}}</td>
-                      <td>{{result.enhancetotal}}</td>
-                      <td>{{result.extendtotal}}</td>
-                  </tr>
-              </tbody>
-          </table>
           <form>
-              <div style="min-height: 31px;">
-                  <label class="search_labels">Evaluator</label>
+          <br>
+              <div style="min-height: 35px;">
+                  <label class="search_labels">Evaluator Name</label>
                   <input style="min-width:65%" ng-model="authorString" id="textInput" type="text"></input>
               </div>
-              <div style="min-height: 31px">
+              <div style="min-height: 35px">
                   <label class="search_labels">Title</label>
                   <input style="min-width:65%" ng-model="queryString" id="textInput" type="text"></input>
               </div>
-              <div style="min-height: 31px">
+              <div style="min-height: 35px">
                   <label class="search_labels">Keywords</label>
 <!--                                 <div> -->
 
-                      <input style="min-width:65%;" ng-model="tagString" id="textInput" type="searchtext"></input>
+                      <input style="min-width:65%;" ng-model="tagString" id="textInput" type="text"></input>
 <!--                                 </div> -->
               </div>
-              <div style="min-height: 31px">
+              <div style="min-height: 35px">
                   <label class="search_labels">Minimum Score</label>
 <!--                                 <div> -->
                       <input style="min-width:65%" ng-model="minScore" id="textInput" type="text"></input>
 <!--                                 </div> -->
               </div>
-              <div>
+              <div style="min-height: 30px">
                   <select ng-model="subject">
                       <option value="">Subject</option>
                       <option ng-repeat="subjectObject in subjects" value="{{subjectObject.get('subjectName')}}">{{subjectObject.get("subjectName")}} </option>
                   </select>
               </div>
-              <div>
+              <div style="min-height: 30px">
                   <select ng-model="gradeLevel">
                       <option value="">Grade Level</option>
                       <option ng-repeat="gradelevel in gradeLevels" value="{{gradelevel}}">{{gradelevel}} </option>
@@ -71,6 +44,38 @@
           </form>
       </div>
   </div>
+  <div id="search-results" hidden="true">
+      <table class="table">
+        <thead>
+            <tr>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Subject</th>
+                <th>Grade Level</th>
+                <!--     <th>Learning Goals</th> -->
+                <th>Score</th>
+                <th>Engage Total</th>
+                <th>Enhance Total</th>
+                <th>Extend Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="result in results">
+                <td>{{result.username}}</td>
+                <td ng-click="setEval(result.objectId)">
+                  <font color="blue" style="cursor: pointer;"> {{result.title}} </font>
+                </td>
+                <td>{{result.subject.get("subjectName")}}</td>
+                <td>{{result.gradelevel}}</td>
+                <!--       <td>{{result.learning_goals}}</td>-->
+                <td>{{result.score}}</td>
+                <td>{{result.engagetotal}}</td>
+                <td>{{result.enhancetotal}}</td>
+                <td>{{result.extendtotal}}</td>
+            </tr>
+        </tbody>
+    </table>
+  </div> 
   <div id="selected-search-result" hidden="true">
       <h2 class="form-reviewform-heading">Triple E Review</h2>
       <table class="table table-responsive">

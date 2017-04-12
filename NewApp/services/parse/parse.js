@@ -9,6 +9,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
     Parse.serverURL = 'https://parseapi.back4app.com';
     var isRegistered;
     var user = Parse.User.current();
+    var currentEval;
     if (user) {
         isRegistered = true;
         // do stuff with the user
@@ -27,8 +28,6 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
                 success: function (_user) {
                     user = _user;
                     console.log(user.get('username'));
-                    // Do stuff after successful login.
-                    // alert('Logged in as ' + user.get('username'));
                     successCallback();
                 },
                 error: function (user, error) {
@@ -105,8 +104,6 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
         },
         logout: function (sucessCallback) {
             Parse.User.logOut();
-            console.log('logged out');
-            alert('logged out');
 
             var currentUser = Parse.User.current();
             user = Parse.User.current();
@@ -120,70 +117,81 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
                 sucessCallback(results);
             });
         },
-        getEvals: function (title, LearningGoals, author, gradeLevel, subject, totalScore, score1, score2, score3, searchTags, minScore, sucessCallback) {
+        initEvalQuery: function () {
             var eval = Parse.Object.extend("EvalForm");
-            var main_query = new Parse.Query(eval);
-
-            // Title search
-            if (title) {
-                main_query.matches("Title", (new RegExp(title, 'i')));
+            var query = new Parse.Query(eval);
+            return query;
+        },
+        searchTitle: function (query, title) {
+            if(title) {
+                query.matches("Title", (new RegExp(title, 'i')));
             }
-
-            // learning goals search
-            if (LearningGoals) {
-                main_query.matches("LearningGoals", (new RegExp(LearningGoals, 'i')));
+            return query;  
+        },
+        searchLearningGoals: function (query, learningGoals) {
+            if(learningGoals) {
+                query.matches("LearningGoals", (new RegExp(learningGoals, 'i')));
             }
-
-            // Author search
-            if (author) {
+            return query;
+        },
+        searchAuthor: function (query, author) {
+            if(author) {
                 var authors = Parse.Object.extend("User");
                 var author_query = new Parse.Query(authors);
                 author_query.matches("username", (new RegExp(author, 'i')));
-                main_query.matchesQuery("Author", author_query);
+                query.matchesQuery("Author", author_query);
             }
-
-            // Subject search
-            if (subject) {
+            return query;
+        },
+        searchSubject: function (query, subject) {
+            if(subject) {
                 var subjects = Parse.Object.extend("Subject");
                 var subject_query = new Parse.Query(subjects);
                 subject_query.matches("subjectName", (new RegExp(subject, 'i')));
-                main_query.matchesQuery("Subject", subject_query);
+                query.matchesQuery("Subject", subject_query);
             }
-
-            // Grade Level search
-            if (gradeLevel) {
-                main_query.matches("GradeLevel", (new RegExp(gradeLevel, 'i')));
+            return query;
+        },
+        searchGradeLevel: function (query, gradeLevel) {
+            if(gradeLevel) {
+                query.matches("GradeLevel", (new RegExp(gradeLevel, 'i')));
             }
-
-            // Total Score search
-            if (totalScore) {
-                main_query.equalTo("TotalScore", totalScore);
+            return query;
+        },
+        searchTotalScore: function (query, totalScore) {
+            if(totalScore) {
+                query.equalTo("TotalScore", totalScore);
             }
-            // Minimum Score search
-            if (minScore) {
-                main_query.greaterThanOrEqualTo("TotalScore", minScore);
+            return query;
+        },
+        searchMinScore: function (query, minScore) {
+            if(minScore) {
+                query.greaterThanOrEqualTo("TotalScore", minScore);
             }
-
-            // Tag search
-            if (searchTags.length > 0) {
-                main_query.containedIn("Tags", searchTags); //Case sensitive so im going to make it so all tags are stored in lowercase
-                /*
-                var tags_query = new Parse.Query(eval);
-                tags_query.matches("Tags", (new RegExp(searchTags[0], 'i')));
-                for (var i = 1; i < searchTags.length; i++) {
-                    var single_tag_query = new Parse.Query(eval);
-                    single_tag_query.matches("Tags", (new RegExp(searchTags[i], 'i')));
-                    tags_query = Parse.Query.or(tags_query, single_tag_query);
-                }
-                main_query = Parse.Query.or(main_query, tags_query);
-                */
+            return query;
+        },
+        searchTags: function (query, tags) {
+            if(tags.length > 0) {
+                query.containedIn("Tags", tags); //Case sensitive so im going to make it so all tags are stored in lowercase
             }
+            /*
+            var tags_query = new Parse.Query(eval);
+            tags_query.matches("Tags", (new RegExp(searchTags[0], 'i')));
+            for (var i = 1; i < searchTags.length; i++) {
+                var single_tag_query = new Parse.Query(eval);
+                single_tag_query.matches("Tags", (new RegExp(searchTags[i], 'i')));
+                tags_query = Parse.Query.or(tags_query, single_tag_query);
+            }
+            main_query = Parse.Query.or(main_query, tags_query);
+            */
+            return query;
+        },
+        executeQuery: function (query, successCallback) {
+            query.select("Author", "Title", "LearningGoals", "TotalScore", "IndividualScores", "Engage", "Enhance", "Extend", "Subject", "GradeLevel");
 
-            main_query.select("Author", "Title", "LearningGoals", "TotalScore", "IndividualScores", "Engage", "Enhance", "Extend", "Subject", "GradeLevel");
-
-            main_query.find().then(function (results) {
+            query.find().then(function (results) {
                 console.log(results);
-                sucessCallback(results);
+                successCallback(results);
             });
         },
         getEval: function (objectId, sucessCallback) {
@@ -221,6 +229,11 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
                 date: today.toString(),
                 platform: 'web'
             });
+        },
+		profile: function (sucessCallback) {
+            var currentUser = Parse.User.current();
+            user = Parse.User.current();
+            sucessCallback();
         }
     };
 }]);

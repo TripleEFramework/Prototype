@@ -1,43 +1,14 @@
 var search = angular.module('Search', []);
 
-search.controller('SearchController', ['$scope', 'ParseSvc', function ($scope, ParseSvc) {
+search.controller('SearchController', ['$location', '$scope', 'ParseSvc', function ($location, $scope, ParseSvc) {
     $scope.results = [];
     $scope.subjects = [];
     $scope.gradeLevels = ['K-2', '3-5', 'K-5', '6-8', '9-12', '6-12', 'All Grades'];
-    $scope.printForm = function (result) {
-        $("#search-results").attr("hidden", true);
-        $("#selected-search-result").attr("hidden", false);
-        $("#chosen-individual-scores > tr > td > label").attr("hidden", true);
-        $("#chosen-lesson-title").text(result.get("Title"));
-	    $("#chosen-lesson-URL").text(result.get("URL"));
-        $("#chosen-learning-goals").text(result.get("LearningGoals"));
-        $("#chosen-lesson-score").text(String(result.get("TotalScore")));
-        $("#chosen-lesson-author").text(String(result.get("Author").get("username")));
-        $("#chosen-lesson-subject").text(String(result.get("Subject").get("subjectName")));
-        $("#chosen-lesson-grade").text(String(result.get("GradeLevel")));
-        $("#chosen-engage-total").text(String(result.get("Engage")));
-        $("#chosen-enhance-total").text(String(result.get("Enhance")));
-        $("#chosen-extend-total").text(String(result.get("Extend")));
-		$("#chosen-engage-comment").text(String(result.get("EngageComment")));
-		$("#chosen-enhance-comment").text(String(result.get("EnhanceComment")));
-		$("#chosen-extend-comment").text(String(result.get("ExtendComment")));
-		$("#chosen-engage-comment").attr("hidden", false);
-		$("#chosen-enhance-comment").attr("hidden", false);
-		$("#chosen-extend-comment").attr("hidden", false);
-        $("#engage1" + result.get("IndividualScores").engage1).attr("hidden", false);
-        $("#engage2" + result.get("IndividualScores").engage2).attr("hidden", false);
-        $("#engage3" + result.get("IndividualScores").engage3).attr("hidden", false);
-        $("#enhance1" + result.get("IndividualScores").enhance1).attr("hidden", false);
-        $("#enhance2" + result.get("IndividualScores").enhance2).attr("hidden", false);
-        $("#enhance3" + result.get("IndividualScores").enhance3).attr("hidden", false);
-        $("#extend1" + result.get("IndividualScores").extend1).attr("hidden", false);
-        $("#extend2" + result.get("IndividualScores").extend2).attr("hidden", false);
-        $("#extend3" + result.get("IndividualScores").extend3).attr("hidden", false);
-
-    };
-    $scope.displayEval = function (objectId) {
+    $scope.setEval = function (objectId) {
         console.log(objectId);
-        ParseSvc.getEval(objectId, $scope.printForm);
+        //ParseSvc.getEval(objectId, $scope.printForm);
+        ParseSvc.currentEval = objectId;
+        $location.path('/show-eval');
     };
     // Initial scope values
     $scope.setSubjects = function (parseSubjects) {
@@ -88,17 +59,14 @@ search.controller('SearchController', ['$scope', 'ParseSvc', function ($scope, P
         $scope.searchTags = $scope.tagString.split(" ");
         $scope.searchTags = $scope.searchTags.filter(function (entry) { return entry.trim() != ''; });
         var minScore = parseInt($scope.minScore, 10);
-        ParseSvc.getEvals($scope.queryString,
-                                   $scope.LearningGoals,
-                                   $scope.authorString,
-                                   $scope.gradeLevel,
-                                   $scope.subject,
-                                   $scope.totalScore,
-                                   $scope.score1,
-                                   $scope.score2,
-                                   $scope.score3,
-                                   $scope.searchTags,
-                                   minScore,
-                                   $scope.successCallback);
+
+        var query = ParseSvc.initEvalQuery();
+        query = ParseSvc.searchAuthor(query, $scope.authorString);
+        query = ParseSvc.searchTitle(query, $scope.queryString);
+        query = ParseSvc.searchTags(query, $scope.searchTags);
+        query = ParseSvc.searchMinScore(query, minScore);
+        query = ParseSvc.searchSubject(query, $scope.subject);
+        query = ParseSvc.searchGradeLevel(query, $scope.gradeLevel);
+        ParseSvc.executeQuery(query, $scope.successCallback);
     };
 }]);
