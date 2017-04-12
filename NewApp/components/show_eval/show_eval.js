@@ -30,7 +30,7 @@ submit.controller('ShowEvalController', ['$scope', 'ParseSvc', function ($scope,
         $("#extend1" + result.get("IndividualScores").extend1).attr("hidden", false);
         $("#extend2" + result.get("IndividualScores").extend2).attr("hidden", false);
         $("#extend3" + result.get("IndividualScores").extend3).attr("hidden", false);
-
+		$scope.$apply();
     };
     displayEval = function (objectId) {
         console.log(objectId);

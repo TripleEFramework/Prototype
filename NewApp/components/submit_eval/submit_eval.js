@@ -50,7 +50,16 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
         $scope.$apply();
     };
     ParseSvc.getSubjects($scope.setSubjects);
-
+	$scope.engage1 = "0";
+	$scope.engage2 = "0";
+	$scope.engage3 = "0";
+	$scope.enhance1 = "0";
+	$scope.enhance2 = "0";
+	$scope.enhance3 = "0";
+	$scope.extend1 = "0";
+	$scope.extend2 = "0";
+	$scope.extend3 = "0";
+	
     $scope.reviewForm = function () {
         $scope.EvalForm.Title = $scope.title;
         $scope.EvalForm.LearningGoals = $scope.LearningGoals;
@@ -74,6 +83,7 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
         $scope.EvalForm.IndividualScores.extend1 = $scope.extend1;
         $scope.EvalForm.IndividualScores.extend2 = $scope.extend2;
         $scope.EvalForm.IndividualScores.extend3 = $scope.extend3;
+		console.log($scope.EvalForm.IndividualScores);
         $scope.EvalForm.Engage = parseInt($scope.engage1, 10) + parseInt($scope.engage2, 10) + parseInt($scope.engage3, 10);
         $scope.EvalForm.Enhance = parseInt($scope.enhance1, 10) + parseInt($scope.enhance2, 10) + parseInt($scope.enhance3, 10);
         $scope.EvalForm.Extend = parseInt($scope.extend1, 10) + parseInt($scope.extend2, 10) + parseInt($scope.extend3, 10);
