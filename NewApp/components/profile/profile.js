@@ -18,7 +18,7 @@ profile.controller('ProfileController',
       if (ParseSvc.isRegistered) {
           $rootScope.username = ParseSvc.getUsername();
       }
-      $// scope.login = function () {
+      // scope.login = function () {
 //           ParseSvc.login($scope.user, loginCallback)
 //       }
       if (ParseSvc.getUsername() !== null) {

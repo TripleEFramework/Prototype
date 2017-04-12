@@ -5,9 +5,17 @@ login.controller('LoginController',
       //callback function to set global username on login sucess
       //This is neccessary because JavaScript runs sychronously
       //callback functions are one way to preserve asynchronicity
-      var loginCallback = function () {
-          $rootScope.$broadcast('new username', ParseSvc.getUsername());
-          window.location.reload();
+      $scope.error = false;
+      $scope.error_msg;
+
+      var loginCallback = function (success) {
+          if(success) {
+              $rootScope.$broadcast('new username', ParseSvc.getUsername());
+              window.location.reload();
+          } else {
+              $scope.error = true;
+              $scope.error_msg = 'Username or password incorrect';
+          }
       }
 
       $scope.user = {

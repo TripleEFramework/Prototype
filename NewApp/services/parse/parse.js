@@ -28,12 +28,12 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
                 success: function (_user) {
                     user = _user;
                     console.log(user.get('username'));
-                    successCallback();
+                    successCallback(true);
                 },
                 error: function (user, error) {
                     // The login failed. Check error to see why
                     console.log("Error: " + error.code + " " + error.message);
-                    alert('Login failed');
+                    successCallback(false);
                 }
             });
         },
@@ -126,7 +126,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             if(title) {
                 query.matches("Title", (new RegExp(title, 'i')));
             }
-            return query;  
+            return query;
         },
         searchLearningGoals: function (query, learningGoals) {
             if(learningGoals) {
