@@ -12,6 +12,7 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
             $scope.error = true;
             $scope.error_msg = "Failed to submit: " + response;
         }
+        $scope.$apply();
     };
 
     $scope.EvalForm = {

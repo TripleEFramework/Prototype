@@ -46,12 +46,11 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             user.signUp(null, {
                 success: function (user) {
                     // Hooray! Let them use the app now.
-                    successCallback();
+                    successCallback(true);
                 },
                 error: function (user, error) {
                     // Show the error message somewhere and let the user try again.
-                    alert('There was an error. See the log to ge the message')
-                    console.log("Error: " + error.code + " " + error.message);
+                    successCallback(false, error.message);
                 }
             });
         },
