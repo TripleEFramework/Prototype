@@ -47,10 +47,20 @@ input[type=text]:focus {
 {
 	float: left;
 	display: inline-block;
-	min-width: 120px;
-	width: 16%;
+	min-width: 190px;
+/* 	width: 26%; */
 	line-height: 16px;
 	vertical-align: middle;
+}
+
+.evaluate_labels
+{
+	min-width: 180px;
+}
+
+.evaluate_search_bars
+{
+	min-width: 360px;
 }
 
 tr:nth-child(even) {background-color: #f2f2f2}
