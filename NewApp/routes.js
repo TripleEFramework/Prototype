@@ -45,4 +45,8 @@ angular.module('App').config(function($routeProvider) {
 			templateUrl: 'components/profile/profile.html',
 			controller: 'ProfileController'
 		})
+		.when('/tutorial', {
+			templateUrl: 'components/tutorial/tutorial.html',
+			controller: 'TutorialController'
+		})
 });
