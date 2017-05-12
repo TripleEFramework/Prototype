@@ -12,7 +12,8 @@ var app = angular.module('App',
     'ShowEval',
     'ResetPassword',
     'Logout',
-    'Profile'
+    'Profile',
+    'Tutorial'
 ]);
 
 app.controller('Base', ['$location', '$scope', '$rootScope', 'ParseSvc', function ($location, $scope, $rootScope, ParseSvc) {
