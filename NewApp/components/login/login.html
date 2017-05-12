@@ -16,8 +16,18 @@
         <h5 class="error-message" ng-show="error">{{error_msg}}</h5>
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
-    <div ng-show="isUser()">
-        Welcome {{user.username}}
+    
+    <br>
+    <div class="row" ng-hide="isUser()">
+        <div class="col-md-6">
+            <a href="#signup"><button data-toggle="tab" class="btn btn-success ">Signup</button></a>
+            <a href="#reset-password"><button data-toggle="tab" class="btn btn-default ">Forgot Password?</button></a>
+        </div>
+    </div>
+    
+<!--     <div ng-show="isUser()"> -->
+    <div>
+        <div ng-show="isUser()"> Welcome {{user.username}} </div>
         <br/><br/>
 
         <table class="table table-responsive">
@@ -43,6 +53,7 @@
             </tbody>
         </table>
     </div>
+<!-- 
     <br>
     <div class="row" ng-hide="isUser()">
         <div class="col-md-6">
@@ -50,4 +61,5 @@
             <a href="#reset-password"><button data-toggle="tab" class="btn btn-default ">Forgot Password?</button></a>
         </div>
     </div>
+ -->
 </div>
