@@ -58,7 +58,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             var EvalFormClass = new Parse.Object.extend("EvalForm");
             var newEvalForm = new EvalFormClass();
             newEvalForm.set("Title", _EvalForm.Title);
-            newEvalForm.set("Subject", _EvalForm.Subject);
+            newEvalForm.set("Subjects", _EvalForm.Subjects);
             newEvalForm.set("GradeLevel", _EvalForm.GradeLevel);
             newEvalForm.set("LearningGoals", _EvalForm.LearningGoals);
             newEvalForm.set("Document", _EvalForm.Document);

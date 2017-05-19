@@ -16,10 +16,7 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
         $scope.$apply();
     };
     ParseSvc.getSubjects($scope.setSubjects);
-
     //After initialized
-
-
 
     $scope.successCallback = function (results) {
         for (i = 0; i < results.length; ++i) {
@@ -58,7 +55,7 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
         $scope.searchTags = $scope.tagString.split(" ");
         $scope.searchTags = $scope.searchTags.filter(function (entry) { return entry.trim() != ''; });
         var minScore = parseInt($scope.minScore, 10);
-
+		
         var query = ParseSvc.initEvalQuery();
         query = ParseSvc.searchAuthor(query, $scope.authorString);
         query = ParseSvc.searchTitle(query, $scope.queryString);

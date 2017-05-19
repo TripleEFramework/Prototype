@@ -19,7 +19,7 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
         Author: null,
         Title: null,
         LearningGoals: null,
-        Subject: null,
+        Subjects: null,
         GradeLevel: null,
         Document: null,
         URL: null,
@@ -46,10 +46,56 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
     $scope.gradeLevels = ['K-2', '3-5', 'K-5', '6-8', '9-12', '6-12', 'All Grades'];
 
     $scope.setSubjects = function (parseSubjects) {
-        $scope.subjects = parseSubjects;
+        $scope.all_subjects = parseSubjects;
+		
+		//subjects dropdown checkbox stuff
+		var inHTML = "";
+
+		$.each($scope.all_subjects, function(index, value){
+			var newItem = '<li><a class="small" data-value="'+$scope.all_subjects.indexOf(value)+'" tabIndex="-1"><input type="checkbox"/>&nbsp;'+value.get("subjectName")+'</a></li>'
+			inHTML += newItem;  
+		});
+
+		$("ul#dynamicSubjectDropdown").html(inHTML); //add generated tr html to corresponding table
+
+		var chosen_subjects = [];
+		$('.dropdown-menu a').on('click', function(event) {
+
+			var $target = $(event.currentTarget),
+				val = $target.attr('data-value'),
+				$inp = $target.find('input'),
+				idx;
+
+			if ((idx = chosen_subjects.indexOf(val)) > -1) {
+				chosen_subjects.splice(idx, 1);
+				setTimeout(function() {
+					$inp.prop('checked', false)
+				}, 0);
+			} else {
+				chosen_subjects.push(val);
+				setTimeout(function() {
+					$inp.prop('checked', true)
+				}, 0);
+			}
+
+			$(event.target).blur();
+			$scope.subjects= [];
+			$.each(chosen_subjects,function(index,value){
+				$scope.subjects.push($scope.all_subjects[value].id);
+			});
+			console.log(chosen_subjects);
+			console.log($scope.subjects);
+
+			return false;
+		});
+		/////////
+		
         $scope.$apply();
     };
+	
+	$scope.subjects = [];
     ParseSvc.getSubjects($scope.setSubjects);
+	
 	$scope.engage1 = "0";
 	$scope.engage2 = "0";
 	$scope.engage3 = "0";
@@ -63,7 +109,8 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
     $scope.reviewForm = function () {
         $scope.EvalForm.Title = $scope.title;
         $scope.EvalForm.LearningGoals = $scope.LearningGoals;
-        $scope.EvalForm.Subject = $scope.subjects[$scope.subject];
+       // $scope.EvalForm.Subject = $scope.all_subjects[$scope.subject];
+		$scope.EvalForm.Subjects = $scope.subjects;
         $scope.EvalForm.Document = $scope.lessonDocument;
         $scope.EvalForm.URL = $scope.LessonURL;
         $scope.EvalForm.GradeLevel = $scope.gradeLevel;
@@ -73,6 +120,7 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
         if ($scope.tagString)
         {
             $scope.EvalForm.Tags = $scope.tagString.split(" ");
+			$scope.EvalForm.Tags = $scope.EvalForm.Tags.filter(function (entry) { return entry.trim() != ''; });
         }
         $scope.EvalForm.IndividualScores.engage1 = $scope.engage1;
         $scope.EvalForm.IndividualScores.engage2 = $scope.engage2;
@@ -95,5 +143,6 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
         $scope.EvalForm.TotalScore = score;
         ParseSvc.reviewForm($scope.EvalForm, $scope.submitCallback);
     }
-
+	
 }]);
+
