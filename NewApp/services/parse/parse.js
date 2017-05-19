@@ -139,12 +139,12 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             }
             return query;
         },
-        searchSubject: function (query, subject) {
-            if(subject) {
-                var subjects = Parse.Object.extend("Subject");
-                var subject_query = new Parse.Query(subjects);
-                subject_query.matches("subjectName", (new RegExp(subject, 'i')));
-                query.matchesQuery("Subject", subject_query);
+        searchSubjects: function (query, subjects) {
+			//returns only evals which contain all subjects requested
+            if(subjects.length>0) {
+				$.each(subjects,function(index,value){
+				query.equalTo("Subjects",value);
+				});
             }
             return query;
         },
@@ -183,7 +183,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             return query;
         },
         executeQuery: function (query, successCallback) {
-            query.select("Author", "Title", "LearningGoals", "TotalScore", "IndividualScores", "Engage", "Enhance", "Extend", "Subject", "GradeLevel");
+            query.select("Author", "Title", "LearningGoals", "TotalScore", "IndividualScores", "Engage", "Enhance", "Extend", "Subjects", "GradeLevel");
 
             query.find().then(function (results) {
                 console.log(results);

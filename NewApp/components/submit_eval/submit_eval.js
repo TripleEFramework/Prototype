@@ -56,8 +56,7 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
 			inHTML += newItem;  
 		});
 
-		$("ul#dynamicSubjectDropdown").html(inHTML); //add generated tr html to corresponding table
-
+		$("ul#dynamicSubjectDropdown").html(inHTML); 
 		var chosen_subjects = [];
 		$('.dropdown-menu a').on('click', function(event) {
 
@@ -83,8 +82,8 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
 			$.each(chosen_subjects,function(index,value){
 				$scope.subjects.push($scope.all_subjects[value].id);
 			});
-			console.log(chosen_subjects);
-			console.log($scope.subjects);
+		//	console.log(chosen_subjects);
+		//	console.log($scope.subjects);
 
 			return false;
 		});
