@@ -4,26 +4,42 @@
           <form>
          
               <div style="margin-top: 20px; min-height: 45px;">
-                  <label class="search_labels">Lesson Evaluation Author</label>
-                  <input style="min-width:35%" ng-model="authorString" id="textInput" type="text"></input>
+                  <label class="search_labels">Lesson Evaluation Author:</label>
+                  <input class="search_search_bars" ng-model="authorString" id="textInput" type="text"></input>
               </div>
+              
               <div style="min-height: 45px">
-                  <label class="search_labels">Lesson Evaluation Title</label>
-                  <input style="min-width:35%" ng-model="queryString" id="textInput" type="text"></input>
+                  <label class="search_labels">Lesson Evaluation Title:</label>
+                  <input class="search_search_bars" ng-model="queryString" id="textInput" type="text"></input>
               </div>
+              
               <div style="min-height: 45px">
-                  <label class="search_labels">Keywords/Tools</label>
-<!--                                 <div> -->
+                  <label class="search_labels">Keywords/Tools:</label>
+                      <input class="search_search_bars" ng-model="tagString" id="textInput" type="text"></input>
+              </div>
+              
+              <div style="min-height: 45px">
+                  <label class="search_labels">Minimum Score:</label>
+                      <input class="search_search_bars" ng-model="minScore" id="textInput" type="text"></input>
+              </div>
+              
+              <div style="min-height: 45px">
+                  <label class="search_labels">Subject:</label>
+				  <select ng-model="subject" class="search_search_bars">
+                      <option value="">Subject</option>
+                      <option ng-repeat="subjectObject in subjects" value="{{subjectObject.get('subjectName')}}">{{subjectObject.get("subjectName")}} </option>
+                  </select>
+              </div>
+              
+              <div style="min-height: 45px">
+                  <label class="search_labels">Grade Level:</label>
+                  <select ng-model="gradeLevel" class="search_search_bars">
+                      <option value="">Grade Level</option>
+                      <option ng-repeat="gradelevel in gradeLevels" value="{{gradelevel}}">{{gradelevel}} </option>
+                  </select>
+              </div>
+              <!-- 
 
-                      <input style="min-width:35%;" ng-model="tagString" id="textInput" type="text"></input>
-<!--                                 </div> -->
-              </div>
-              <div style="min-height: 45px">
-                  <label class="search_labels">Minimum Score</label>
-<!--                                 <div> -->
-                      <input style="min-width:35%" ng-model="minScore" id="textInput" type="text"></input>
-<!--                                 </div> -->
-              </div>
               <div style="min-height: 30px">
                   <select ng-model="subject">
                       <option value="">Subject</option>
@@ -36,6 +52,7 @@
                       <option ng-repeat="gradelevel in gradeLevels" value="{{gradelevel}}">{{gradelevel}} </option>
                   </select>
               </div>
+ -->
               <!--  <div>
                     <label>Learning Goals</label>
                     <input ng-model="queryString" id="textInput" type="text"></input>
