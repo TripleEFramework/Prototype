@@ -170,72 +170,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             }
             return query;
         },
-		/*
-		gradeFix: function(){
-				var eval = Parse.Object.extend("EvalForm");
-				var query = new Parse.Query(eval);
-				query.limit(1000);
-				//console.log(query);
-				//query.matches("Title", "Algebra Clay");
-				query.select("GradeLevel");
-				query.find().then(function (result) {
-					console.log(result);
-					for (var i = 0; i < result.length; i++) {
-						var temp = [];
-						var original_grades=result[i].get("GradeLevel");
-						//console.log(original_grades);
-						if(!original_grades) continue;
-						var final_grades = [];
-						switch (original_grades){
-							case "K-2":
-								final_grades.push("K", "1", "2");
-								break;
-							case "K-5":
-								final_grades.push("K", "1", "2", "3", "4", "5");
-								break;
-							case "3-5":
-								final_grades.push("3", "4", "5");
-								break;
-							case "6-12":
-								final_grades.push("6", "7", "8", "9", "10", "11", "12");
-								break;
-							case "6-8":
-								final_grades.push("6", "7", "8");
-								break;
-							case "9-12":
-								final_grades.push("9", "10", "11", "12");
-								break;
-							case "Elementary":
-								final_grades.push("K", "1", "2", "3", "4", "5");
-								break;
-							case "Middle School":
-								final_grades.push("6", "7", "8");
-								break;
-							case "High School":
-								final_grades.push("9", "10", "11", "12");
-								break;
-							case "College":
-								
-							   break;
-						}
-
-					//	alert(final_grades);
-						result[i].set("GradeLevels", final_grades);
-						result[i].save(null, {
-						//	success: function () {
-						//		// Execute any logic that should take place after the object is saved.
-						//		
-						//	},
-							error: function (error) {
-								// Execute any logic that should take place if the save fails.
-								// error is a Parse.Error with an error code and message.
-								console.log("error with update");
-							}
-						});
-					}
-				});
-          }, */
-          searchTags: function (query, tags) {
+        searchTags: function (query, tags) {
             if(tags.length > 0) {
                 query.containedIn("Tags", tags); //Case sensitive so im going to make it so all tags are stored in lowercase
             }
@@ -252,7 +187,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             return query;
         },
         executeQuery: function (query, successCallback) {
-            query.select("Author", "Title", "LearningGoals", "TotalScore", "IndividualScores", "Engage", "Enhance", "Extend", "Subjects", "GradeLevels");
+            query.select("Author", "AuthorName", "Title", "LearningGoals", "TotalScore", "IndividualScores", "Engage", "Enhance", "Extend", "Subjects", "GradeLevels");
 
             query.find().then(function (results) {
                 console.log(results);
@@ -263,7 +198,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             var eval = Parse.Object.extend("EvalForm");
             var eval_query = new Parse.Query(eval);
             eval_query.equalTo("objectId", objectId);
-            eval_query.select("Author", "Title", "LearningGoals", "TotalScore", "IndividualScores", "GradeLevels", "Subjects", "Engage", "Enhance", "Extend","EngageComment", "EnhanceComment", "ExtendComment", "URL","Tags");
+            eval_query.select("Author", "AuthorName", "Title", "LearningGoals", "TotalScore", "IndividualScores", "GradeLevels", "Subjects", "Engage", "Enhance", "Extend","EngageComment", "EnhanceComment", "ExtendComment", "URL","Tags");
             eval_query.find().then(function (result) {
                 sucessCallback(result[0]);
             });

@@ -14,7 +14,7 @@ submit.controller('ShowEvalController', ['$scope', 'ParseSvc', function ($scope,
 	    $("#chosen-lesson-URL").text(result.get("URL"));
         $("#chosen-learning-goals").text(result.get("LearningGoals"));
         $("#chosen-lesson-score").text(String(result.get("TotalScore")));
-        $("#chosen-lesson-author").text(String(result.get("Author").get("username")));
+        $("#chosen-lesson-author").text(String(result.get("AuthorName")));
         //Subject
         var subject_names = "";
         if(result.has("Subjects")){

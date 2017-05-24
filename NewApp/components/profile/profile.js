@@ -67,7 +67,7 @@ profile.controller('ProfileController',
 			$scope.results.push({
                 title: String(results[i].get("Title")),
                 //    LearningGoals: String(results[i].get("LearningGoals")),
-                username: results[i].get("Author").get("username"),
+                username: results[i].get("AuthorName"),
                 score: results[i].get("TotalScore"),
                 individual_scores: results[i].get("IndividualScores"),
                 subjects: subject_names,

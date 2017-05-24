@@ -105,13 +105,10 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
     };
     ParseSvc.getGradeLevels($scope.setGradeLevels);
     ParseSvc.getSubjects($scope.setSubjects);
-    
     //After initialized
 
     $scope.successCallback = function (results) {
         for (i = 0; i < results.length; ++i) {
-			console.log(results[i].id);
-			console.log(i);
 			var subject_names = "";
 			if(results[i].has("Subjects")){
 				$.each(results[i].get("Subjects"),function(index,value){
@@ -145,7 +142,7 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
             $scope.results.push({
                 title: String(results[i].get("Title")),
                 //    LearningGoals: String(results[i].get("LearningGoals")),
-                username: results[i].get("Author").get("username"),
+                username: results[i].get("AuthorName"),
                 score: results[i].get("TotalScore"),
                 individual_scores: results[i].get("IndividualScores"),
                 subjects: subject_names,
