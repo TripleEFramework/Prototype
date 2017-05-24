@@ -78,6 +78,7 @@ profile.controller('ProfileController',
         var query = ParseSvc.initEvalQuery();
         query = ParseSvc.searchAuthor(query, ParseSvc.getUsername());
         ParseSvc.executeQuery(query, $scope.searchCallBack);
+		//ParseSvc.gradeFix();
 		
 	  
 }]);

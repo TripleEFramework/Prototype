@@ -24,34 +24,30 @@
                       <input style="min-width:65%" ng-model="minScore" id="textInput" type="text"></input>
 <!--                                 </div> -->
               </div>
-<!--               <div style="min-height: 30px">
-                  <select ng-model="subject">
-                      <option value="">Subject</option>
-                      <option ng-repeat="subjectObject in subjects" value="{{subjectObject.get('subjectName')}}">{{subjectObject.get("subjectName")}} </option>
-                  </select>
-              </div> -->
-			  <div class="container" >
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="button-group">
-							<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"> Subjects <span class="caret"></span></button>
-							<ul class="dropdown-menu" id="dynamicSubjectDropdown">
+              <div class="container" >
+                <div class="row">
+                 <div class="col-lg-12">
+                  <div class="button-group">
+                   <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"> Subjects <span class="caret"></span></button>
+                   <ul class="dropdown-menu" id="dynamicSubjectDropdown">
 
-							</ul>
-						</div>
-					</div>
-				</div>
-			  </div>
-              <div style="min-height: 30px">
-                  <select ng-model="gradeLevel">
-                      <option value="">Grade Level</option>
-                      <option ng-repeat="gradelevel in gradeLevels" value="{{gradelevel}}">{{gradelevel}} </option>
-                  </select>
-              </div>
-              <!--  <div>
-                    <label>Learning Goals</label>
-                    <input ng-model="queryString" id="textInput" type="text"></input>
-                </div> -->
+                   </ul>
+                 </div>
+               </div>
+             </div>
+           </div>
+           <div class="container" >
+            <div class="row">
+             <div class="col-lg-12">
+              <div class="button-group">
+              <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"> Grade Levels <span class="caret"></span></button>
+               <ul class="dropdown-menu" id="dynamicGradeLevelDropdown">
+
+               </ul>
+             </div>
+           </div>
+         </div>
+       </div>
               <button type="button" class="btn btn-primary btn-lg " ng-click="searchEvals()">Press to Search</button>
           </form>
       </div>

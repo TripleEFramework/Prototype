@@ -142,17 +142,21 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
         searchSubjects: function (query, subjects) {
 			//returns only evals which contain all subjects requested
             if(subjects.length>0) {
-				$.each(subjects,function(index,value){
-				query.equalTo("Subjects",value);
-				});
+                $.each(subjects,function(index,value){
+                    query.equalTo("Subjects",value);
+                });
             }
             return query;
         },
-        searchGradeLevel: function (query, gradeLevel) {
-            if(gradeLevel) {
-                query.matches("GradeLevel", (new RegExp(gradeLevel, 'i')));
+        searchGradeLevels: function (query, grade_levels) {
+            //returns only evals which contain all subjects requested
+            if(grade_levels.length>0) {
+                $.each(grade_levels,function(index,value){
+                    query.equalTo("GradeLevels",value.get("GradeLevel"));
+                });
             }
             return query;
+
         },
         searchTotalScore: function (query, totalScore) {
             if(totalScore) {
@@ -166,22 +170,57 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             }
             return query;
         },
-	/*	subjectFix: function(){
+		/*
+		gradeFix: function(){
 				var eval = Parse.Object.extend("EvalForm");
 				var query = new Parse.Query(eval);
 				query.limit(1000);
 				//console.log(query);
-				query.matches("Title", "Algebra Clay");
-				query.select("Subject");
+				//query.matches("Title", "Algebra Clay");
+				query.select("GradeLevel");
 				query.find().then(function (result) {
 					console.log(result);
 					for (var i = 0; i < result.length; i++) {
 						var temp = [];
-						subject_pointer=result[i].get("Subject");
-						//console.log(subject_pointer);
-						if(!subject_pointer) continue;
-						temp.push(subject_pointer.id);
-						result[i].set("Subjects", temp);
+						var original_grades=result[i].get("GradeLevel");
+						//console.log(original_grades);
+						if(!original_grades) continue;
+						var final_grades = [];
+						switch (original_grades){
+							case "K-2":
+								final_grades.push("K", "1", "2");
+								break;
+							case "K-5":
+								final_grades.push("K", "1", "2", "3", "4", "5");
+								break;
+							case "3-5":
+								final_grades.push("3", "4", "5");
+								break;
+							case "6-12":
+								final_grades.push("6", "7", "8", "9", "10", "11", "12");
+								break;
+							case "6-8":
+								final_grades.push("6", "7", "8");
+								break;
+							case "9-12":
+								final_grades.push("9", "10", "11", "12");
+								break;
+							case "Elementary":
+								final_grades.push("K", "1", "2", "3", "4", "5");
+								break;
+							case "Middle School":
+								final_grades.push("6", "7", "8");
+								break;
+							case "High School":
+								final_grades.push("9", "10", "11", "12");
+								break;
+							case "College":
+								
+							   break;
+						}
+
+					//	alert(final_grades);
+						result[i].set("GradeLevels", final_grades);
 						result[i].save(null, {
 						//	success: function () {
 						//		// Execute any logic that should take place after the object is saved.
@@ -195,8 +234,8 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
 						});
 					}
 				});
-		}, */
-        searchTags: function (query, tags) {
+          }, */
+          searchTags: function (query, tags) {
             if(tags.length > 0) {
                 query.containedIn("Tags", tags); //Case sensitive so im going to make it so all tags are stored in lowercase
             }
@@ -213,7 +252,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             return query;
         },
         executeQuery: function (query, successCallback) {
-            query.select("Author", "Title", "LearningGoals", "TotalScore", "IndividualScores", "Engage", "Enhance", "Extend", "Subjects", "GradeLevel");
+            query.select("Author", "Title", "LearningGoals", "TotalScore", "IndividualScores", "Engage", "Enhance", "Extend", "Subjects", "GradeLevels");
 
             query.find().then(function (results) {
                 console.log(results);
@@ -224,7 +263,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             var eval = Parse.Object.extend("EvalForm");
             var eval_query = new Parse.Query(eval);
             eval_query.equalTo("objectId", objectId);
-            eval_query.select("Author", "Title", "LearningGoals", "TotalScore", "IndividualScores", "GradeLevel", "Subject", "Engage", "Enhance", "Extend","EngageComment", "EnhanceComment", "ExtendComment", "URL","Tags");
+            eval_query.select("Author", "Title", "LearningGoals", "TotalScore", "IndividualScores", "GradeLevels", "Subjects", "Engage", "Enhance", "Extend","EngageComment", "EnhanceComment", "ExtendComment", "URL","Tags");
             eval_query.find().then(function (result) {
                 sucessCallback(result[0]);
             });
@@ -233,6 +272,14 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             var subject = Parse.Object.extend("Subject");
             var subject_query = new Parse.Query(subject);
             subject_query.find().then(function (results) {
+                sucessCallback(results);
+            });
+        },
+        getGradeLevels: function (sucessCallback) {
+            var grade_level = Parse.Object.extend("GradeLevel");
+            var grade_level_query = new Parse.Query(grade_level);
+            grade_level_query.select("GradeLevel");
+            grade_level_query.find().then(function (results) {
                 sucessCallback(results);
             });
         },
@@ -256,7 +303,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
                 platform: 'web'
             });
         },
-		profile: function (sucessCallback) {
+        profile: function (sucessCallback) {
             var currentUser = Parse.User.current();
             user = Parse.User.current();
             sucessCallback();
