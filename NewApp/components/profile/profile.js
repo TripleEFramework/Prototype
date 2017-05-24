@@ -49,11 +49,21 @@ profile.controller('ProfileController',
 							break;
 						}
 					}
-					
-					
 				});
 			}
-			
+			var grade_levels_string= "";
+      var first_grade = true;
+      if(results[i].has("GradeLevels")){
+          $.each(results[i].get("GradeLevels"),function(index,value){
+              if(first_grade){
+                  grade_levels_string = value;
+                  first_grade=false;
+              }
+              else{
+                  grade_levels_string = grade_levels_string+ ", "+ value;
+              }   
+          });
+      }
 			$scope.results.push({
                 title: String(results[i].get("Title")),
                 //    LearningGoals: String(results[i].get("LearningGoals")),
@@ -61,7 +71,7 @@ profile.controller('ProfileController',
                 score: results[i].get("TotalScore"),
                 individual_scores: results[i].get("IndividualScores"),
                 subjects: subject_names,
-                gradelevel: results[i].get("GradeLevel"),
+                gradelevel: grade_levels_string,
                 engagetotal: results[i].get("Engage"),
                 enhancetotal: results[i].get("Enhance"),
                 extendtotal: results[i].get("Extend"),

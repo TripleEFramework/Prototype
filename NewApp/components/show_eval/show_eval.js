@@ -1,6 +1,11 @@
 var show = angular.module('ShowEval', []);
 
 submit.controller('ShowEvalController', ['$scope', 'ParseSvc', function ($scope, ParseSvc) {
+    $scope.all_subjects = [];
+    $scope.setSubjects = function (parse_subjects) {
+        $scope.all_subjects = parse_subjects;
+    };
+    //ParseSvc.getSubjects($scope.setSubjects);
 
 	$scope.printForm = function (result) {
 //        $("#search-results").attr("hidden", true);
@@ -10,8 +15,26 @@ submit.controller('ShowEvalController', ['$scope', 'ParseSvc', function ($scope,
         $("#chosen-learning-goals").text(result.get("LearningGoals"));
         $("#chosen-lesson-score").text(String(result.get("TotalScore")));
         $("#chosen-lesson-author").text(String(result.get("Author").get("username")));
-        $("#chosen-lesson-subject").text(String(result.get("Subject").get("subjectName")));
-        $("#chosen-lesson-grade").text(String(result.get("GradeLevel")));
+        //Subject
+        var subject_names = "";
+        if(result.has("Subjects")){
+            $.each(result.get("Subjects"),function(index,value){
+                for (t = 0; t < $scope.all_subjects.length; ++t){
+                    if(value == $scope.all_subjects[t].id){
+                        if(index==0){
+                            subject_names = $scope.all_subjects[t].get("subjectName");
+                        }
+                        else{
+                            subject_names = subject_names+ ", "+ $scope.all_subjects[t].get("subjectName");
+                        }
+                        break;
+                    }
+                }
+            });
+        }
+        $("#chosen-lesson-subject").text(subject_names);
+
+        $("#chosen-lesson-grade").text(String(result.get("GradeLevels")));
         $("#chosen-engage-total").text(String(result.get("Engage")));
         $("#chosen-enhance-total").text(String(result.get("Enhance")));
         $("#chosen-extend-total").text(String(result.get("Extend")));
@@ -37,5 +60,10 @@ submit.controller('ShowEvalController', ['$scope', 'ParseSvc', function ($scope,
         ParseSvc.getEval(ParseSvc.currentEval, $scope.printForm);
     };
 
-    displayEval();
+    
+     $scope.setSubjects = function (parse_subjects) {
+        $scope.all_subjects = parse_subjects;
+        displayEval();
+    };
+    ParseSvc.getSubjects($scope.setSubjects);
 }]);

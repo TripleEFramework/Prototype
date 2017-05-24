@@ -140,11 +140,8 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
                     else{
                         grade_levels_string = grade_levels_string+ ", "+ value;
                     }
-
-                    
                 });
             }
-			console.log("test");
             $scope.results.push({
                 title: String(results[i].get("Title")),
                 //    LearningGoals: String(results[i].get("LearningGoals")),
