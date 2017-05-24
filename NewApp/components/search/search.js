@@ -69,10 +69,10 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
 					for (t = 0; t < $scope.all_subjects.length; ++t){
 						if(value == $scope.all_subjects[t].id){
 							if(index==0){
-								subject_names=$scope.all_subjects[t].get("subjectName");
+								subject_names = $scope.all_subjects[t].get("subjectName");
 							}
 							else{
-								subject_names= subject_names+ ", "+ $scope.all_subjects[t].get("subjectName");
+								subject_names = subject_names+ ", "+ $scope.all_subjects[t].get("subjectName");
 							}
 							break;
 						}

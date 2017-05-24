@@ -166,6 +166,36 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             }
             return query;
         },
+	/*	subjectFix: function(){
+				var eval = Parse.Object.extend("EvalForm");
+				var query = new Parse.Query(eval);
+				query.limit(1000);
+				//console.log(query);
+				query.matches("Title", "Algebra Clay");
+				query.select("Subject");
+				query.find().then(function (result) {
+					console.log(result);
+					for (var i = 0; i < result.length; i++) {
+						var temp = [];
+						subject_pointer=result[i].get("Subject");
+						//console.log(subject_pointer);
+						if(!subject_pointer) continue;
+						temp.push(subject_pointer.id);
+						result[i].set("Subjects", temp);
+						result[i].save(null, {
+						//	success: function () {
+						//		// Execute any logic that should take place after the object is saved.
+						//		
+						//	},
+							error: function (error) {
+								// Execute any logic that should take place if the save fails.
+								// error is a Parse.Error with an error code and message.
+								console.log("error with update");
+							}
+						});
+					}
+				});
+		}, */
         searchTags: function (query, tags) {
             if(tags.length > 0) {
                 query.containedIn("Tags", tags); //Case sensitive so im going to make it so all tags are stored in lowercase

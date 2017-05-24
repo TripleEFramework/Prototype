@@ -9,12 +9,12 @@ profile.controller('ProfileController',
           $rootScope.$broadcast('new username', ParseSvc.getUsername());
           window.location.reload();
       }
-
+	$scope.all_subjects = [];
       $scope.user = {
           username: null,
           password: null,
       };
-
+	
       if (ParseSvc.isRegistered) {
           $rootScope.username = ParseSvc.getUsername();
       }
@@ -35,13 +35,32 @@ profile.controller('ProfileController',
 		};
 	  $scope.searchCallBack = function (results) {
         for (i = 0; i < results.length; ++i) {
-            $scope.results.push({
+            var subject_names = "";
+			if(results[i].has("Subjects")){
+				$.each(results[i].get("Subjects"),function(index,value){
+					for (t = 0; t < $scope.all_subjects.length; ++t){
+						if(value == $scope.all_subjects[t].id){
+							if(index==0){
+								subject_names=$scope.all_subjects[t].get("subjectName");
+							}
+							else{
+								subject_names= subject_names+ ", "+ $scope.all_subjects[t].get("subjectName");
+							}
+							break;
+						}
+					}
+					
+					
+				});
+			}
+			
+			$scope.results.push({
                 title: String(results[i].get("Title")),
                 //    LearningGoals: String(results[i].get("LearningGoals")),
                 username: results[i].get("Author").get("username"),
                 score: results[i].get("TotalScore"),
                 individual_scores: results[i].get("IndividualScores"),
-                subject: results[i].get("Subject"),
+                subjects: subject_names,
                 gradelevel: results[i].get("GradeLevel"),
                 engagetotal: results[i].get("Engage"),
                 enhancetotal: results[i].get("Enhance"),
@@ -52,7 +71,9 @@ profile.controller('ProfileController',
         $scope.$apply();
         //console.log($scope.results);
 		};
-
+		$scope.setSubjects = function (parseSubjects) {
+			$scope.all_subjects = parseSubjects;
+		};
 		ParseSvc.getSubjects($scope.setSubjects);
         var query = ParseSvc.initEvalQuery();
         query = ParseSvc.searchAuthor(query, ParseSvc.getUsername());
