@@ -1,22 +1,25 @@
 <div class="tab-pane fade in active">
     <form role="form">
-        <h2 class="form-reviewform-heading">Triple E Evaluation Rubric</h2>
+        <h2 class="form-reviewform-heading">Triple E Lesson Evaluation Rubric</h2>
         <table class="table table-responsive">
-            <label style="min-height: 30px">
-                Keywords:
-                <input style="margin-left: 0.5em" type="text" name="tags" id="tags" ng-model="tagString">
+            <label style="min-height: 40px; margin-top: 10px;">
+                <label class="evaluate_labels"> Keywords/Tools: </label>
+                <input class="evaluate_search_bars" style="margin-left: 0.5em" type="text" name="tags" id="tags" ng-model="tagString">
             </label><br/>
-            <label style="min-height: 30px">
-                Lesson Title:
-                <input style="margin-left: 0.5em" type="text" name="title" id="lesson-title" ng-model="title">
+            
+            <label style="min-height: 40px">
+                <label class="evaluate_labels"> Lesson Title: </label>
+                <input class="evaluate_search_bars" style="margin-left: 0.5em" type="text" name="title" id="lesson-title" ng-model="title">
             </label><br/>
-            <label style="min-height: 30px">
-                Learning Goals:
-                <input style="margin-left: 0.5em" type="text" name="learning_goals" id="learning-goals" ng-model="LearningGoals">
+            
+            <label style="min-height: 40px">
+                <label class="evaluate_labels"> Lesson Learning Goals: </label>
+                <input class="evaluate_search_bars" style="margin-left: 0.5em" type="text" name="learning_goals" id="learning-goals" ng-model="LearningGoals">
             </label><br/>
-            <label style="min-height: 30px">
-                Lesson URL:
-                <input style="margin-left: 0.5em" type="text" name="lesson_url" id="lesson-url" ng-model="LessonURL">
+            
+            <label style="min-height: 40px">
+                <label class="evaluate_labels"> Lesson URL: </label>
+                <input class="evaluate_search_bars" style="margin-left: 0.5em" type="text" name="lesson_url" id="lesson-url" ng-model="LessonURL">
             </label><br/>
             <label>
                 Upload Lesson Document:
@@ -35,15 +38,49 @@
 				</div>
 			</div>
             <div>
+            <label style="min-height: 40px">
+                <label class="evaluate_labels"> Subject: </label>
+                <select ng-model="subject" style="margin-left: 0.5em; min-width:360px;">
+                    <option value="">Subject</option>
+                    <option ng-repeat="subjectObject in subjects" value="{{subjects.indexOf(subjectObject)}}">{{subjectObject.get("subjectName")}} </option>
+                </select>
+            </label><br/>
+            
+            <label style="min-height: 40px">
+                <label class="evaluate_labels"> Grade Level: </label>
+				<select ng-model="gradeLevel" style="margin-left: 0.5em; min-width:360px;">
+                    <option value="">Grade Level</option>
+                    <option ng-repeat="gradelevel in gradeLevels" value="{{gradelevel}}">{{gradelevel}} </option>
+                </select>
+            </label><br/>
+            
+            <label style="min-height: 40px">
+                <label class="evaluate_labels"> Upload Lesson Document: </label>
+                <input style="display: inline; margin-left: 0.5em" type="file" name="lesson_document" id="lesson-doc" ng-model="lessonDocument">
+            </label><br/>
+            
+<!-- 
+            <div style="min-height: 30px">
+                <select ng-model="subject">
+                    <option value="">Subject</option>
+                    <option ng-repeat="subjectObject in subjects" value="{{subjects.indexOf(subjectObject)}}">{{subjectObject.get("subjectName")}} </option>
+                </select>
+            </div>
+            
+            <div style="min-height: 30px">
                 <select ng-model="gradeLevel">
                     <option value="">Grade Level</option>
                     <option ng-repeat="gradelevel in gradeLevels" value="{{gradelevel}}">{{gradelevel}} </option>
                 </select>
             </div>
+ -->
+            
             <thead>
-                <th>
-                    <strong>Evaluation Criteria</strong>
-                </th>
+				<tr>
+					<th>
+						<strong>Evaluation Criteria</strong>
+					</th>
+                </tr
             </thead>
             <br/><br/>
             <tbody>
@@ -73,9 +110,7 @@
 						</label>
                     </td>
                     <td rowspan="3" class="comments_field">
-                        <label>
-                            <input style="height: 130px" type="textInput" ng-model="EngageComment">
-                        </label>
+                        <textarea style="height: 130px" type="textInput" ng-model="EngageComment"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -142,9 +177,7 @@
 						</label>
                     </td>
                     <td rowspan="3" class="comments_field">
-                        <label>
-                            <input style="height: 130px" type="textInput" ng-model="EnhanceComment">
-                        </label>
+                        <textarea style="height: 130px" type="textInput" ng-model="EnhanceComment"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -211,9 +244,7 @@
 						</label>
                     </td>
                     <td rowspan="3" class="comments_field">
-                        <label>
-                            <input style="height: 130px" type="textInput" ng-model="ExtendComment">
-                        </label>
+                        <textarea style="height: 130px" type="textInput" ng-model="ExtendComment"></textarea>
                     </td>
                 </tr>
                 <tr>

@@ -45,12 +45,29 @@ input[type=text]:focus {
 
 .search_labels
 {
-	float: left;
+/* 	float: left; */
 	display: inline-block;
-	min-width: 120px;
-	width: 16%;
+	min-width: 190px;
+/* 	width: 26%; */
 	line-height: 16px;
 	vertical-align: middle;
+}
+
+.search_search_bars
+{
+	min-width: 360px;
+	max-width: 30%;
+}
+
+.evaluate_labels
+{
+	min-width: 180px;
+}
+
+.evaluate_search_bars
+{
+	min-width: 360px;
+	max-width: 50%;
 }
 
 tr:nth-child(even) {background-color: #f2f2f2}
@@ -67,4 +84,10 @@ thead {
 
 }
 
+textarea {
+	resize: none;
+	-webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
 

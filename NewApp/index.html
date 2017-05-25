@@ -34,6 +34,7 @@
     <script src="app.js"></script>
     <script src="routes.js"></script>
     <script src="components/profile/profile.js"></script>
+    <script src="components/tutorial/tutorial.js"></script>
 
     <link rel="stylesheet" href="assets/stylesheets/styles.css">
 </head>
@@ -44,7 +45,8 @@
             <h2>Triple E Network</h2>
             <ul class="nav nav-tabs" id="tabs">
                 <li><a href="#login">Home</a></li>
-                <li><a href="#search">Search</a></li>
+                <li><a href="#tutorial">Tutorial</a></li>
+                <li><a href="#search">Search Evaluations</a></li>
                 <li><a href="#submit-eval">Evaluate Your Lesson</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -53,12 +55,13 @@
                     <ul class="dropdown-menu">
                         <li ng-hide="isUser()"><a href="#login">Login</a></li>
                         <li ng-show="isUser()"><a ng-click="logout()">Logout</a></li>
+                        <li ng-show="isUser()"><a href="#profile">Profile</a></li>
                         <li role="separator" class="divider"></li>
                         <li ng-show="isUser()"><a>Welcome {{username}}!</a></li>
-                        <li ng-hide="isUser()"><a>Not Logged In</a></li>
+<!--                         <li ng-hide="isUser()"><a>Not Logged In</a></li> -->
                     </ul>
                 </li>
-                <li ng-show="isUser()"><a href="#profile">Profile</a></li>
+<!--                 <li ng-show="isUser()"><a href="#profile">Profile</a></li> -->
             </ul>
         </div>
         <div class="tab-content">
