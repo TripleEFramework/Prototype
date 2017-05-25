@@ -43,7 +43,54 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
             extend3: null
         }
     };
-    $scope.gradeLevels = ['K-2', '3-5', 'K-5', '6-8', '9-12', '6-12', 'All Grades'];
+    $scope.all_grade_levels =[];
+
+    $scope.setGradeLevels = function (parse_grade_levels) {
+        $scope.all_grade_levels = parse_grade_levels;
+        
+        //grade_levels dropdown checkbox stuff
+        var inHTML = "";
+
+        $.each($scope.all_grade_levels, function(index, value){
+            var newItem = '<li><a class="small" data-value="'+$scope.all_grade_levels.indexOf(value)+'" tabIndex="-1"><input type="checkbox"/>&nbsp;'+value.get("GradeLevel")+'</a></li>';
+            inHTML += newItem;  
+        });
+
+        $("ul#dynamicGradeLevelDropdown").html(inHTML); 
+        var chosen_grade_levels = [];
+        $('#dynamicGradeLevelDropdown a').on('click', function(event) {
+
+            var $target = $(event.currentTarget),
+                val = $target.attr('data-value'),
+                $inp = $target.find('input'),
+                idx;
+
+            if ((idx = chosen_grade_levels.indexOf(val)) > -1) {
+                chosen_grade_levels.splice(idx, 1);
+                setTimeout(function() {
+                    $inp.prop('checked', false)
+                }, 0);
+            } else {
+                chosen_grade_levels.push(val);
+                setTimeout(function() {
+                    $inp.prop('checked', true)
+                }, 0);
+            }
+
+            $(event.target).blur();
+            $scope.grade_levels = [];
+            $.each(chosen_grade_levels,function(index,value){
+                $scope.grade_levels.push($scope.all_grade_levels[value]);
+            });
+          //console.log(chosen_grade_levels);
+          console.log($scope.grade_levels);
+          console.log($scope.chosen_grade_levels);
+            return false;
+        });
+        ////////////
+        //$scope.$apply();
+    };
+    ParseSvc.getGradeLevels($scope.setGradeLevels);
 
     $scope.setSubjects = function (parseSubjects) {
         $scope.all_subjects = parseSubjects;
