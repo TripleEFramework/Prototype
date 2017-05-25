@@ -58,7 +58,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             var EvalFormClass = new Parse.Object.extend("EvalForm");
             var newEvalForm = new EvalFormClass();
             newEvalForm.set("Title", _EvalForm.Title);
-            newEvalForm.set("Subject", _EvalForm.Subject);
+            newEvalForm.set("Subjects", _EvalForm.Subjects);
             newEvalForm.set("GradeLevel", _EvalForm.GradeLevel);
             newEvalForm.set("LearningGoals", _EvalForm.LearningGoals);
             newEvalForm.set("Document", _EvalForm.Document);
@@ -139,20 +139,24 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             }
             return query;
         },
-        searchSubject: function (query, subject) {
-            if(subject) {
-                var subjects = Parse.Object.extend("Subject");
-                var subject_query = new Parse.Query(subjects);
-                subject_query.matches("subjectName", (new RegExp(subject, 'i')));
-                query.matchesQuery("Subject", subject_query);
+        searchSubjects: function (query, subjects) {
+			//returns only evals which contain all subjects requested
+            if(subjects.length>0) {
+                $.each(subjects,function(index,value){
+                    query.equalTo("Subjects",value);
+                });
             }
             return query;
         },
-        searchGradeLevel: function (query, gradeLevel) {
-            if(gradeLevel) {
-                query.matches("GradeLevel", (new RegExp(gradeLevel, 'i')));
+        searchGradeLevels: function (query, grade_levels) {
+            //returns only evals which contain all subjects requested
+            if(grade_levels.length>0) {
+                $.each(grade_levels,function(index,value){
+                    query.equalTo("GradeLevels",value.get("GradeLevel"));
+                });
             }
             return query;
+
         },
         searchTotalScore: function (query, totalScore) {
             if(totalScore) {
@@ -183,7 +187,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             return query;
         },
         executeQuery: function (query, successCallback) {
-            query.select("Author", "Title", "LearningGoals", "TotalScore", "IndividualScores", "Engage", "Enhance", "Extend", "Subject", "GradeLevel");
+            query.select("Author", "AuthorName", "Title", "LearningGoals", "TotalScore", "IndividualScores", "Engage", "Enhance", "Extend", "Subjects", "GradeLevels");
 
             query.find().then(function (results) {
                 console.log(results);
@@ -194,7 +198,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             var eval = Parse.Object.extend("EvalForm");
             var eval_query = new Parse.Query(eval);
             eval_query.equalTo("objectId", objectId);
-            eval_query.select("Author", "Title", "LearningGoals", "TotalScore", "IndividualScores", "GradeLevel", "Subject", "Engage", "Enhance", "Extend","EngageComment", "EnhanceComment", "ExtendComment", "URL","Tags");
+            eval_query.select("Author", "AuthorName", "Title", "LearningGoals", "TotalScore", "IndividualScores", "GradeLevels", "Subjects", "Engage", "Enhance", "Extend","EngageComment", "EnhanceComment", "ExtendComment", "URL","Tags");
             eval_query.find().then(function (result) {
                 sucessCallback(result[0]);
             });
@@ -203,6 +207,14 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             var subject = Parse.Object.extend("Subject");
             var subject_query = new Parse.Query(subject);
             subject_query.find().then(function (results) {
+                sucessCallback(results);
+            });
+        },
+        getGradeLevels: function (sucessCallback) {
+            var grade_level = Parse.Object.extend("GradeLevel");
+            var grade_level_query = new Parse.Query(grade_level);
+            grade_level_query.select("GradeLevel");
+            grade_level_query.find().then(function (results) {
                 sucessCallback(results);
             });
         },
@@ -226,7 +238,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
                 platform: 'web'
             });
         },
-		profile: function (sucessCallback) {
+        profile: function (sucessCallback) {
             var currentUser = Parse.User.current();
             user = Parse.User.current();
             sucessCallback();
