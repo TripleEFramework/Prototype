@@ -52,7 +52,7 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
         var inHTML = "";
 
         $.each($scope.all_grade_levels, function(index, value){
-            var newItem = '<li><a class="small" data-value="'+$scope.all_grade_levels.indexOf(value)+'" tabIndex="-1"><input type="checkbox"/>&nbsp;'+value.get("GradeLevel")+'</a></li>';
+            var newItem = '<li><a class="small" data-value="'+value.get("GradeLevel")+'" tabIndex="-1"><input type="checkbox"/>&nbsp;'+value.get("GradeLevel")+'</a></li>';
             inHTML += newItem;  
         });
 
@@ -79,12 +79,16 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
 
             $(event.target).blur();
             $scope.grade_levels = [];
-            $.each(chosen_grade_levels,function(index,value){
-                $scope.grade_levels.push($scope.all_grade_levels[value]);
+           // $scope.grade_levels=chosen_grade_levels;
+            $.each($scope.all_grade_levels,function(index,value){
+                if(chosen_grade_levels.indexOf(value.get("GradeLevel"))>-1){
+                    $scope.grade_levels.push(value.get("GradeLevel"));
+                }
+                
             });
           //console.log(chosen_grade_levels);
           console.log($scope.grade_levels);
-          console.log($scope.chosen_grade_levels);
+        //  console.log(chosen_grade_levels);
             return false;
         });
         ////////////
@@ -105,7 +109,7 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
 
 		$("ul#dynamicSubjectDropdown").html(inHTML); 
 		var chosen_subjects = [];
-		$('.dropdown-menu a').on('click', function(event) {
+		$('#dynamicSubjectDropdown a').on('click', function(event) {
 
 			var $target = $(event.currentTarget),
 				val = $target.attr('data-value'),
@@ -159,7 +163,7 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
 		$scope.EvalForm.Subjects = $scope.subjects;
         $scope.EvalForm.Document = $scope.lessonDocument;
         $scope.EvalForm.URL = $scope.LessonURL;
-        $scope.EvalForm.GradeLevel = $scope.gradeLevel;
+        $scope.EvalForm.GradeLevels = $scope.grade_levels;
 		$scope.EvalForm.EngageComment = $scope.EngageComment;
 		$scope.EvalForm.EnhanceComment = $scope.EnhanceComment;
 		$scope.EvalForm.ExtendComment = $scope.ExtendComment;
