@@ -24,20 +24,29 @@
               </div>
               
               <div style="min-height: 45px">
-                  <label class="search_labels">Subject:</label>
-				  <select ng-model="subject" class="search_search_bars">
-                      <option value="">Subject</option>
-                      <option ng-repeat="subjectObject in subjects" value="{{subjectObject.get('subjectName')}}">{{subjectObject.get("subjectName")}} </option>
-                  </select>
+                  <label style="" class="search_labels search_dropdown_labels">Subject:</label>
+                  
+				<div class="col-lg-12 search_search_bars search_dropdown_div" style="">
+                   <button type="button" style="" class="dropdown-toggle search_search_bars search_dropdown" data-toggle="dropdown"> Subjects <span class="caret"></span></button>
+                   <ul class="dropdown-menu search_search_bars" id="dynamicSubjectDropdown">
+
+                   </ul>
+				</div>                  
               </div>
               
               <div style="min-height: 45px">
-                  <label class="search_labels">Grade Level:</label>
-                  <select ng-model="gradeLevel" class="search_search_bars">
-                      <option value="">Grade Level</option>
-                      <option ng-repeat="gradelevel in gradeLevels" value="{{gradelevel}}">{{gradelevel}} </option>
-                  </select>
+                  <label style="" class="search_labels search_dropdown_labels">Grade Level:</label>
+                  
+				<div class="col-lg-12 search_search_bars search_dropdown_div" style="">
+                   <button type="button" style="" class="dropdown-toggle search_search_bars search_dropdown" data-toggle="dropdown"> Grade Level <span class="caret"></span></button>
+                   <ul class="dropdown-menu search_search_bars" id="dynamicGradeLevelDropdown">
+
+                   </ul>
+				</div>   
+                  
               </div>
+              
+<!-- 
               <div class="container" >
                 <div class="row">
                  <div class="col-lg-12">
@@ -46,10 +55,13 @@
                    <ul class="dropdown-menu" id="dynamicSubjectDropdown">
 
                    </ul>
-                 </div>
-               </div>
-             </div>
-           </div>
+				 </div>
+			   </div>
+			 </div>
+		   </div>
+ -->
+		   <!-- 
+
            <div class="container" >
             <div class="row">
              <div class="col-lg-12">
@@ -62,6 +74,8 @@
            </div>
          </div>
        </div>
+ -->
+       
               <button type="button" class="btn btn-primary btn-lg " ng-click="searchEvals()">Press to Search</button>
           </form>
       </div>

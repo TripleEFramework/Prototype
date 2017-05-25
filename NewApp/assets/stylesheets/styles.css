@@ -59,6 +59,28 @@ input[type=text]:focus {
 	max-width: 30%;
 }
 
+.search_dropdown
+{
+	margin-left:0.25em;
+	border-radius:5px;
+	background-color:white;
+	border-style:solid;
+	text-align:left;
+}
+
+.search_dropdown_div
+{
+	padding-left:0;
+	padding-right:0;
+	display:inline;
+}
+
+.search_dropdown_labels
+{
+	float:left;
+	margin-top:10px;
+}
+
 .evaluate_labels
 {
 	min-width: 180px;
@@ -90,4 +112,3 @@ textarea {
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
-
