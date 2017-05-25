@@ -51,7 +51,7 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
 			});
 		//	console.log(chosen_subjects);
 		//	console.log($scope.subjects);
-			console.log($scope.grade_levels);
+			console.log($scope.chosen_subjects);
             console.log($scope.subjects);
 			return false;
 		});
@@ -97,7 +97,7 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
             });
           //console.log(chosen_grade_levels);
           console.log($scope.grade_levels);
-          console.log($scope.subjects);
+          console.log($scope.chosen_grade_levels);
             return false;
         });
         ////////////
