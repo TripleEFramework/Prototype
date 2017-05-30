@@ -7,7 +7,7 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
     $scope.submitCallback = function (success, response) {
         if(success) {
             ParseSvc.currentEval = response;
-            $location.path('/show-eval');
+            $location.path('/show-eval').search({evalid: objectId});
         } else {
             $scope.error = true;
             $scope.error_msg = "Failed to submit: " + response;

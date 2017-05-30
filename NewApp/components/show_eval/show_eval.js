@@ -1,6 +1,6 @@
 var show = angular.module('ShowEval', []);
 
-submit.controller('ShowEvalController', ['$scope', 'ParseSvc', function ($scope, ParseSvc) {
+submit.controller('ShowEvalController', ['$location', '$scope', 'ParseSvc', function ($location, $scope, ParseSvc) {
     $scope.all_subjects = [];
     $scope.setSubjects = function (parse_subjects) {
         $scope.all_subjects = parse_subjects;
@@ -8,7 +8,13 @@ submit.controller('ShowEvalController', ['$scope', 'ParseSvc', function ($scope,
     //ParseSvc.getSubjects($scope.setSubjects);
 
 	$scope.printForm = function (result) {
-//        $("#search-results").attr("hidden", true);
+        console.log(result);
+        if(result == null)
+        {
+            alert("Form not found (placeholder error message)");
+            $scope.$apply();
+            return;
+        }
         $("#chosen-individual-scores > tr > td > label").attr("hidden", true);
         $("#chosen-lesson-title").text(result.get("Title"));
 	    $("#chosen-lesson-URL").text(result.get("URL"));
@@ -56,7 +62,11 @@ submit.controller('ShowEvalController', ['$scope', 'ParseSvc', function ($scope,
 		$scope.$apply();
     };
     displayEval = function (objectId) {
-        console.log(objectId);
+        
+       // console.log($location.search());
+        url_eval_id = $location.search();
+       // console.log(url_eval_id.evalid);
+        ParseSvc.currentEval=url_eval_id.evalid;
         ParseSvc.getEval(ParseSvc.currentEval, $scope.printForm);
     };
 
