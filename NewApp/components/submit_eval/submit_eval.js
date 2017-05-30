@@ -161,7 +161,13 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
         $scope.EvalForm.LearningGoals = $scope.LearningGoals;
        // $scope.EvalForm.Subject = $scope.all_subjects[$scope.subject];
 		$scope.EvalForm.Subjects = $scope.subjects;
-        $scope.EvalForm.Document = $scope.lessonDocument;
+
+        var lesson_document_file_input = document.getElementById("lesson_doc_upload");
+        var lesson_document_file = lesson_document_file_input.files[0];
+        var lesson_doc_name = document.getElementById("lesson_doc_upload").value;
+        var lesson_document = new Parse.File(lesson_doc_name,lesson_document_file);
+        $scope.EvalForm.Document = lesson_document;
+        
         $scope.EvalForm.URL = $scope.LessonURL;
         $scope.EvalForm.GradeLevels = $scope.grade_levels;
 		$scope.EvalForm.EngageComment = $scope.EngageComment;
