@@ -8,8 +8,10 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
     $scope.setEval = function (objectId) {
         console.log(objectId);
         //ParseSvc.getEval(objectId, $scope.printForm);
+
         ParseSvc.currentEval = objectId;
-        $location.path('/show-eval');
+        //$location.path('/show-eval/'+objectId).search({evalid: objectId});
+        $location.path('/show-eval').search({evalid: objectId});
     };
     // Initial scope values
     $scope.setSubjects = function (parse_subjects) {
