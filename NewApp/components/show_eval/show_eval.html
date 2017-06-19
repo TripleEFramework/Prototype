@@ -213,13 +213,18 @@
     /**
     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-    console.log(window.location.href);
     var page_url = window.location.href;
     var eval_id = page_url.substr(page_url.lastIndexOf('=') + 1);
-    console.log(eval_id);
+    var credentials = this.credentials;
     var disqus_config = function () {
         this.page.url = page_url;  // Replace PAGE_URL with your page's canonical URL variable
         this.page.identifier = eval_id; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        console.log(credentials);
+        if (credentials != null){
+            console.log(credentials);
+            this.page.remote_auth_s3 = credentials.auth;
+            this.page.api_key = credentials.pubKey;
+        }
     };
     
     (function() { // DON'T EDIT BELOW THIS LINE

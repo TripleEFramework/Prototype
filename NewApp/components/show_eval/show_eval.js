@@ -1,7 +1,7 @@
 var show = angular.module('ShowEval', []);
-
 submit.controller('ShowEvalController', ['$location', '$scope', 'ParseSvc', function ($location, $scope, ParseSvc) {
     $scope.all_subjects = [];
+
     $scope.setSubjects = function (parse_subjects) {
         $scope.all_subjects = parse_subjects;
     };

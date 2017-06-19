@@ -1,6 +1,7 @@
 // app/modules/patient/controllers.js
 var parseModule = angular.module('Parse', ['Keys']);
-
+var user_data = [];
+var credentials = [];
 parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
     key1 = KeySvc.key1;
     key2 = KeySvc.key2;
@@ -12,6 +13,8 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
     var currentEval;
     if (user) {
         isRegistered = true;
+        user_data = user;
+        credentials = disqusSignon();
         // do stuff with the user
     } else {
         isRegistered = false;
@@ -175,16 +178,6 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             if(tags.length > 0) {
                 query.containedIn("Tags", tags); //Case sensitive so im going to make it so all tags are stored in lowercase
             }
-            /*
-            var tags_query = new Parse.Query(eval);
-            tags_query.matches("Tags", (new RegExp(searchTags[0], 'i')));
-            for (var i = 1; i < searchTags.length; i++) {
-                var single_tag_query = new Parse.Query(eval);
-                single_tag_query.matches("Tags", (new RegExp(searchTags[i], 'i')));
-                tags_query = Parse.Query.or(tags_query, single_tag_query);
-            }
-            main_query = Parse.Query.or(main_query, tags_query);
-            */
             return query;
         },
         executeQuery: function (query, successCallback) {
