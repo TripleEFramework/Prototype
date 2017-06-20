@@ -53,8 +53,6 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
             });
         //  console.log(chosen_subjects);
         //  console.log($scope.subjects);
-            console.log($scope.chosen_subjects);
-            console.log($scope.subjects);
             return false;
         });
         ////////////
@@ -99,19 +97,15 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
                 grade_level_object = $scope.all_grade_levels[value];
                 $scope.grade_levels.push(grade_level_object.get("GradeLevel"));
             });
-          //console.log(chosen_grade_levels);
-            console.log($scope.grade_levels);
-            console.log(chosen_grade_levels);
-
             return false;
 
         });
-        ParseSvc.getSubjects($scope.setSubjects);
+        //ParseSvc.getSubjects($scope.setSubjects);
         ////////////
         //$scope.$apply();
     };
     ParseSvc.getGradeLevels($scope.setGradeLevels);
-   // ParseSvc.getSubjects($scope.setSubjects);
+    ParseSvc.getSubjects($scope.setSubjects);
     //After initialized
 
     $scope.successCallback = function (results) {
@@ -204,14 +198,11 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
             search_params.grade_levels = $scope.grade_levels;
         }
         $location.path('/search').search(search_params);
-        console.log("test");
-        console.log($location.search());
     };
     $scope.performSearch = function(){
         var query = ParseSvc.initEvalQuery();
 
         location_search = $location.search();
-        console.log(location_search);
         if(location_search.hasOwnProperty("authorString")){
             query = ParseSvc.searchAuthor(query, location_search.authorString);
         }
