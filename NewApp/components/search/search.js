@@ -16,69 +16,70 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
     // Initial scope values
     $scope.setSubjects = function (parse_subjects) {
         $scope.all_subjects = parse_subjects;
-		
-		//subjects dropdown checkbox stuff
-		var inHTML = "";
 
-		$.each($scope.all_subjects, function(index, value){
-			var newItem = '<li><a class="small" data-value="'+$scope.all_subjects.indexOf(value)+'" tabIndex="-1"><input type="checkbox"/>&nbsp;'+value.get("subjectName")+'</a></li>';
-			inHTML += newItem;  
-		});
+        //subjects dropdown checkbox stuff
+        var inHTML = "";
 
-		$("ul#dynamicSubjectDropdown").html(inHTML); 
-		var chosen_subjects = [];
-		$('#dynamicSubjectDropdown a').on('click', function(event) {
+        $.each($scope.all_subjects, function(index, value){
+            var newItem = '<li><a class="small" data-value="'+$scope.all_subjects.indexOf(value)+'" tabIndex="-1"><input type="checkbox"/>&nbsp;'+value.get("subjectName")+'</a></li>';
+            inHTML += newItem;
+        });
 
-			var $target = $(event.currentTarget),
-				val = $target.attr('data-value'),
-				$inp = $target.find('input'),
-				idx;
+        $("ul#dynamicSubjectDropdown").html(inHTML);
+        var chosen_subjects = [];
+        $('#dynamicSubjectDropdown a').on('click', function(event) {
 
-			if ((idx = chosen_subjects.indexOf(val)) > -1) {
-				chosen_subjects.splice(idx, 1);
-				setTimeout(function() {
-					$inp.prop('checked', false)
-				}, 0);
-			} else {
-				chosen_subjects.push(val);
-				setTimeout(function() {
-					$inp.prop('checked', true)
-				}, 0);
-			}
+            var $target = $(event.currentTarget),
+            val = $target.attr('data-value'),
+            $inp = $target.find('input'),
+            idx;
 
-			$(event.target).blur();
-			$scope.subjects = [];
-			$.each(chosen_subjects,function(index,value){
-				$scope.subjects.push($scope.all_subjects[value].id);
-			});
-		//	console.log(chosen_subjects);
-		//	console.log($scope.subjects);
-			console.log($scope.chosen_subjects);
+            if ((idx = chosen_subjects.indexOf(val)) > -1) {
+                chosen_subjects.splice(idx, 1);
+                setTimeout(function() {
+                    $inp.prop('checked', false)
+                }, 0);
+            } else {
+                chosen_subjects.push(val);
+                setTimeout(function() {
+                    $inp.prop('checked', true)
+                }, 0);
+            }
+
+            $(event.target).blur();
+            $scope.subjects = [];
+            $.each(chosen_subjects,function(index,value){
+                $scope.subjects.push($scope.all_subjects[value].id);
+            });
+        //  console.log(chosen_subjects);
+        //  console.log($scope.subjects);
+            console.log($scope.chosen_subjects);
             console.log($scope.subjects);
-			return false;
-		});
-		////////////
+            return false;
+        });
+        ////////////
         $scope.$apply();
+        $scope.performSearch();
     };
     $scope.setGradeLevels = function (parse_grade_levels) {
         $scope.all_grade_levels = parse_grade_levels;
-        
+
         //grade_levels dropdown checkbox stuff
         var inHTML = "";
 
         $.each($scope.all_grade_levels, function(index, value){
             var newItem = '<li><a class="small" data-value="'+$scope.all_grade_levels.indexOf(value)+'" tabIndex="-1"><input type="checkbox"/>&nbsp;'+value.get("GradeLevel")+'</a></li>';
-            inHTML += newItem;  
+            inHTML += newItem;
         });
 
-        $("ul#dynamicGradeLevelDropdown").html(inHTML); 
+        $("ul#dynamicGradeLevelDropdown").html(inHTML);
         var chosen_grade_levels = [];
         $('#dynamicGradeLevelDropdown a').on('click', function(event) {
 
             var $target = $(event.currentTarget),
-                val = $target.attr('data-value'),
-                $inp = $target.find('input'),
-                idx;
+            val = $target.attr('data-value'),
+            $inp = $target.find('input'),
+            idx;
 
             if ((idx = chosen_grade_levels.indexOf(val)) > -1) {
                 chosen_grade_levels.splice(idx, 1);
@@ -95,38 +96,42 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
             $(event.target).blur();
             $scope.grade_levels = [];
             $.each(chosen_grade_levels,function(index,value){
-                $scope.grade_levels.push($scope.all_grade_levels[value]);
+                grade_level_object = $scope.all_grade_levels[value];
+                $scope.grade_levels.push(grade_level_object.get("GradeLevel"));
             });
           //console.log(chosen_grade_levels);
-          console.log($scope.grade_levels);
-          console.log($scope.chosen_grade_levels);
+            console.log($scope.grade_levels);
+            console.log(chosen_grade_levels);
+
             return false;
+
         });
+        ParseSvc.getSubjects($scope.setSubjects);
         ////////////
         //$scope.$apply();
     };
     ParseSvc.getGradeLevels($scope.setGradeLevels);
-    ParseSvc.getSubjects($scope.setSubjects);
+   // ParseSvc.getSubjects($scope.setSubjects);
     //After initialized
 
     $scope.successCallback = function (results) {
         for (i = 0; i < results.length; ++i) {
-			var subject_names = "";
-			if(results[i].has("Subjects")){
-				$.each(results[i].get("Subjects"),function(index,value){
-					for (t = 0; t < $scope.all_subjects.length; ++t){
-						if(value == $scope.all_subjects[t].id){
-							if(index==0){
-								subject_names = $scope.all_subjects[t].get("subjectName");
-							}
-							else{
-								subject_names = subject_names+ ", "+ $scope.all_subjects[t].get("subjectName");
-							}
-							break;
-						}
-					}
-				});
-			}
+            var subject_names = "";
+            if(results[i].has("Subjects")){
+                $.each(results[i].get("Subjects"),function(index,value){
+                    for (t = 0; t < $scope.all_subjects.length; ++t){
+                        if(value == $scope.all_subjects[t].id){
+                            if(index==0){
+                                subject_names = $scope.all_subjects[t].get("subjectName");
+                            }
+                            else{
+                                subject_names = subject_names+ ", "+ $scope.all_subjects[t].get("subjectName");
+                            }
+                            break;
+                        }
+                    }
+                });
+            }
             var grade_levels_string= "";
             var first_grade = true;
             if(results[i].has("GradeLevels")){
@@ -155,10 +160,11 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
                 objectId: results[i].id
             });
         }
+        $("#search-results").attr("hidden", false);
         $scope.$apply();
         //console.log($scope.results);
     };
-    $scope.queryString = "";
+    $scope.titleString = "";
     $scope.LearningGoals = "";
     $scope.authorString = "";
     $scope.grade_levels = [];
@@ -176,14 +182,83 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
         $scope.searchTags = $scope.tagString.split(" ");
         $scope.searchTags = $scope.searchTags.filter(function (entry) { return entry.trim() != ''; });
         var minScore = parseInt($scope.minScore, 10);
-		
-        var query = ParseSvc.initEvalQuery();
-        query = ParseSvc.searchAuthor(query, $scope.authorString);
-        query = ParseSvc.searchTitle(query, $scope.queryString);
-        query = ParseSvc.searchTags(query, $scope.searchTags);
-        query = ParseSvc.searchMinScore(query, minScore);
-        query = ParseSvc.searchSubjects(query, $scope.subjects);
-        query = ParseSvc.searchGradeLevels(query, $scope.grade_levels);
-        ParseSvc.executeQuery(query, $scope.successCallback);
+
+        var search_params = {};
+        if($scope.authorString)
+        {
+            search_params.authorString = $scope.authorString;
+        }
+        if($scope.titleString){
+            search_params.titleString = $scope.titleString;
+        }
+        if($scope.minScore){
+            search_params.minScore = $scope.minScore;
+        }
+        if($scope.searchTags){
+            search_params.searchTags = $scope.searchTags;
+        }
+        if($scope.subjects){
+            search_params.subjects = $scope.subjects;
+        }
+        if($scope.grade_levels){
+            search_params.grade_levels = $scope.grade_levels;
+        }
+        $location.path('/search').search(search_params);
+        console.log("test");
+        console.log($location.search());
     };
+    $scope.performSearch = function(){
+        var query = ParseSvc.initEvalQuery();
+
+        location_search = $location.search();
+        console.log(location_search);
+        if(location_search.hasOwnProperty("authorString")){
+            query = ParseSvc.searchAuthor(query, location_search.authorString);
+        }
+        if(location_search.hasOwnProperty("titleString")){
+            query = ParseSvc.searchTitle(query, location_search.titleString);
+        }
+        if(location_search.hasOwnProperty("searchTags")){
+            var searchTags = [];
+            if(location_search.searchTags.constructor == Array){
+                searchTags=location_search.searchTags;
+            }
+            else{
+                searchTags.push(location_search.searchTags);
+            }
+            query = ParseSvc.searchTags(query, searchTags);
+
+        }
+        if(location_search.hasOwnProperty("minScore")){
+            var minScore = parseInt(location_search.minScore, 10);
+            query = ParseSvc.searchMinScore(query, minScore);
+
+        }
+        if(location_search.hasOwnProperty("subjects")){
+            var subjects = [];
+            if(location_search.subjects.constructor == Array){
+                subjects=location_search.subjects;
+            }
+            else{
+                subjects.push(location_search.subjects);
+            }
+            query = ParseSvc.searchSubjects(query, subjects);
+
+
+        }
+        if(location_search.hasOwnProperty("grade_levels")){
+            var grade_levels = [];
+            if(location_search.grade_levels.constructor == Array){
+                grade_levels=location_search.grade_levels;
+            }
+            else{
+                grade_levels.push(location_search.grade_levels);
+            }
+            query = ParseSvc.searchGradeLevels(query, location_search.grade_levels);
+
+
+        }
+        ParseSvc.executeQuery(query, $scope.successCallback);
+
+    }
 }]);
