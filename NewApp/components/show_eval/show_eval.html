@@ -223,7 +223,6 @@
                     this.page.identifier = eval_id;  
                     this.page.url = page_url;
                     if (credentials != null){
-                    // console.log(credentials);
                         this.page.remote_auth_s3 = credentials.auth;
                         this.page.api_key = credentials.pubKey;
                     }
@@ -235,9 +234,7 @@
                 this.page.url = page_url;
                                 // Replace PAGE_IDENTIFIER with your page's unique identifier variable
                 this.page.identifier = eval_id; 
-                                //  console.log(credentials);
                 if (credentials != null){
-                                // console.log(credentials);
                     this.page.remote_auth_s3 = credentials.auth;
                     this.page.api_key = credentials.pubKey;
                 }
@@ -251,7 +248,7 @@
                 (d.head || d.body).appendChild(s);
             })();
         }
-        
+
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 	<!--<a ng-show="isUser()" href="#copy-eval" type="button" class="btn btn-primary btn-lg ">make copy 

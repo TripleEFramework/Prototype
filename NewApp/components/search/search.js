@@ -6,7 +6,6 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
   //  $scope.gradeLevels = ['K-2', '3-5', 'K-5', '6-8', '9-12', '6-12', 'All Grades'];
     $scope.all_grade_levels =[];
     $scope.setEval = function (objectId) {
-        console.log(objectId);
         //ParseSvc.getEval(objectId, $scope.printForm);
 
         ParseSvc.currentEval = objectId;
@@ -51,8 +50,6 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
             $.each(chosen_subjects,function(index,value){
                 $scope.subjects.push($scope.all_subjects[value].id);
             });
-        //  console.log(chosen_subjects);
-        //  console.log($scope.subjects);
             return false;
         });
         ////////////
@@ -156,7 +153,6 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
         }
         $("#search-results").attr("hidden", false);
         $scope.$apply();
-        //console.log($scope.results);
     };
     $scope.titleString = "";
     $scope.LearningGoals = "";
@@ -245,7 +241,7 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
             else{
                 grade_levels.push(location_search.grade_levels);
             }
-            query = ParseSvc.searchGradeLevels(query, location_search.grade_levels);
+            query = ParseSvc.searchGradeLevels(query, grade_levels);
 
 
         }

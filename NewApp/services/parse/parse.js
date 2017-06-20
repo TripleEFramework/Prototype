@@ -185,7 +185,6 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             query.select("Author", "AuthorName", "Title", "LearningGoals", "TotalScore", "IndividualScores", "Engage", "Enhance", "Extend", "Subjects", "GradeLevels");
 
             query.find().then(function (results) {
-                console.log(results);
                 successCallback(results);
             });
         },
