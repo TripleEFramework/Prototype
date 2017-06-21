@@ -79,16 +79,12 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
 
             $(event.target).blur();
             $scope.grade_levels = [];
-           // $scope.grade_levels=chosen_grade_levels;
             $.each($scope.all_grade_levels,function(index,value){
                 if(chosen_grade_levels.indexOf(value.get("GradeLevel"))>-1){
                     $scope.grade_levels.push(value.get("GradeLevel"));
                 }
                 
             });
-          //console.log(chosen_grade_levels);
-          console.log($scope.grade_levels);
-        //  console.log(chosen_grade_levels);
             return false;
         });
         ////////////
@@ -133,9 +129,6 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
 			$.each(chosen_subjects,function(index,value){
 				$scope.subjects.push($scope.all_subjects[value].id);
 			});
-		//	console.log(chosen_subjects);
-		//	console.log($scope.subjects);
-
 			return false;
 		});
 		/////////
@@ -187,7 +180,6 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
         $scope.EvalForm.IndividualScores.extend1 = $scope.extend1;
         $scope.EvalForm.IndividualScores.extend2 = $scope.extend2;
         $scope.EvalForm.IndividualScores.extend3 = $scope.extend3;
-		console.log($scope.EvalForm.IndividualScores);
         $scope.EvalForm.Engage = parseInt($scope.engage1, 10) + parseInt($scope.engage2, 10) + parseInt($scope.engage3, 10);
         $scope.EvalForm.Enhance = parseInt($scope.enhance1, 10) + parseInt($scope.enhance2, 10) + parseInt($scope.enhance3, 10);
         $scope.EvalForm.Extend = parseInt($scope.extend1, 10) + parseInt($scope.extend2, 10) + parseInt($scope.extend3, 10);

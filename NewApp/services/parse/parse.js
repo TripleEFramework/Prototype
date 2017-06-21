@@ -144,20 +144,21 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             return query;
         },
         searchSubjects: function (query, subjects) {
-			//returns only evals which contain all subjects requested
+			//returns evals which contain any subjects requested
             if(subjects.length>0) {
-                $.each(subjects,function(index,value){
-                    query.equalTo("Subjects",value);
-                });
+                query.containedIn("Subjects",subjects);
+            //    $.each(subjects,function(index,value){
+             //       query.equalTo("Subjects",value);
+            //    });
             }
             return query;
         },
         searchGradeLevels: function (query, grade_levels) {
-            //returns only evals which contain all subjects requested
             if(grade_levels.length>0) {
-                $.each(grade_levels,function(index,value){
-                    query.equalTo("GradeLevels",value.get("GradeLevel"));
-                });
+             query.containedIn("GradeLevels",grade_levels);
+             //   $.each(grade_levels,function(index,value){
+             //       query.equalTo("GradeLevels",value);
+             //   });
             }
             return query;
 
@@ -184,7 +185,6 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             query.select("Author", "AuthorName", "Title", "LearningGoals", "TotalScore", "IndividualScores", "Engage", "Enhance", "Extend", "Subjects", "GradeLevels");
 
             query.find().then(function (results) {
-                console.log(results);
                 successCallback(results);
             });
         },
