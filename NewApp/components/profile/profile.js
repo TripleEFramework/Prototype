@@ -25,7 +25,6 @@ profile.controller('ProfileController',
 	  
 	  $scope.results = [];
 	  $scope.setEval = function (objectId) {
-        console.log(objectId);
         //ParseSvc.getEval(objectId, $scope.printForm);
         ParseSvc.currentEval = objectId;
         $location.path('/show-eval').search({evalid: objectId});
@@ -76,7 +75,6 @@ profile.controller('ProfileController',
             });
         }
         $scope.$apply();
-        //console.log($scope.results);
 		};
 		$scope.setSubjects = function (parseSubjects) {
 			$scope.all_subjects = parseSubjects;

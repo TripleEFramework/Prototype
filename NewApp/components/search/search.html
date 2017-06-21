@@ -30,55 +30,81 @@
                    <button type="button" style="" class="dropdown-toggle search_search_bars search_dropdown" data-toggle="dropdown"> Subjects <span class="caret"></span></button>
                    <ul class="dropdown-menu search_search_bars" id="dynamicSubjectDropdown">
 
-                   </ul>
-				</div>                  
-              </div>
-              
-              <div style="min-height: 45px">
-                  <label style="" class="search_labels search_dropdown_labels">Grade Level:</label>
-                  
-				<div class="col-lg-12 search_search_bars search_dropdown_div" style="">
-                   <button type="button" style="" class="dropdown-toggle search_search_bars search_dropdown" data-toggle="dropdown"> Grade Level <span class="caret"></span></button>
-                   <ul class="dropdown-menu search_search_bars" id="dynamicGradeLevelDropdown">
+        <div style="margin-top: 20px; min-height: 45px;">
+          <label class="search_labels">Lesson Evaluation Author:</label>
+          <input class="search_search_bars" ng-model="authorString" id="textInput" type="text"></input>
+        </div>
 
-                   </ul>
-				</div>   
-                  
-              </div>       
-              <button type="button" class="btn btn-primary btn-lg " ng-click="searchEvals()">Press to Search</button>
-          </form>
-      </div>
+        <div style="min-height: 45px">
+          <label class="search_labels">Lesson Evaluation Title:</label>
+          <input class="search_search_bars" ng-model="queryString" id="textInput" type="text"></input>
+        </div>
+
+        <div style="min-height: 45px">
+          <label class="search_labels">Keywords/Tools:</label>
+          <input class="search_search_bars" ng-model="tagString" id="textInput" type="text"></input>
+        </div>
+
+        <div style="min-height: 45px">
+          <label class="search_labels">Minimum Score:</label>
+          <input class="search_search_bars" ng-model="minScore" id="textInput" type="text"></input>
+        </div>
+
+        <div style="min-height: 45px">
+          <label style="" class="search_labels search_dropdown_labels">Subject:</label>
+
+          <div class="col-lg-12 search_search_bars search_dropdown_div" style="">
+            <button type="button" style="" class="dropdown-toggle search_search_bars search_dropdown" data-toggle="dropdown"> Subjects <span class="caret"></span></button>
+            <ul class="dropdown-menu search_search_bars" id="dynamicSubjectDropdown">
+
+            </ul>
+          </div>                  
+        </div>
+
+        <div style="min-height: 45px">
+          <label style="" class="search_labels search_dropdown_labels">Grade Level:</label>
+
+          <div class="col-lg-12 search_search_bars search_dropdown_div" style="">
+            <button type="button" style="" class="dropdown-toggle search_search_bars search_dropdown" data-toggle="dropdown"> Grade Level <span class="caret"></span></button>
+            <ul class="dropdown-menu search_search_bars" id="dynamicGradeLevelDropdown">
+
+            </ul>
+          </div>   
+        </div>       
+        <button type="button" class="btn btn-primary btn-lg " ng-click="searchEvals()">Press to Search</button>
+      </form>
+    </div>
   </div>
   <div id="search-results" hidden="true">
-      <table class="table">
-        <thead>
-            <tr>
-                <th>Author</th>
-                <th>Title</th>
-                <th>Subject</th>
-                <th>Grade Level</th>
-                <!--     <th>Learning Goals</th> -->
-                <th>Score</th>
-                <th>Engage Total</th>
-                <th>Enhance Total</th>
-                <th>Extend Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="result in results">
-                <td>{{result.username}}</td>
-                <td ng-click="setEval(result.objectId)">
-                  <font color="blue" style="cursor: pointer;"> {{result.title}} </font>
-                </td>
-                <td>{{result.subjects}}</td>
-                <td>{{result.gradelevel}}</td>
-                <!--       <td>{{result.learning_goals}}</td>-->
-                <td>{{result.score}}</td>
-                <td>{{result.engagetotal}}</td>
-                <td>{{result.enhancetotal}}</td>
-                <td>{{result.extendtotal}}</td>
-            </tr>
-        </tbody>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Author</th>
+          <th>Title</th>
+          <th>Subject</th>
+          <th>Grade Level</th>
+          <!--     <th>Learning Goals</th> -->
+          <th>Score</th>
+          <th>Engage Total</th>
+          <th>Enhance Total</th>
+          <th>Extend Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="result in results">
+          <td>{{result.username}}</td>
+          <td ng-click="setEval(result.objectId)">
+            <font color="blue" style="cursor: pointer;"> {{result.title}} </font>
+          </td>
+          <td>{{result.subjects}}</td>
+          <td>{{result.gradelevel}}</td>
+          <!--       <td>{{result.learning_goals}}</td>-->
+          <td>{{result.score}}</td>
+          <td>{{result.engagetotal}}</td>
+          <td>{{result.enhancetotal}}</td>
+          <td>{{result.extendtotal}}</td>
+        </tr>
+      </tbody>
     </table>
   </div> 
 </div>
