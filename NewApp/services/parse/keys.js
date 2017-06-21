@@ -5,15 +5,18 @@
 //
 // The keys can be accessed by including the keys module and
 // calling KeySvc.key1, KeySvc.key2
-angular.module('Keys', [])
+// angular.module('Keys', [])
+// 
+// .factory('KeySvc', function() {
+//     return {
+//         //App Key
+//         key1:"3VjN8dHXZRpaSZ6TTkxPwx6RxkPX7lpctctsFMTw",
+//         //JavaScript Key
+//         key2:"cG3XVQBcdvC2ENO7UTVCqfTBdJA1wtpbD1iK6cdr",
+//         //REST API Key
+//         key3:"wk8c5pKnQMR3AY2qHw4kyqfl5uGp4gRJkmCqMetX"
+//     };
+// });
 
-.factory('KeySvc', function() {
-    return {
-        //App Key
-        key1:"3VjN8dHXZRpaSZ6TTkxPwx6RxkPX7lpctctsFMTw",
-        //JavaScript Key
-        key2:"cG3XVQBcdvC2ENO7UTVCqfTBdJA1wtpbD1iK6cdr",
-        //REST API Key
-        key3:"wk8c5pKnQMR3AY2qHw4kyqfl5uGp4gRJkmCqMetX"
-    };
-});
+
+var _0x6854=["\x4B\x65\x79\x53\x76\x63","\x33\x56\x6A\x4E\x38\x64\x48\x58\x5A\x52\x70\x61\x53\x5A\x36\x54\x54\x6B\x78\x50\x77\x78\x36\x52\x78\x6B\x50\x58\x37\x6C\x70\x63\x74\x63\x74\x73\x46\x4D\x54\x77","\x63\x47\x33\x58\x56\x51\x42\x63\x64\x76\x43\x32\x45\x4E\x4F\x37\x55\x54\x56\x43\x71\x66\x54\x42\x64\x4A\x41\x31\x77\x74\x70\x62\x44\x31\x69\x4B\x36\x63\x64\x72","\x77\x6B\x38\x63\x35\x70\x4B\x6E\x51\x4D\x52\x33\x41\x59\x32\x71\x48\x77\x34\x6B\x79\x71\x66\x6C\x35\x75\x47\x70\x34\x67\x52\x4A\x6B\x6D\x43\x71\x4D\x65\x74\x58","\x66\x61\x63\x74\x6F\x72\x79","\x4B\x65\x79\x73","\x6D\x6F\x64\x75\x6C\x65"];angular[_0x6854[6]](_0x6854[5],[])[_0x6854[4]](_0x6854[0],function(){return {key1:_0x6854[1],key2:_0x6854[2],key3:_0x6854[3]}})

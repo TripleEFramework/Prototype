@@ -1,7 +1,34 @@
 <div class="tab-pane fade in active">
   <div class="row">
-    <div class="col-md-4" style="min-width:80%;">
-      <form>
+      <div class="col-md-4" style="min-width:80%;">
+          <form>
+         
+              <div style="margin-top: 20px; min-height: 45px;">
+                  <label class="search_labels">Lesson Evaluation Author:</label>
+                  <input class="search_search_bars" ng-model="authorString" id="textInput" type="text"></input>
+              </div>
+              
+              <div style="min-height: 45px">
+                  <label class="search_labels">Lesson Evaluation Title:</label>
+                  <input class="search_search_bars" ng-model="queryString" id="textInput" type="text"></input>
+              </div>
+              
+              <div style="min-height: 45px">
+                  <label class="search_labels">Keywords/Tools:</label>
+                      <input class="search_search_bars" ng-model="tagString" id="textInput" placeholder="Equations, Flint, Labs..." type="text"></input>
+              </div>
+              
+              <div style="min-height: 45px">
+                  <label class="search_labels">Minimum Score:</label>
+                      <input class="search_search_bars" ng-model="minScore" id="textInput" type="text"></input>
+              </div>
+              
+              <div style="min-height: 45px">
+                  <label style="" class="search_labels search_dropdown_labels">Subject:</label>
+                  
+				<div class="col-lg-12 search_search_bars search_dropdown_div" style="">
+                   <button type="button" style="" class="dropdown-toggle search_search_bars search_dropdown" data-toggle="dropdown"> Subjects <span class="caret"></span></button>
+                   <ul class="dropdown-menu search_search_bars" id="dynamicSubjectDropdown">
 
         <div style="margin-top: 20px; min-height: 45px;">
           <label class="search_labels">Lesson Evaluation Author:</label>
