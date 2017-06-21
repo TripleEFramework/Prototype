@@ -1,6 +1,7 @@
 // scripts/routes.js
-angular.module('App').config(function($routeProvider) {
-	$routeProvider
+angular.module('App').config(function ($routeProvider,$locationProvider) {
+   // $locationProvider.hashPrefix('!');
+    $routeProvider
 		.when('/', {
 			templateUrl: 'components/login/login.html',
 			controller: 'LoginController'
@@ -48,5 +49,9 @@ angular.module('App').config(function($routeProvider) {
 		.when('/tutorial', {
 			templateUrl: 'components/tutorial/tutorial.html',
 			controller: 'TutorialController'
-		})
+		});
+	$locationProvider
+  		.html5Mode(false)
+  		.hashPrefix('!');
+
 });

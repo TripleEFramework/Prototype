@@ -1,12 +1,11 @@
 var show = angular.module('ShowEval', []);
-
 submit.controller('ShowEvalController', ['$location', '$scope', 'ParseSvc', function ($location, $scope, ParseSvc) {
     $scope.all_subjects = [];
+
     $scope.setSubjects = function (parse_subjects) {
         $scope.all_subjects = parse_subjects;
     };
     //ParseSvc.getSubjects($scope.setSubjects);
-
 	$scope.printForm = function (result) {
         console.log(result);
         if(result == null)
@@ -67,6 +66,7 @@ submit.controller('ShowEvalController', ['$location', '$scope', 'ParseSvc', func
         
        // console.log($location.search());
         url_eval_id = $location.search();
+        $scope.eval_id=url_eval_id.evalid;
        // console.log(url_eval_id.evalid);
         ParseSvc.currentEval=url_eval_id.evalid;
         ParseSvc.getEval(ParseSvc.currentEval, $scope.printForm);
