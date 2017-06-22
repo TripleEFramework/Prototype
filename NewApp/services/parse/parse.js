@@ -64,7 +64,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             newEvalForm.set("Subjects", _EvalForm.Subjects);
             newEvalForm.set("GradeLevels", _EvalForm.GradeLevels);
             newEvalForm.set("LearningGoals", _EvalForm.LearningGoals);
-            newEvalForm.set("Document", _EvalForm.Document);
+           // newEvalForm.set("Document", _EvalForm.Document);
             newEvalForm.set("URL", _EvalForm.URL);
             newEvalForm.set("TotalScore", _EvalForm.TotalScore);
             newEvalForm.set("Author", user);
