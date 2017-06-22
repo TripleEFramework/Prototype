@@ -106,51 +106,58 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
     //After initialized
 
     $scope.successCallback = function (results) {
-        for (i = 0; i < results.length; ++i) {
-            var subject_names = "";
-            if(results[i].has("Subjects")){
-                $.each(results[i].get("Subjects"),function(index,value){
-                    for (t = 0; t < $scope.all_subjects.length; ++t){
-                        if(value == $scope.all_subjects[t].id){
-                            if(index==0){
-                                subject_names = $scope.all_subjects[t].get("subjectName");
-                            }
-                            else{
-                                subject_names = subject_names+ ", "+ $scope.all_subjects[t].get("subjectName");
-                            }
-                            break;
-                        }
-                    }
-                });
-            }
-            var grade_levels_string= "";
-            var first_grade = true;
-            if(results[i].has("GradeLevels")){
-                $.each(results[i].get("GradeLevels"),function(index,value){
+    	if (results.length < 1)
+    	{
+    		$("#no-search-results").attr("hidden", false);
+    	}
+    	else
+    	{
+			for (i = 0; i < results.length; ++i) {
+				var subject_names = "";
+				if(results[i].has("Subjects")){
+					$.each(results[i].get("Subjects"),function(index,value){
+						for (t = 0; t < $scope.all_subjects.length; ++t){
+							if(value == $scope.all_subjects[t].id){
+								if(index==0){
+									subject_names = $scope.all_subjects[t].get("subjectName");
+								}
+								else{
+									subject_names = subject_names+ ", "+ $scope.all_subjects[t].get("subjectName");
+								}
+								break;
+							}
+						}
+					});
+				}
+				var grade_levels_string= "";
+				var first_grade = true;
+				if(results[i].has("GradeLevels")){
+					$.each(results[i].get("GradeLevels"),function(index,value){
 
-                    if(first_grade){
-                        grade_levels_string = value;
-                        first_grade=false;
-                    }
-                    else{
-                        grade_levels_string = grade_levels_string+ ", "+ value;
-                    }
-                });
-            }
-            $scope.results.push({
-                title: String(results[i].get("Title")),
-                //    LearningGoals: String(results[i].get("LearningGoals")),
-                username: results[i].get("AuthorName"),
-                score: results[i].get("TotalScore"),
-                individual_scores: results[i].get("IndividualScores"),
-                subjects: subject_names,
-                gradelevel: grade_levels_string,
-                engagetotal: results[i].get("Engage"),
-                enhancetotal: results[i].get("Enhance"),
-                extendtotal: results[i].get("Extend"),
-                objectId: results[i].id
-            });
-        }
+						if(first_grade){
+							grade_levels_string = value;
+							first_grade=false;
+						}
+						else{
+							grade_levels_string = grade_levels_string+ ", "+ value;
+						}
+					});
+				}
+				$scope.results.push({
+					title: String(results[i].get("Title")),
+					//    LearningGoals: String(results[i].get("LearningGoals")),
+					username: results[i].get("AuthorName"),
+					score: results[i].get("TotalScore"),
+					individual_scores: results[i].get("IndividualScores"),
+					subjects: subject_names,
+					gradelevel: grade_levels_string,
+					engagetotal: results[i].get("Engage"),
+					enhancetotal: results[i].get("Enhance"),
+					extendtotal: results[i].get("Extend"),
+					objectId: results[i].id
+				});
+			}
+		}
         $("#search-results").attr("hidden", false);
         $scope.$apply();
     };

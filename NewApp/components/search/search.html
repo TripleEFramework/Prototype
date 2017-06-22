@@ -1,26 +1,26 @@
 <div class="tab-pane fade in active">
-  <div class="row">
+  <div class="row" style="margin-bottom:40px;">
     <div class="col-md-4" style="min-width:80%;">
       <form>
-
+		<h2 class="form-reviewform-heading">Search for Evaluations</h2>
         <div style="margin-top: 20px; min-height: 45px;">
           <label class="search_labels">Lesson Evaluation Author:</label>
-          <input class="search_search_bars" ng-model="authorString" id="textInput" type="text"></input>
+          <input class="search_search_bars" ng-model="authorString" id="textInput" placeholder="e.g., tripleepln" type="text"></input>
         </div>
 
         <div style="min-height: 45px">
           <label class="search_labels">Lesson Evaluation Title:</label>
-          <input class="search_search_bars" ng-model="titleString" id="textInput" type="text"></input>
+          <input class="search_search_bars" ng-model="titleString" id="textInput" placeholder="e.g., Flint" type="text"></input>
         </div>
 
         <div style="min-height: 45px">
           <label class="search_labels">Keywords/Tools:</label>
-          <input class="search_search_bars" ng-model="tagString" id="textInput" placeholder="Equations, Flint, Labs..." type="text"></input>
+          <input class="search_search_bars" ng-model="tagString" id="textInput" placeholder="e.g., Math" type="text"></input>
         </div>
 
         <div style="min-height: 45px">
           <label class="search_labels">Minimum Score:</label>
-          <input class="search_search_bars" ng-model="minScore" id="textInput" type="text"></input>
+          <input class="search_search_bars" ng-model="minScore" id="textInput" placeholder="e.g., 4" type="text"></input>
         </div>
 
         <div style="min-height: 45px">
@@ -48,6 +48,8 @@
       </form>
     </div>
   </div>
+  
+  
   <div id="search-results" hidden="true">
     <table class="table">
       <thead>
@@ -79,5 +81,9 @@
         </tr>
       </tbody>
     </table>
+    
+  <div id="no-search-results" hidden="true">
+  <h5> Your search didn't match any evaluations </h5>
+  </div>
   </div> 
 </div>
