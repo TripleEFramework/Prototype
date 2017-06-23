@@ -118,3 +118,9 @@ input::placeholder
 	color: silver;
 	font-weight: normal;
 }
+
+:-ms-input-placeholder
+{
+	color: silver;
+	font-weight: normal;
+}
