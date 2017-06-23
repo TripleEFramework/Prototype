@@ -116,3 +116,5 @@ textarea {
 input::placeholder
 {
 	color: silver;
+	font-weight: normal;
+}
