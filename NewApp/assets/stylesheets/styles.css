@@ -93,7 +93,7 @@ input[type=text]:focus {
 }
 
 tr:nth-child(even) {background-color: #f2f2f2}
-tr:hover {background-color: #AFEEEE}
+/* tr:hover {background-color: #AFEEEE} */
 
 thead {
     background-color: #00BFFF;
