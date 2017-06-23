@@ -15,7 +15,9 @@ submit.controller('ShowEvalController', ['$location', '$scope', 'ParseSvc', func
         }
         $("#chosen-individual-scores > tr > td > label").attr("hidden", true);
         $("#chosen-lesson-title").text(result.get("Title"));
-	    $("#chosen-lesson-URL").text(result.get("URL"));
+        var inHTML ='<a href="' + result.get("URL")+ ' ">'+ result.get("URL")+'</a>';
+        $("#chosen-lesson-URL").html(inHTML);
+
         $("#chosen-learning-goals").text(result.get("LearningGoals"));
         $("#chosen-lesson-score").text(String(result.get("TotalScore")));
         $("#chosen-lesson-author").text(String(result.get("AuthorName")));

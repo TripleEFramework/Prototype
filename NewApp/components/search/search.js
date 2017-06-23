@@ -176,6 +176,7 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
     $scope.searchEvals = function () {
         $scope.results = [];
         $("#search-results").attr("hidden", false);
+        $scope.tagString = $scope.tagString.toLowerCase();
         $scope.searchTags = $scope.tagString.split(" ");
         $scope.searchTags = $scope.searchTags.filter(function (entry) { return entry.trim() != ''; });
         var minScore = parseInt($scope.minScore, 10);
@@ -200,7 +201,9 @@ search.controller('SearchController', ['$location', '$scope', 'ParseSvc', functi
         if($scope.grade_levels){
             search_params.grade_levels = $scope.grade_levels;
         }
+
         $location.path('/search').search(search_params);
+        $scope.performSearch();
     };
     $scope.performSearch = function(){
         var query = ParseSvc.initEvalQuery();
