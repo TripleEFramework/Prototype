@@ -1,0 +1,45 @@
+        addKeywords: function(){
+            var eval = Parse.Object.extend("EvalForm");
+            var query = new Parse.Query(eval);
+            query.limit(1000);
+                //console.log(query);
+               // query.matches("Title", "Flint Water Crisis");
+           query.select("Title","Tags","LearningGoals","EngageComment","EnhanceComment","ExtendComment");
+            query.find().then(function (result) {
+                console.log(result);
+                for (var i = 0; i < result.length; i++) {
+                    var temp = [];
+                    tags = result[i].get("Tags");
+                    title = result[i].get("Title");
+                    learning_goals = result[i].get("LearningGoals");
+                    engage_comment = result[i].get("EngageComment");
+                    enhance_comment = result[i].get("EnhanceComment");
+                    extend_comment = result[i].get("ExtendComment");
+                    var combinedstring= title+' '+learning_goals+' '+engage_comment+' '+enhance_comment+' '+extend_comment;
+
+
+                    combinedstring = combinedstring.replace(/\W/g, ' ');
+                    combinedstring = combinedstring.toLowerCase();
+                    temp = combinedstring.split(" ");
+                    temp = temp.filter(function (entry) { return entry.trim() != ''; });
+                    for(var x = 0; x<tags.length;x++){
+                        temp.push = tags[x].toLowerCase();
+                    }
+                    
+                    //console.log(subject_pointer);
+                    if(!temp) continue;
+                    result[i].set("Keywords", temp);
+                    result[i].save(null, {
+                        //  success: function () {
+                        //      // Execute any logic that should take place after the object is saved.
+                        //      
+                        //  },
+                        error: function (error) {
+                                // Execute any logic that should take place if the save fails.
+                                // error is a Parse.Error with an error code and message.
+                            console.log("error with update");
+                        }
+                    });
+                }
+            });
+        }, 

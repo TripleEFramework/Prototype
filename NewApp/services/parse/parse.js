@@ -65,6 +65,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             newEvalForm.set("GradeLevels", _EvalForm.GradeLevels);
             newEvalForm.set("LearningGoals", _EvalForm.LearningGoals);
            // newEvalForm.set("Document", _EvalForm.Document);
+            newEvalForm.set("Keywords",_EvalForm.Keywords);
             newEvalForm.set("URL", _EvalForm.URL);
             newEvalForm.set("TotalScore", _EvalForm.TotalScore);
             newEvalForm.set("Author", user);
@@ -175,9 +176,9 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             }
             return query;
         },
-        searchTags: function (query, tags) {
+        searchTags: function (query, tags) { //Actually searches through keywords
             if(tags.length > 0) {
-                query.containedIn("Tags", tags); //Case sensitive so im going to make it so all tags are stored in lowercase
+                query.containedIn("Keywords", tags); //Case sensitive so im going to make it so all tags are stored in lowercase
             }
             return query;
         },

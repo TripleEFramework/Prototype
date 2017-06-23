@@ -7,7 +7,7 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
     $scope.submitCallback = function (success, response) {
         if(success) {
             ParseSvc.currentEval = response;
-            $location.path('/show-eval').search({evalid: objectId});
+            $location.path('/show-eval').search({evalid: response});
         } else {
             $scope.error = true;
             $scope.error_msg = "Failed to submit: " + response;
@@ -24,6 +24,7 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
         Document: null,
         URL: null,
         Tags: null,
+        Keywords: null,
         TotalScore: 0,
         Engage: 0,
         Enhance: 0,
@@ -138,7 +139,6 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
 	
 	$scope.subjects = [];
     ParseSvc.getSubjects($scope.setSubjects);
-	
 	$scope.engage1 = "0";
 	$scope.engage2 = "0";
 	$scope.engage3 = "0";
@@ -148,11 +148,9 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
 	$scope.extend1 = "0";
 	$scope.extend2 = "0";
 	$scope.extend3 = "0";
-	
     $scope.reviewForm = function () {
         $scope.EvalForm.Title = $scope.title;
         $scope.EvalForm.LearningGoals = $scope.LearningGoals;
-       // $scope.EvalForm.Subject = $scope.all_subjects[$scope.subject];
 		$scope.EvalForm.Subjects = $scope.subjects;
 
         // var lesson_document_file_input = document.getElementById("lesson_doc_upload");
@@ -165,13 +163,31 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
         $scope.EvalForm.URL = $scope.LessonURL;
         $scope.EvalForm.GradeLevels = $scope.grade_levels;
 		$scope.EvalForm.EngageComment = $scope.EngageComment;
+        if(!$scope.EvalForm.EngageComment){
+            $scope.EvalForm.EngageComment = "";
+        }
 		$scope.EvalForm.EnhanceComment = $scope.EnhanceComment;
+        if(!$scope.EvalForm.EnhanceComment){
+            $scope.EvalForm.EnhanceComment = "";
+        }
 		$scope.EvalForm.ExtendComment = $scope.ExtendComment;
+        if(!$scope.EvalForm.ExtendComment){
+            $scope.EvalForm.ExtendComment = "";
+        }
+        var combinedstring= $scope.title+' '+$scope.LearningGoals+' '+$scope.EngageComment+' '+$scope.EnhanceComment+' '+$scope.ExtendComment;
+        combinedstring = combinedstring.replace(/\W/g, ' ');
+        combinedstring = combinedstring.toLowerCase();
+        var keywords = combinedstring.split(" ");
+        keywords = keywords.filter(function (entry) { return entry.trim() != ''; });
         if ($scope.tagString)
         {
-            $scope.EvalForm.Tags = $scope.tagString.split(" ");
+            var tags = $scope.tagString.replace(/\W/g, ' ');
+            tags = tags.toLowerCase();
+            $scope.EvalForm.Tags = tags.split(" ");
 			$scope.EvalForm.Tags = $scope.EvalForm.Tags.filter(function (entry) { return entry.trim() != ''; });
+            keywords = keywords.concat($scope.EvalForm.Tags);
         }
+        $scope.EvalForm.Keywords =  keywords;
         $scope.EvalForm.IndividualScores.engage1 = $scope.engage1;
         $scope.EvalForm.IndividualScores.engage2 = $scope.engage2;
         $scope.EvalForm.IndividualScores.engage3 = $scope.engage3;
