@@ -3,7 +3,6 @@ var submit = angular.module('SubmitEval', []);
 submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 'ParseSvc', function ($location, $scope, $rootScope, ParseSvc) {
     $scope.error = false;
     $scope.error_msg;
-
     $scope.submitCallback = function (success, response) {
         if(success) {
             ParseSvc.currentEval = response;
