@@ -64,12 +64,12 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             newEvalForm.set("Subjects", _EvalForm.Subjects);
             newEvalForm.set("GradeLevels", _EvalForm.GradeLevels);
             newEvalForm.set("LearningGoals", _EvalForm.LearningGoals);
-           // newEvalForm.set("Document", _EvalForm.Document);
-            newEvalForm.set("Keywords",_EvalForm.Keywords);
+            // newEvalForm.set("Document", _EvalForm.Document);
+            newEvalForm.set("Keywords", _EvalForm.Keywords);
             newEvalForm.set("URL", _EvalForm.URL);
             newEvalForm.set("TotalScore", _EvalForm.TotalScore);
             newEvalForm.set("Author", user);
-            newEvalForm.set("AuthorName",user.get("username"))
+            newEvalForm.set("AuthorName", user.get("username"))
             newEvalForm.set("IndividualScores", _EvalForm.IndividualScores);
             newEvalForm.set("Tags", _EvalForm.Tags);
             newEvalForm.set("Engage", _EvalForm.Engage);
@@ -124,19 +124,19 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             return query;
         },
         searchTitle: function (query, title) {
-            if(title) {
+            if (title) {
                 query.matches("Title", (new RegExp(title, 'i')));
             }
             return query;
         },
         searchLearningGoals: function (query, learningGoals) {
-            if(learningGoals) {
+            if (learningGoals) {
                 query.matches("LearningGoals", (new RegExp(learningGoals, 'i')));
             }
             return query;
         },
         searchAuthor: function (query, author) {
-            if(author) {
+            if (author) {
                 var authors = Parse.Object.extend("User");
                 var author_query = new Parse.Query(authors);
                 author_query.matches("username", (new RegExp(author, 'i')));
@@ -145,39 +145,39 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             return query;
         },
         searchSubjects: function (query, subjects) {
-			//returns evals which contain any subjects requested
-            if(subjects.length>0) {
-                query.containedIn("Subjects",subjects);
-            //    $.each(subjects,function(index,value){
-             //       query.equalTo("Subjects",value);
-            //    });
+            //returns evals which contain any subjects requested
+            if (subjects.length > 0) {
+                query.containedIn("Subjects", subjects);
+                //    $.each(subjects,function(index,value){
+                //       query.equalTo("Subjects",value);
+                //    });
             }
             return query;
         },
         searchGradeLevels: function (query, grade_levels) {
-            if(grade_levels.length>0) {
-             query.containedIn("GradeLevels",grade_levels);
-             //   $.each(grade_levels,function(index,value){
-             //       query.equalTo("GradeLevels",value);
-             //   });
+            if (grade_levels.length > 0) {
+                query.containedIn("GradeLevels", grade_levels);
+                //   $.each(grade_levels,function(index,value){
+                //       query.equalTo("GradeLevels",value);
+                //   });
             }
             return query;
 
         },
         searchTotalScore: function (query, totalScore) {
-            if(totalScore) {
+            if (totalScore) {
                 query.equalTo("TotalScore", totalScore);
             }
             return query;
         },
         searchMinScore: function (query, minScore) {
-            if(minScore) {
+            if (minScore) {
                 query.greaterThanOrEqualTo("TotalScore", minScore);
             }
             return query;
         },
         searchTags: function (query, tags) { //Actually searches through keywords
-            if(tags.length > 0) {
+            if (tags.length > 0) {
                 query.containedIn("Keywords", tags); //Case sensitive so im going to make it so all tags are stored in lowercase
             }
             return query;
@@ -193,7 +193,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             var eval = Parse.Object.extend("EvalForm");
             var eval_query = new Parse.Query(eval);
             eval_query.equalTo("objectId", objectId);
-            eval_query.select("Author", "AuthorName", "Title", "LearningGoals", "TotalScore", "IndividualScores", "GradeLevels", "Subjects", "Engage", "Enhance", "Extend","EngageComment", "EnhanceComment", "ExtendComment", "URL","Tags", "Document");
+            eval_query.select("Author", "AuthorName", "Title", "LearningGoals", "TotalScore", "IndividualScores", "GradeLevels", "Subjects", "Engage", "Enhance", "Extend", "EngageComment", "EnhanceComment", "ExtendComment", "URL", "Tags", "Document");
             eval_query.find().then(function (result) {
                 sucessCallback(result[0]);
             });

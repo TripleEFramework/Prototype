@@ -1,20 +1,20 @@
 // Lastly, define your "main" module and inject all other modules as dependencies
 var app = angular.module('App',
-[
-    'ngRoute',
-    'Parse',
-    'Login',
-    'Search',
-    'Signup',
-    'SubmitEval',
-	'EditEval',
-	'CopyEval',
-    'ShowEval',
-    'ResetPassword',
-    'Logout',
-    'Profile',
-    'Tutorial'
-]);
+    [
+        'ngRoute',
+        'Parse',
+        'Login',
+        'Search',
+        'Signup',
+        'SubmitEval',
+        'EditEval',
+        'CopyEval',
+        'ShowEval',
+        'ResetPassword',
+        'Logout',
+        'Profile',
+        'Tutorial'
+    ]);
 
 app.controller('Base', ['$location', '$scope', '$rootScope', 'ParseSvc', function ($location, $scope, $rootScope, ParseSvc) {
     //calls appOpened once on controller's instantiation
