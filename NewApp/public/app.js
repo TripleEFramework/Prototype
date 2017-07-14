@@ -19,7 +19,7 @@ var app = angular.module('App',
 app.controller('Base', ['$location', '$scope', '$rootScope', 'ParseSvc', function ($location, $scope, $rootScope, ParseSvc) {
     //calls appOpened once on controller's instantiation
     var init = function () {
-        ParseSvc.appOpened();
+       // ParseSvc.appOpened();
     };
     init();
     //Keep user logged in if they still have a session

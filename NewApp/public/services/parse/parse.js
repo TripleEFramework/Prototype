@@ -38,6 +38,21 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
                     successCallback(false, error.message);
                 }
             });
+            //$.post('/login', _user, function (user_session) {
+            //    //Handle server response
+            //    if (user_session.success) {
+            //        //Use cookie returned by server to set user on client
+            //        Parse.User.become(user_session.user_session).then(function (user) {
+            //            console.log(Parse.User.current());
+            //            successCallback(true);
+            //        }, function (error) {
+            //            console.log(error);
+            //        });
+
+            //    } else {
+            //        successCallback(false, user_session.message);
+            //    }
+            //});
         },
         signUp: function (_user, successCallback) {
             user = new Parse.User();
@@ -64,7 +79,7 @@ parseModule.factory('ParseSvc', ['$http', 'KeySvc', function ($http, KeySvc) {
             newEvalForm.set("Subjects", _EvalForm.Subjects);
             newEvalForm.set("GradeLevels", _EvalForm.GradeLevels);
             newEvalForm.set("LearningGoals", _EvalForm.LearningGoals);
-            // newEvalForm.set("Document", _EvalForm.Document);
+            newEvalForm.set("Document", _EvalForm.Document);
             newEvalForm.set("Keywords", _EvalForm.Keywords);
             newEvalForm.set("URL", _EvalForm.URL);
             newEvalForm.set("TotalScore", _EvalForm.TotalScore);

@@ -1,10 +1,11 @@
 <div class="tab-pane fade in active">
-<h2><button class="btn btn-default btn-primary" onclick="goBack()">Back to Search</button>
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+    <h2>
+        <button class="btn btn-default btn-primary" onclick="goBack()">Back to Search</button>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
     </h2>
     <h2 class="form-reviewform-heading">Triple E Evaluation</h2>
     <table class="table table-responsive">
@@ -53,7 +54,9 @@
                 Extend Total:
                 <label class="show_eval_display_fields" id="chosen-extend-total">
             </div>
-         <!--   <a id ="chosen-lesson-file"> Click Here for Lesson document </a> <br/><br/> -->
+            <iframe id="chosen-lesson-file"> Click Here for Lesson document </iframe>
+            <br />
+            <br />
         </thead>
         <tbody id="chosen-individual-scores">
             <tr>
@@ -77,7 +80,7 @@
                     <label class="X_for_show_eval" id='engage12' name="engage1" ng-model="engage1" value="2">X</label>
                 </td>
                 <td rowspan="3" class="search_comments_field">
-                  <label id='chosen-engage-comment'></label>
+                    <label id='chosen-engage-comment'></label>
                 </td>
             </tr>
             <tr>
@@ -129,7 +132,7 @@
                     <label id='enhance12' name="enhance1" ng-model="enhance1" value="2">X</label>
                 </td>
                 <td rowspan="3" class="search_comments_field">
-                  <label id='chosen-enhance-comment'></label>
+                    <label id='chosen-enhance-comment'></label>
                 </td>
             </tr>
             <tr>
@@ -181,7 +184,7 @@
                     <label id='extend12' name="extend1" ng-model="extend1" value="2">X</label>
                 </td>
                 <td rowspan="3" class="search_comments_field">
-                  <label id='chosen-extend-comment'></label>
+                    <label id='chosen-extend-comment'></label>
                 </td>
             </tr>
             <tr>
@@ -216,47 +219,47 @@
     </table>
     <div id="disqus_thread"></div>
     <script>
-        /**
-        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-        var page_url = window.location.href;
-        var eval_id = page_url.substr(page_url.lastIndexOf('=') + 1);
-        var credentials = this.credentials;
-        if(window.DISQUS){
-            DISQUS.reset({
-                reload: true,
-                config: function () {  
-                    this.page.identifier = eval_id;  
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+            var page_url = window.location.href;
+            var eval_id = page_url.substr(page_url.lastIndexOf('=') + 1);
+            var credentials = this.credentials;
+            if (window.DISQUS) {
+                DISQUS.reset({
+                    reload: true,
+                    config: function () {
+                        this.page.identifier = eval_id;
+                        this.page.url = page_url;
+                        if (credentials != null) {
+                            this.page.remote_auth_s3 = credentials.auth;
+                            this.page.api_key = credentials.pubKey;
+                        }
+                    }
+                });
+            } else {
+                var disqus_config = function () {
+                    // Replace PAGE_URL with your page's canonical URL variable
                     this.page.url = page_url;
-                    if (credentials != null){
+                    // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                    this.page.identifier = eval_id;
+                    if (credentials != null) {
                         this.page.remote_auth_s3 = credentials.auth;
                         this.page.api_key = credentials.pubKey;
                     }
-                }
-            });
-        }else{
-            var disqus_config = function () {
-                                // Replace PAGE_URL with your page's canonical URL variable
-                this.page.url = page_url;
-                                // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                this.page.identifier = eval_id; 
-                if (credentials != null){
-                    this.page.remote_auth_s3 = credentials.auth;
-                    this.page.api_key = credentials.pubKey;
-                }
-            };
+                };
 
-            (function() { 
-                                // DON'T EDIT BELOW THIS LINE
-                var d = document, s = d.createElement('script');
-                s.src = 'https://http-www-tripleepln-org.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            })();
-        }
+                (function () {
+                    // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://http-www-tripleepln-org.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            }
 
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-	<!--<a ng-show="isUser()" href="#copy-eval" type="button" class="btn btn-primary btn-lg ">make copy 
-	</a>-->
+    <!--<a ng-show="isUser()" href="#copy-eval" type="button" class="btn btn-primary btn-lg ">make copy
+    </a>-->
 </div>

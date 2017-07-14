@@ -1,0 +1,2 @@
+C:\Users\Alan Jaramillo\Documents\TripleE\Prototype\NewApp\bin\Microsoft.NodejsTools.WebRole.dll
+C:\Users\Alan Jaramillo\Documents\TripleE\Prototype\NewApp\obj\Debug\3edev.njsprojResolveAssemblyReference.cache

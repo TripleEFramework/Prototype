@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\NewApp",
+    "\\NewApp\\components",
+    "\\NewApp\\components\\submit_eval",
+    "\\NewApp\\services",
+    "\\NewApp\\services\\disqus",
+    "\\NewApp\\services\\parse"
+  ],
+  "SelectedNode": "\\NewApp\\app.js",
+  "PreviewInSolutionExplorer": false
+}

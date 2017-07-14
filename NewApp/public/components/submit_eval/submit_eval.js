@@ -151,14 +151,29 @@ submit.controller('SubmitEvalController', ['$location', '$scope', '$rootScope', 
         $scope.EvalForm.Title = $scope.title;
         $scope.EvalForm.LearningGoals = $scope.LearningGoals;
         $scope.EvalForm.Subjects = $scope.subjects;
+        var fileUploadControl = $("#lesson_doc_upload")[0];
+        if (fileUploadControl.files.length > 0) {
+            //var lesson_document_file_input = document.getElementById("lesson_doc_upload");
+            var lesson_document_file = fileUploadControl.files[0];
+            if (lesson_document_file.size > 1000000) {
+                $scope.submitCallback(false, "Lesson document must be smaller than 10 Megabytes");
+                return;
+            }
+            //var lesson_doc_name = document.getElementById("lesson_doc_upload").value;
 
-        // var lesson_document_file_input = document.getElementById("lesson_doc_upload");
-        // var lesson_document_file = lesson_document_file_input.files[0];
-        // var lesson_doc_name = document.getElementById("lesson_doc_upload").value;
-        // var lesson_document = new Parse.File(lesson_doc_name,lesson_document_file);
-        // if(lesson_doc_name){
-        //     $scope.EvalForm.Document = lesson_document;
-        // }
+
+            var lesson_document = new Parse.File(lesson_document_file.name, lesson_document_file);
+            lesson_document.save().then(function () {
+                // The file has been saved to Parse.
+                console.log(lesson_document);
+            }, function (error) {
+                // The file either could not be read, or could not be saved to Parse.
+                console.log(error);
+            });
+
+            $scope.EvalForm.Document = lesson_document;
+
+        }
         $scope.EvalForm.URL = $scope.LessonURL;
         $scope.EvalForm.GradeLevels = $scope.grade_levels;
         $scope.EvalForm.EngageComment = $scope.EngageComment;

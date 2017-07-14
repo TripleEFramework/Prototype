@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{43c8524d-cd3b-43ca-8f9c-8901fd739840}</ProjectGuid>
+    <ProjectHome />
+    <ProjectView>ShowAllFiles</ProjectView>
+    <StartupFile>server.js</StartupFile>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+    <Content Include="package.json" />
+    <Compile Include="server.js" />
+    <Content Include="public\index.html" />
+    <Compile Include="public\app.js" />
+    <Compile Include="public\routes.js" />
+    <Compile Include="public\sorttable.js" />
+    <Content Include="public\assets\stylesheets\styles.css" />
+    <Content Include="public\components\copy_eval\copy_eval.html" />
+    <Compile Include="public\components\copy_eval\copy_eval.js" />
+    <Content Include="public\components\edit_eval\edit_eval.html" />
+    <Compile Include="public\components\edit_eval\edit_eval.js" />
+    <Content Include="public\components\login\login.html" />
+    <Compile Include="public\components\login\login.js" />
+    <Content Include="public\components\logout\logout.html" />
+    <Compile Include="public\components\logout\logout.js" />
+    <Content Include="public\components\profile\profile.html" />
+    <Compile Include="public\components\profile\profile.js" />
+    <Content Include="public\components\reset_password\reset_password.html" />
+    <Compile Include="public\components\reset_password\reset_password.js" />
+    <Content Include="public\components\search\search.html" />
+    <Compile Include="public\components\search\search.js" />
+    <Content Include="public\components\show_eval\show_eval.html" />
+    <Compile Include="public\components\show_eval\show_eval.js" />
+    <Content Include="public\components\signup\signup.html" />
+    <Compile Include="public\components\signup\signup.js" />
+    <Content Include="public\components\submit_eval\submit_eval.html" />
+    <Compile Include="public\components\submit_eval\submit_eval.js" />
+    <Content Include="public\components\tutorial\tutorial.html" />
+    <Compile Include="public\components\tutorial\tutorial.js" />
+    <Compile Include="public\services\disqus\CryptoJS.js" />
+    <Compile Include="public\services\disqus\disqus.js" />
+    <Compile Include="public\services\parse\keys.js" />
+    <Compile Include="public\services\parse\parse.js" />
+    <Content Include="public\triple_e_logo_final.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="3edev" />
+    <Folder Include="public" />
+    <Folder Include="public\assets" />
+    <Folder Include="public\assets\stylesheets" />
+    <Folder Include="public\components" />
+    <Folder Include="public\components\copy_eval" />
+    <Folder Include="public\components\edit_eval" />
+    <Folder Include="public\components\login" />
+    <Folder Include="public\components\logout" />
+    <Folder Include="public\components\profile" />
+    <Folder Include="public\components\reset_password" />
+    <Folder Include="public\components\search" />
+    <Folder Include="public\components\show_eval" />
+    <Folder Include="public\components\signup" />
+    <Folder Include="public\components\submit_eval" />
+    <Folder Include="public\components\tutorial" />
+    <Folder Include="public\services" />
+    <Folder Include="public\services\disqus" />
+    <Folder Include="public\services\parse" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

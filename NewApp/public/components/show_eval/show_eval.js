@@ -60,7 +60,7 @@ submit.controller('ShowEvalController', ['$location', '$scope', 'ParseSvc', func
         $("#extend2" + result.get("IndividualScores").extend2).attr("hidden", false);
         $("#extend3" + result.get("IndividualScores").extend3).attr("hidden", false);
         var lesson_file = result.get("Document");
-        $("#chosen-lesson-file").attr("href",lesson_file._url);
+        $("#chosen-lesson-file").attr("src",lesson_file._url);
 		$scope.$apply();
     };
     displayEval = function (objectId) {
