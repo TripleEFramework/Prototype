@@ -1,6 +1,7 @@
 <div class="tab-pane fade in active">
     <h2>
         <button class="btn btn-default btn-primary" onclick="goBack()">Back to Search</button>
+        <button class="btn btn-default btn-primary" onclick="goSub()">Go to Subscribe </button>
         <script>
             function goBack() {
                 window.history.back();
@@ -15,10 +16,10 @@
 
             </tr>
             <tr>
-				 <div style="float:right;">
-					<iframe class="iframe_style" id="chosen-lesson-file"> Click Here for Lesson document </iframe>
-				</div
-			</tr>
+                <div style="float:right;">
+                    <iframe class="iframe_style" id="chosen-lesson-file"> Click Here for Lesson document </iframe>
+                </div>
+            </tr>
             <div>
                 Lesson Title:
                 <label class="show_eval_display_fields" name="title" id="chosen-lesson-title">
@@ -59,11 +60,11 @@
                 Extend Total:
                 <label class="show_eval_display_fields" id="chosen-extend-total">
             </div>
-           <!-- 
- <div style="float:right;">
-				<iframe id="chosen-lesson-file"> Click Here for Lesson document </iframe>
-			</div
- -->
+            <!--
+            <div style="float:right;">
+                           <iframe id="chosen-lesson-file"> Click Here for Lesson document </iframe>
+                       </div
+            -->
             <br />
             <br />
         </thead>
@@ -269,6 +270,16 @@
 
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <div id="sub_ref">
+    </div>
+    <script>
+            function goSub() {
+                $('html, body').animate({
+                    scrollTop: $("#sub_ref").offset().top
+                }, 2000);
+            };
+
+    </script>
     <!--<a ng-show="isUser()" href="#copy-eval" type="button" class="btn btn-primary btn-lg ">make copy
     </a>-->
 </div>
